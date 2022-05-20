@@ -199,7 +199,7 @@ class Builder implements BuilderContract
     public $operators = [
         '=', '<', '>', '<=', '>=', '<>', '!=', '<=>',
         'like', 'like binary', 'not like', 'ilike',
-        '&', '|', '^', '<<', '>>', '&~',
+        '&', '|', '^', '<<', '>>', '&~', 'is', 'is not',
         'rlike', 'not rlike', 'regexp', 'not regexp',
         '~', '~*', '!~', '!~*', 'similar to',
         'not similar to', 'not ilike', '~~*', '!~~*',
@@ -2552,6 +2552,29 @@ class Builder implements BuilderContract
     public function find($id, $columns = ['*'])
     {
         return $this->where('id', '=', $id)->first($columns);
+    }
+
+    /**
+     * Execute a query for a single record by ID or call a callback.
+     *
+     * @param  mixed  $id
+     * @param  \Closure|array  $columns
+     * @param  \Closure|null  $callback
+     * @return mixed|static
+     */
+    public function findOr($id, $columns = ['*'], Closure $callback = null)
+    {
+        if ($columns instanceof Closure) {
+            $callback = $columns;
+
+            $columns = ['*'];
+        }
+
+        if (! is_null($data = $this->find($id, $columns))) {
+            return $data;
+        }
+
+        return $callback();
     }
 
     /**
