@@ -161,9 +161,10 @@
             </div>
         </div>
         <!--Ads-->
-        <div class="sidebar-widget widget-ads mb-30">
-            <a href="{{ asset('assets/frontend/imgs/news-1.jpg') }}" class="play-video" data-animate="zoomIn" data-duration="1.5s" data-delay="0.1s">
-                <img src="{{ asset('assets/frontend/imgs/ads/ads-1.jpg') }}">
+        <span class="mb-15 text-muted">Advertise Here</span><br>
+        <div class="sidebar-widget mt-30">            
+            <a href="{{ asset('assets/frontend/imgs/news/news-1.jpg') }}" class="play-video" data-animate="zoomIn" data-duration="1.5s" data-delay="0.1s">
+                <img src="{{ asset('assets/frontend/imgs/banners/banner-1.jpg') }}">
             </a>
         </div>
     </div>
@@ -211,22 +212,23 @@
                 <!--Desktop menu-->
                 <ul class="main-menu d-none d-lg-inline">
                     <li><a href="/">Home</a></li>                    
+                    <li><a href="{{ route('about') }}">About</a></li>                    
                     <li><a href="category.html">World</a></li>
                     <li><a href="category.html">Politics</a></li>
                     <li><a href="category.html">Business</a></li>
                     <li><a href="category.html">Opinion</a></li>
                     <li><a href="category.html">Tech</a></li>
                     <li><a href="category.html">Science</a></li>
-                    <li><a href="contact.html">Contact</a></li>                   
+                    <li><a href="{{ route('contact') }}">Contact</a></li>                   
                 </ul>                
                 <!--Mobile menu-->
                 <ul id="mobile-menu" class="d-block d-lg-none">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Home</a></li>                   
                     <li>
-                        <a href="category.html">Archive layout</a>
+                        <a href="javasctipt:void(0);">Company</a>
                         <ul class="col-md-2">
-                            <li><a href="category.html">Category list</a></li>
-                            <li><a href="category-grid.html">Category grid</a></li>
+                            <li><a href="{{ route('about') }}">About Us</a></li>
+                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
                             <li><a href="category-big.html">Category big</a></li>
                             <li><a href="category-metro.html">Category metro</a></li>
                         </ul>

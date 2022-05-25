@@ -607,12 +607,13 @@
                                 </h6>
                                 <div class="newsletter">
                                     <p class="">Continue reading uninterrupted with a subscription</p>
-                                    <form target="_blank" action="#" method="get" class="subscribe_form relative mail_part">
+                                    <form id="newsletter-subscriber" class="subscribe_form relative mail_part">
+                                        @csrf
                                         <div class="form-newsletter-cover">
                                             <div class="form-newsletter">
-                                                <input type="email" name="EMAIL" placeholder="Email address" required="">
-                                                <button type="submit">
-                                                    <span class="long-arrow long-arrow-right"></span>
+                                                <input type="email" name="email[]" id="email" placeholder="Email address">
+                                                <button type="submit" id="submit">Submit
+                                                    {{-- <span class="long-arrow long-arrow-right"></span> --}}
                                                 </button>
                                             </div>
                                         </div>
@@ -625,4 +626,74 @@
             </section>
         </div>
     </main>
+@endsection
+
+@section('scripts')
+    <script>
+        // if ($("#newsletter-subscriber").length > 0) {
+        //         $("#newsletter-subscriber").validate({
+        //         rules: {                    
+        //             email: {
+        //                 required: true,
+        //                 maxlength: 50,
+        //                 email: true,
+        //             },
+        //         },
+
+        //         messages: {                
+        //             email: {
+        //                 required: "This attribute is required",
+        //                 email: "Please enter valid email",
+        //                 maxlength: "The email name should less than or equal to 50 characters",
+        //             },               
+        //         },
+
+        //         submitHandler: function(form) {
+        //             $.ajaxSetup({
+        //                 headers: {
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //                 }
+        //             });
+
+        //             $('#submit').html('Please Wait...');
+        //             $("#submit"). attr("disabled", true);
+        //             $.ajax({
+        //                 url: "{{url('/newsletter/store')}}",
+        //                 type: "POST",
+        //                 data: $('#newsletter-subscriber').serialize(),
+        //                 success: function( response ) {
+        //                     $('#submit').html('Submit');
+        //                     $("#submit"). attr("disabled", false);
+        //                     alert('You have successfully been subscribed.');
+        //                     document.getElementById("newsletter-subscriber").reset(); 
+        //                 }
+        //             });
+        //         }
+        //     })
+        // }
+        
+        $("#newsletter-subscriber").on('submit', function(e){
+            e.preventDefault();           
+            $ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+                url: '/newsletter-store',
+                method: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                beforeSend:function() {
+                    $("#submit").attr('disabled','disabled');
+                },
+                success:function (data) {
+                    console.log(data);
+                    alert('You have successfully been subscribed.');
+                },
+                error:function (error) {
+                    console.log(error);
+                    alert('There was an issue submitting your request');
+                }
+            })
+        })
+    </script>
 @endsection
