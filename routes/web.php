@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\SocialController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
@@ -10,3 +11,5 @@ Route::get('page/contact-us',[FrontendController::class,'contactUs'])->name('con
 Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubscriber'])->name('subscriber.store');
 
 Auth::routes();
+Route::get('auth/facebook', [SocialController::class,'facebookRedirect'])->name('facebook.login');
+Route::get('auth/facebook/callback', [SocialController::class,'loginWithFacebook'])->name('facebook.callback');

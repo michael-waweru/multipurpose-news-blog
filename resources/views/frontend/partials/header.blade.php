@@ -199,7 +199,25 @@
         <!--Header right-->
         <div class="position-absolute-center font-small d-none d-lg-block position-absolute position-right mr-30">
             <ul class="list-inline text-right">
-                <li class="list-inline-item mr-15"><a href="login.html"><i class="ti-user font-x-small mr-5"></i>Login / Register</a></li>               
+                @guest
+                    @if (Route::has('login'))                    
+                        <li class="list-inline-item mr-15"><a href="{{ route('login') }}"><i class="ti-user font-x-small mr-5"></i>Login / Register</a></li>                        
+                    @endif 
+                @else                                    
+                    <li class="list-inline-item dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="ti-user font-x-small mr-5"></i>{{ Auth::user()->name }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-language dropdown-menu-right border-0 font-small text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); 
+                                                    document.getElementById('logout-form').submit();">Sign Out
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">@csrf</form>
+                            </li>
+                        </ul>
+                    </li>                       
+                @endguest
             </ul>
         </div>        
     </div>
