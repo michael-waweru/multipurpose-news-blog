@@ -18,7 +18,7 @@
                                 @csrf
                                 <ul class="btn-login list_none mb-30 text-center list-inline">
                                     <li class="mb-10 list-inline-item"><a href="{{ route('facebook.login') }}" class="btn btn-facebook btn-outline-secondary"><i class="ti-facebook mr-5"></i>Continue with Facebook</a></li>
-                                    <li class="list-inline-item"><a href="#" class="btn btn-google btn-outline-secondary"><i class="ti-google mr-5"></i>Continue with Google</a></li>
+                                    <li class="list-inline-item"><a href="{{ route('google.login') }}" class="btn btn-google btn-outline-secondary"><i class="ti-google mr-5"></i>Continue with Google</a></li>
                                 </ul>
                                 
                                 @if (Session::has('errors'))

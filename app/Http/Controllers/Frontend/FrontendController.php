@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use App\Models\NewsletterSubscriber;
 use Illuminate\Http\Request;
 use Validator;
@@ -25,12 +26,7 @@ class FrontendController extends Controller
     }
 
     public function storeNewsletterSubscriber(Request $request)
-    {
-        // $subscriber = new NewsletterSubscriber();       
-        // $subscriber->email = $request->email;       
-        // $subscriber->save();
-        // return response()->json(['success' => true]);
-
+    {       
         if($request->ajax())
         {
             $rules = array(
@@ -63,4 +59,45 @@ class FrontendController extends Controller
             ]);
         }
     }
+
+    public function storeContactMessage(Request $request)
+    {
+        $request->validate([
+            'name'    => 'required',
+            'email'   => 'required|email|unique:users',            
+            'message' => 'required'
+        ]);        
+
+        // Contact::create($request->all());
+
+        $newContact = new Contact();
+        $newContact->name = $request->name;
+        $newContact->email = $request->email;
+        $newContact->phone = $request->phone;
+        $newContact->message = $request->message;      
+
+        if($newContact->save())
+        {
+            toastr()->success('We have captured your data. Stay woke!');
+            return redirect()->route('contact');
+        }      
+    }
+
+    // public function storeContactMessage(Request $request)
+    // {
+
+    //     \DB::table('contacts')->insert([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'phone' => $request->phone,
+    //         'message' => $request->message,
+    //     ]);
+
+    //     return response()->json(
+    //         [
+    //             'success' => true,
+    //             'message' => 'Data captured successfully'
+    //         ]
+    //     );
+    // }
 }
