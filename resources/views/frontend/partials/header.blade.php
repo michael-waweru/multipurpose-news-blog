@@ -194,7 +194,7 @@
         <div class="logo-text">
             <h1 class="logo text-uppercase d-md-inline d-none"><a href="/">News Board.</a></h1>
             <h1 class="logo logo-mobile text-uppercase d-inline d-md-none"><a href="/">NB.</a></h1>
-            <p class="head-line font-heading text-muted d-none d-lg-block">Creative Newspaper & Publisher Template</p>
+            <p class="head-line font-heading text-muted d-none d-lg-block">Creative Newspaper & Publisher Site</p>
         </div>
         <!--Header right-->
         <div class="position-absolute-center font-small d-none d-lg-block position-absolute position-right mr-30">
@@ -206,9 +206,16 @@
                 @else                                    
                     <li class="list-inline-item dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="ti-user font-x-small mr-5"></i>{{ Auth::user()->name }}
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-menu-language dropdown-menu-right border-0 font-small text-right">
-                            <li><a href="#">Dashboard</a></li>
+                            <span class="caret"></span>
+                        </a>  
+                        <ul class="dropdown-menu dropdown-menu-language dropdown-menu-right border-0 font-small text-right">                            
+                            @if (Auth::user()->role_id == 1)
+                                <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>                                
+                            @elseif (Auth::user()->role_id == 2)
+                                <li><a href="#">Dashboard</a></li>
+                            @else
+                                <li><a href="#">Dashboard</a></li>                         
+                            @endif
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); 
                                                     document.getElementById('logout-form').submit();">Sign Out
                                 </a>

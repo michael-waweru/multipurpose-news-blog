@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\SocialController;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,10 @@ Route::get('auth/facebook', [SocialController::class,'facebookRedirect'])->name(
 Route::get('auth/facebook/callback', [SocialController::class,'loginWithFacebook'])->name('facebook.callback');
 Route::get('auth/google', [SocialController::class,'googleRedirect'])->name('google.login');
 Route::get('auth/google/callback', [SocialController::class,'loginWithGoogle'])->name('google.callback');
+
+//Backend Routes
+
+//Admin Routes
+Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
+    Route::get('dashboard',[DashboardController::class,'dashboard'])->name('admin.dashboard');
+});

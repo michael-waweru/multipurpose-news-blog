@@ -165,19 +165,24 @@ trait AuthenticatesUsers
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        // $this->guard()->logout();
+        if($this->guard()->logout())
+        {
+            toastr()->success('You are logged out');
+        }
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+       
 
-        if ($response = $this->loggedOut($request)) {
+        if ($response = $this->loggedOut($request)) {           
             return $response;
         }
 
         return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect('/');
+            ? new JsonResponse([], 204)            
+            :redirect('/');
     }
 
     /**
