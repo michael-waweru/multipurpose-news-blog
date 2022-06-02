@@ -9,8 +9,10 @@
 <script src="{{ asset('assets/backend/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 <script src="{{ asset('assets/backend/js/plugins.js') }}"></script>
 
-<!-- apexcharts -->
-<script src="{{ asset('assets/backend/libs/apexcharts/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/backend/libs/prismjs/prism.js') }}"></script>
+<script src="{{ asset('assets/backend/libs/list.js/list.min.js') }}"></script>
+<script src="{{ asset('assets/backend/libs/list.pagination.js/list.pagination.min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/pages/listjs.init.js') }}"></script>
 
 <!-- projects js -->
 <script src="{{ asset('assets/backend/js/pages/dashboard-projects.init.js') }}"></script>

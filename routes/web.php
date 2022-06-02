@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\SocialController;
@@ -23,4 +24,5 @@ Route::get('auth/google/callback', [SocialController::class,'loginWithGoogle'])-
 //Admin Routes
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('dashboard',[DashboardController::class,'dashboard'])->name('admin.dashboard');
+    Route::get('categories',[CategoryController::class,'index'])->name('admin.categories');
 });
