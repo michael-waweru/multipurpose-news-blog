@@ -17,5 +17,11 @@
 <!-- projects js -->
 <script src="{{ asset('assets/backend/js/pages/dashboard-projects.init.js') }}"></script>
 
+ <!-- Sweet Alerts js -->
+ <script src="{{ asset('assets/backend/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
+ <!-- Sweet alert init js-->
+ <script src="{{ asset('assets/backend/js/pages/sweetalerts.init.js') }}"></script>
+
 <!-- App js -->
 <script src="{{ asset('assets/backend/js/app.js') }}"></script>

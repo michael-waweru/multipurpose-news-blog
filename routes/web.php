@@ -14,9 +14,9 @@ Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubsc
 Route::post('message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
 
 Auth::routes();
-Route::get('auth/facebook', [SocialController::class,'facebookRedirect'])->name('facebook.login');
+Route::get('oauth/api/facebook-login', [SocialController::class,'facebookRedirect'])->name('facebook.login');
 Route::get('auth/facebook/callback', [SocialController::class,'loginWithFacebook'])->name('facebook.callback');
-Route::get('auth/google', [SocialController::class,'googleRedirect'])->name('google.login');
+Route::get('oauth/api/google-login', [SocialController::class,'googleRedirect'])->name('google.login');
 Route::get('auth/google/callback', [SocialController::class,'loginWithGoogle'])->name('google.callback');
 
 //Backend Routes
@@ -25,4 +25,9 @@ Route::get('auth/google/callback', [SocialController::class,'loginWithGoogle'])-
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('dashboard',[DashboardController::class,'dashboard'])->name('admin.dashboard');
     Route::get('categories',[CategoryController::class,'index'])->name('admin.categories');
+    Route::get('categories/create',[CategoryController::class,'addCategory'])->name('admin.category.create');
+    Route::get('categories/edit/{slug}',[CategoryController::class,'edit'])->name('admin.category.edit');
+    Route::post('category/create/',[CategoryController::class,'storeCategory'])->name('admin.category.store');
+    Route::post('category/update/{slug}/',[CategoryController::class,'updateCategory'])->name('admin.category.update');
+    Route::delete('category/delete/{slug}/',[CategoryController::class,'deleteCategory'])->name('admin.category.delete');
 });

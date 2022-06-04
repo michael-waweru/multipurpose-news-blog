@@ -29,9 +29,11 @@
                         <div class="row g-4 mb-3">
                             <div class="col-sm-auto">
                                 <div>
-                                    <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal">
-                                        <i class="ri-add-line align-bottom me-1"></i> Add New Category
-                                    </button>
+                                    <a href="{{ route('admin.category.create') }}/">
+                                        <button type="button" class="btn btn-success add-btn">
+                                            <i class="ri-add-line align-bottom me-1"></i> Add New Category
+                                        </button>
+                                    </a>                                    
                                     <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
                                 </div>
                             </div>
@@ -45,46 +47,117 @@
                             </div>
                         </div>
 
+                        <div id="success_message"></div>
+
                         <div class="table-responsive table-card mt-3 mb-1">
                             <table class="table align-middle table-nowrap" id="customerTable">
                                 <thead class="table-light">
-                                    <tr>
+                                    <tr style="text-align:center">
                                         <th scope="col" style="width: 50px;">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                             </div>
                                         </th>
                                         <th class="sort" data-sort="customer_name">Category Name</th>
-                                        <th class="sort" data-sort="email">Category Slug</th>                                        
-                                        <th class="sort" data-sort="status">Category Status</th>
-                                        <th class="sort text-center" data-sort="action">Actions</th>
+                                        <th class="sort" data-sort="email">Category Slug</th>
+                                        <th class="sort" data-sort="action">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list form-check-all">
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
+                                    @foreach ($all_categories as $category)
+                                        <tr style="text-align:center">
+                                            <th scope="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
+                                                </div>
+                                            </th>                                           
+                                            <td>{{ $category->category_name }}</td>
+                                            <td>{{ $category->slug }}</td>
+                                            <td>
+                                                <div class="text-align:center">                                                    
+                                                    <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#showModal{{ $category->id }}">View Record</button>                                                   
+                                                
+                                                    <a href="{{ route('admin.category.edit',$category->slug) }}">
+                                                        <button class="btn btn-sm btn-success edit-item-btn">Edit Record</button>                                                        
+                                                    </a>                                                   
+                                                
+                                                    <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal{{ $category->id }}">Delete Record</button>                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <div class="modal fade" id="showModal{{ $category->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-light p-3">
+                                                        <h5 class="modal-title" id="exampleModalLabel">{{ $category->category_name }} Category</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                                                    </div>
+                                                   
+                                                    <div class="modal-body">                                    
+                                                        <div class="mb-3">
+                                                            <label for="id-field" class="form-label">ID</label>
+                                                            <input type="text" id="id-field" class="form-control" value="{{ $category->id }}" disabled />
+                                                        </div>
+                                
+                                                        <div class="mb-3">
+                                                            <label for="customername-field" class="form-label">Category Name</label>
+                                                            <input type="text" id="customername-field" class="form-control" value="{{ $category->category_name }}" readonly />
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="customername-field" class="form-label">Category Slug</label>
+                                                            <input type="text" id="customername-field" class="form-control" value="{{ $category->slug }}" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
                                             </div>
-                                        </th>
-                                        <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ2101</a></td>
-                                        <td class="customer_name">Mary Cousar</td>
-                                        <td class="email">category-slug</td>                                        
-                                        <td class="status"><span class="badge badge-soft-success text-uppercase">Active</span></td>
-                                        <td>
-                                            <div class="d-flex gap-2" style="align-items: center;">
-                                                <div class="edit">
-                                                    <button class="btn btn-sm btn-dark show-item-btn" data-bs-toggle="modal" data-bs-target="#showModal">View</button>
-                                                </div>
-                                                <div class="edit">
-                                                    <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal">Edit</button>
-                                                </div>
-                                                <div class="remove">
-                                                    <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Remove</button>
+                                        </div>
+                                    
+                                    
+                                         <!-- Delete Modal -->
+                                         <div class="modal fade zoomIn" id="deleteRecordModal{{ $category->id }}" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mt-2 text-center">  
+                                                            <div class="card-body p-4 pb-0">                                                               
+                                                                <div class="mt-3">
+                                                                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" 
+                                                                    trigger="loop" colors="primary:#f7b84b,secondary:#f06548" 
+                                                                    style="width:100px;height:100px"></lord-icon>
+                                                                    <div class="mt-4 pt-2 fs-15 mx-5">
+                                                                        <h4>Delete {{ $category->category_name }}?</h4>
+                                                                        <p class="text-muted mx-4 mb-0">
+                                                                            Are you Sure You want to proceed? Please note that this action cannot be undone.
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                                                            <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                                                            <form action="{{ route('admin.category.delete',$category->slug) }}" method="POST">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="submit" class="btn w-sm btn-danger">Yes, I'm Sure!</button>
+                                                            </form>                                                           
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                        <!--end modal -->
+                                    @endforeach                                    
                                 </tbody>
                             </table>
                             <div class="noresult" style="display: none">
@@ -112,61 +185,52 @@
             <!-- end col -->
         </div>
         <!-- end col -->
-    </div>
+    </div>      
+@endsection
 
-    <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                </div>
-                <form>
-                    <div class="modal-body">
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.add_category', function(e) {
+                e.preventDefault();
+               
+                var data = {
+                    'name': $('.category_name').val(),
+                }
+                // console.log(data);
 
-                        <div class="mb-3" id="modal-id" style="display: none;">
-                            <label for="id-field" class="form-label">ID</label>
-                            <input type="text" id="id-field" class="form-control" placeholder="ID" readonly />
-                        </div>
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-                        <div class="mb-3">
-                            <label for="customername-field" class="form-label">Customer Name</label>
-                            <input type="text" id="customername-field" class="form-control" placeholder="Enter Name" required />
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email-field" class="form-label">Email</label>
-                            <input type="email" id="email-field" class="form-control" placeholder="Enter Email" required />
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone-field" class="form-label">Phone</label>
-                            <input type="text" id="phone-field" class="form-control" placeholder="Enter Phone no." required />
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="date-field" class="form-label">Joining Date</label>
-                            <input type="text" id="date-field" class="form-control" placeholder="Select Date" required />
-                        </div>
-
-                        <div>
-                            <label for="status-field" class="form-label">Status</label>
-                            <select class="form-control" data-trigger name="status-field" id="status-field">
-                                <option value="">Status</option>
-                                <option value="Active">Active</option>
-                                <option value="Block">Block</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="hstack gap-2 justify-content-end">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" id="add-btn">Add Customer</button>
-                            <button type="button" class="btn btn-success" id="edit-btn">Update</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                $.ajax({
+                    type: 'POST',
+                    url:"/admin/category/add",
+                    data: data,
+                    datatype:"json",
+                    success: function (response) {
+                        // console.log(response);
+                        if (response.status == 400) 
+                        {
+                            $('#saveForm_errList').html("");
+                            $('#saveForm_errList').addClass('alert alert-danger');
+                            $.each(response.errors, function (key, err_values) {
+                                $('#saveForm_errList').append('<li>'+err_values+'</li>');
+                            });
+                        }
+                        else
+                        {
+                            $('#saveForm_errList').html("");
+                            $('#success_message').addClass('alert alert-success');
+                            $('#success_message').text(response.message);
+                            $('#addNewCategoryModal').modal('hide');
+                            $('#addNewCategoryModal').find('input').val("");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

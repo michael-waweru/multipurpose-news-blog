@@ -44,4 +44,6 @@
    
     @include('backend.partials.scripts')
 
+    @yield('scripts')
+
 </body>
