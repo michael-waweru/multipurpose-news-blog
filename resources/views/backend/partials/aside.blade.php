@@ -55,34 +55,10 @@
                             </li>
                            
                             <li class="nav-item">
-                                <a href="pages-team.html" class="nav-link" data-key="t-team"> Team </a>
-                            </li>
+                                <a href="{{ route('admin.blogs') }}" class="nav-link" data-key="t-team"> Blog </a>
+                            </li>                           
                             <li class="nav-item">
-                                <a href="pages-timeline.html" class="nav-link" data-key="t-timeline"> Timeline </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-faqs.html" class="nav-link" data-key="t-faqs"> FAQs </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-pricing.html" class="nav-link" data-key="t-pricing"> Pricing </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-gallery.html" class="nav-link" data-key="t-gallery"> Gallery </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-maintenance.html" class="nav-link" data-key="t-maintenance"> Maintenance
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-coming-soon.html" class="nav-link" data-key="t-coming-soon"> Coming Soon
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-sitemap.html" class="nav-link" data-key="t-sitemap"> Sitemap </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-search-results.html" class="nav-link" data-key="t-search-results"> Search
-                                    Results </a>
+                                <a href="pages-search-results.html" class="nav-link" data-key="t-search-results"> Search </a>
                             </li>
                         </ul>
                     </div>

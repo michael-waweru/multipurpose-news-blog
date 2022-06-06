@@ -23,5 +23,9 @@
  <!-- Sweet alert init js-->
  <script src="{{ asset('assets/backend/js/pages/sweetalerts.init.js') }}"></script>
 
+<!-- dropzone min -->
+<script src="{{ asset('assets/backend/libs/dropzone/dropzone-min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/pages/form-file-upload.init.js') }}"></script>
+
 <!-- App js -->
 <script src="{{ asset('assets/backend/js/app.js') }}"></script>

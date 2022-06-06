@@ -32,6 +32,7 @@ return array(
     'App\\Http\\Middleware\\isAdminMiddleware' => $baseDir . '/app/Http/Middleware/isAdminMiddleware.php',
     'App\\Http\\Middleware\\isAuthorMiddleware' => $baseDir . '/app/Http/Middleware/isAuthorMiddleware.php',
     'App\\Http\\Middleware\\isUserMiddleware' => $baseDir . '/app/Http/Middleware/isUserMiddleware.php',
+    'App\\Models\\Blog' => $baseDir . '/app/Models/Blog.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
     'App\\Models\\NewsletterSubscriber' => $baseDir . '/app/Models/NewsletterSubscriber.php',

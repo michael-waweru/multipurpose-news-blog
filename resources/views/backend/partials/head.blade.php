@@ -22,6 +22,9 @@
     <!-- Sweet Alert css-->
     <link href="{{ asset('assets/backend/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- dropzone css -->
+    <link rel="stylesheet" href="{{ asset('assets/backend/libs/dropzone/dropzone.css') }}" type="text/css" />
+
     <!-- App Css-->
     <link href="{{ asset('assets/backend/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 
