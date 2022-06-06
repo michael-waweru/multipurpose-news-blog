@@ -25,6 +25,11 @@
     <!-- dropzone css -->
     <link rel="stylesheet" href="{{ asset('assets/backend/libs/dropzone/dropzone.css') }}" type="text/css" />
 
+    <!-- quill css -->
+    <link href="{{ asset('assets/backend/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/backend/libs/quill/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/backend/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+
     <!-- App Css-->
     <link href="{{ asset('assets/backend/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 

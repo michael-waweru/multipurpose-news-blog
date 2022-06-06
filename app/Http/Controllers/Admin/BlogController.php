@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
@@ -24,7 +25,20 @@ class BlogController extends Controller
     public function storeBlog(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            ''
+            'title' => 'required|string|max:255',
+            'read_time' => 'required|integer',
+            'published_by' => 'required',
+            'category_id' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            toastr()->error($validator->errors()->first());
+            return back();
+        }
+
+        else
+        {
+            $blog = new Blog();
+        }
     }
 }

@@ -27,5 +27,11 @@
 <script src="{{ asset('assets/backend/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ asset('assets/backend/js/pages/form-file-upload.init.js') }}"></script>
 
+<!-- quill js -->
+<script src="{{ asset('assets/backend/libs/quill/quill.min.js') }}"></script>
+
+<!-- init js -->
+<script src="{{ asset('assets/backend/js/pages/form-editor.init.js') }}"></script>
+
 <!-- App js -->
 <script src="{{ asset('assets/backend/js/app.js') }}"></script>

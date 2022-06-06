@@ -24,19 +24,19 @@
                 </div><!-- end card header -->
                 <div class="card-body">
                     <div class="live-preview"> 
-                        <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form">
+                        <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form">
                             @csrf
                             <div class="row gy-4">
                                 <div class="col-sm-3 col-md-6">
                                     <div class="form-floating">                                    
                                         <input type="text" class="form-control" id="blogNameInput" 
-                                        name="category_name" placeholder="Enter Category Name" value="{{ old('category_name') }}"> 
+                                        name="title" placeholder="Enter Blog Title" value="{{ old('title') }}">
                                         <label for="blogNameInput">Blog Title</label>                                     
                                     </div>
                                 </div> 
 
                                 <div class="col-xxl-3 col-md-6">
-                                    <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                    <select class="form-select form-select-lg" aria-label=".form-select-lg example" name="category_id">
                                         <option selected>Select Category</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -44,7 +44,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-sm-3 col-md-6">
+                                <div class="col-sm-3 col-md-4">
                                     <div class="form-floating">                                    
                                         <input type="number" class="form-control" id="blogNameInput" 
                                         name="category_name" placeholder="Enter Category Name" value="{{ old('category_name') }}"> 
@@ -52,7 +52,7 @@
                                     </div>
                                 </div> 
 
-                                <div class="col-sm-3 col-md-6">
+                                <div class="col-sm-3 col-md-4">
                                     <select class="form-select form-select-lg" aria-label=".form-select-lg example">
                                         <option selected>Published by</option>
                                         <option value="this_account">This Account</option>
@@ -60,12 +60,20 @@
                                     </select>
                                 </div>
 
-                                <div class="card-body">
+                                <div class="col-sm-3 col-md-4">
+                                    <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                        <option selected>Status</option>
+                                        <option value="published">Publish</option>
+                                        <option value="draft">Save as Draft</option>
+                                    </select>
+                                </div>
+
+                                <div class="card-body col-md-6">
                                     <p class="text-muted">Select or Drop blog image</p>
 
-                                    <div class="dropzone col-md-6">
+                                    <div class="dropzone">
                                         <div class="fallback">
-                                            <input name="file" type="file" multiple="multiple">
+                                            <input name="image" type="file" multiple="multiple">
                                         </div>
                                         <div class="dz-message needsclick">
                                             <div class="mb-3">
@@ -103,8 +111,18 @@
                                     <!-- end dropzone-preview -->
                                 </div>
                                 <!-- end card body -->
+                                <div class="col-md-6 mt-5">
+                                    <label for="VertimeassageInput" class="form-label text-muted">Short Description</label>
+                                    <textarea class="form-control" id="VertimeassageInput" rows="11" placeholder="Short Description"></textarea>
+                                </div>
 
-
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-muted">Blog Description</p>
+                                        <div class="snow-editor" style="height: 300px;">
+                                        </div> <!-- end Snow-editor-->
+                                    </div><!-- end card-body -->
+                                </div>
                             </div>
                             <div class="col-xxl-3 col-md-6 mt-3">
                                 <button type="submit" class="btn btn-soft-success waves-effect waves-light">Add Blog</button>
