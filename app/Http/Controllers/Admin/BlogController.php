@@ -10,16 +10,24 @@ use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function index()
     {
         $blogs = Blog::all();
         return view('backend.blog.index',compact('blogs'));
     }
 
-    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-    {
+    public function create()
+    {        
         $categories = Category::all();
-        return view('backend.blog.create',compact('categories'));
+
+        if(count($categories) > 0)
+        {
+            return view('backend.blog.create',compact('categories'));    
+        }
+        else{            
+            toastr()->info('Please create a category first');
+            return redirect()->route('admin.category.create');
+        }
     }
 
     public function storeBlog(Request $request)
@@ -29,6 +37,9 @@ class BlogController extends Controller
             'read_time' => 'required|integer',
             'published_by' => 'required',
             'category_id' => 'required',
+            'short_description' => 'required',
+            'description' => 'required',
+            'status' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -38,7 +49,29 @@ class BlogController extends Controller
 
         else
         {
-            $blog = new Blog();
+            $input = $request->all();
+            
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->storeAs('blog', $imageName);
+
+            //set author
+            $author_name = null;
+            $user_id = null;
+
+            //Get category
+            $category = Category::find($input['category_id']);
+
+            if($input['posted_by'] == "this_account")
+            {
+                $author_name = Auth::user()->name;
+                $user_id = Auth::id();
+            }
+
+            $blog = new Blog();           
+
+            $blog->title = $request->title;
+            $blog->read_time = $request->read_time;
+            $blog->category_id = $request->category_id;
         }
     }
 }

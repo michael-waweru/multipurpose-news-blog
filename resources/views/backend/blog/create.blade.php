@@ -47,13 +47,13 @@
                                 <div class="col-sm-3 col-md-4">
                                     <div class="form-floating">                                    
                                         <input type="number" class="form-control" id="blogNameInput" 
-                                        name="category_name" placeholder="Enter Category Name" value="{{ old('category_name') }}"> 
+                                        name="read_time" value="{{ old('read_time') }}"> 
                                         <label for="blogNameInput">Blog Read Time <em>(in minutes)</em></label>                                     
                                     </div>
                                 </div> 
 
                                 <div class="col-sm-3 col-md-4">
-                                    <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                    <select class="form-select form-select-lg" aria-label=".form-select-lg example" name="published_by">
                                         <option selected>Published by</option>
                                         <option value="this_account">This Account</option>
                                         <option value="guest_author">Guest Author</option>                                       
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="col-sm-3 col-md-4">
-                                    <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                    <select class="form-select form-select-lg" aria-label=".form-select-lg example" name="status">
                                         <option selected>Status</option>
                                         <option value="published">Publish</option>
                                         <option value="draft">Save as Draft</option>
@@ -113,13 +113,13 @@
                                 <!-- end card body -->
                                 <div class="col-md-6 mt-5">
                                     <label for="VertimeassageInput" class="form-label text-muted">Short Description</label>
-                                    <textarea class="form-control" id="VertimeassageInput" rows="11" placeholder="Short Description"></textarea>
+                                    <textarea class="form-control" name="short_description" id="VertimeassageInput" rows="11" placeholder="Short Description"></textarea>
                                 </div>
 
                                 <div class="card">
                                     <div class="card-body">
                                         <p class="text-muted">Blog Description</p>
-                                        <div class="snow-editor" style="height: 300px;">
+                                        <div class="snow-editor" style="height: 300px;" name="description">
                                         </div> <!-- end Snow-editor-->
                                     </div><!-- end card-body -->
                                 </div>

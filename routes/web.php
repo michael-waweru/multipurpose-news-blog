@@ -15,9 +15,9 @@ Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubsc
 Route::post('message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
 
 Auth::routes();
-Route::get('oauth/initiate/facebook-login', [SocialController::class,'facebookRedirect'])->name('facebook.login');
+Route::get('auth/oauth/initiate/facebook-login', [SocialController::class,'facebookRedirect'])->name('facebook.login');
 Route::get('auth/facebook/callback', [SocialController::class,'loginWithFacebook'])->name('facebook.callback');
-Route::get('oauth/initiate/google-login', [SocialController::class,'googleRedirect'])->name('google.login');
+Route::get('auth/oauth/initiate/google-login', [SocialController::class,'googleRedirect'])->name('google.login');
 Route::get('auth/google/callback', [SocialController::class,'loginWithGoogle'])->name('google.callback');
 
 //Backend Routes
