@@ -46,9 +46,9 @@
 
                                 <div class="col-sm-3 col-md-4">
                                     <div class="form-floating">                                    
-                                        <input type="number" class="form-control" id="blogNameInput" 
+                                        <input type="number" class="form-control" id="readTime" placeholder="Enter Read Time"
                                         name="read_time" value="{{ old('read_time') }}"> 
-                                        <label for="blogNameInput">Blog Read Time <em>(in minutes)</em></label>                                     
+                                        <label for="readTime">Blog Read Time <em>(in minutes)</em></label>                                     
                                     </div>
                                 </div> 
 

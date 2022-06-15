@@ -33,13 +33,14 @@ class BlogController extends Controller
     public function storeBlog(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
+            'title' => 'required|max:255',
             'read_time' => 'required|integer',
-            'published_by' => 'required',
+            'published_by' => 'in:this_account,guest_author',
             'category_id' => 'required',
             'short_description' => 'required',
             'description' => 'required',
-            'status' => 'required',
+            'status' => 'in:published,draft',
+            'image' => 'required|mimes:jpg|png|gif|svg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -61,17 +62,25 @@ class BlogController extends Controller
             //Get category
             $category = Category::find($input['category_id']);
 
-            if($input['posted_by'] == "this_account")
+            if($input['published_by'] == "this_account")
             {
                 $author_name = Auth::user()->name;
                 $user_id = Auth::id();
             }
 
-            $blog = new Blog();           
+            $tags = explode(" ", $input['tags']);
 
-            $blog->title = $request->title;
-            $blog->read_time = $request->read_time;
-            $blog->category_id = $request->category_id;
+            $blog_data = Blog::create($input['blog_id']);
+            $blog_data->image = $imageName;
+            $blog_data->tag($tags);
+            $blog_data->author_name = $author_name;
+            $blog_data->user_id = $user_id;
+            $blog_data->category_name = $category->category_name;
+
+            if($blog_data->save()){
+                toastr()->success('Blog created successfully');
+                return redirect()->route('admin.blogs');
+            }
         }
     }
 }
