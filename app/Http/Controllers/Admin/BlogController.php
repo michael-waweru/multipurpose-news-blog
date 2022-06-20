@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
@@ -68,9 +69,9 @@ class BlogController extends Controller
                 $user_id = Auth::id();
             }
 
-            $tags = explode(" ", $input['tags']);
+            $tags = explode(", ", $input['tags']);
 
-            $blog_data = Blog::create($input['blog_id']);
+            $blog_data = Blog::create($input);
             $blog_data->image = $imageName;
             $blog_data->tag($tags);
             $blog_data->author_name = $author_name;
