@@ -1,37 +1,28 @@
-@jquery
-@toastr_js
-@toastr_render
+@jquery()
+@toastr_js()
+@toastr_render()
 
-<script src="{{ asset('assets/backend/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/backend/libs/simplebar/simplebar.min.js') }}"></script>
-<script src="{{ asset('assets/backend/libs/node-waves/waves.min.js') }}"></script>
-<script src="{{ asset('assets/backend/libs/feather-icons/feather.min.js') }}"></script>
-<script src="{{ asset('assets/backend/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
-<script src="{{ asset('assets/backend/js/plugins.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-angular.min.js" integrity="sha512-KT0oYlhnDf0XQfjuCS/QIw4sjTHdkefv8rOJY5HHdNEZ6AmOh1DW/ZdSqpipe+2AEXym5D0khNu95Mtmw9VNKg==" crossorigin="anonymous"></script>
 
-<script src="{{ asset('assets/backend/libs/prismjs/prism.js') }}"></script>
-<script src="{{ asset('assets/backend/libs/list.js/list.min.js') }}"></script>
-<script src="{{ asset('assets/backend/libs/list.pagination.js/list.pagination.min.js') }}"></script>
-<script src="{{ asset('assets/backend/js/pages/listjs.init.js') }}"></script>
-
-<!-- projects js -->
-<script src="{{ asset('assets/backend/js/pages/dashboard-projects.init.js') }}"></script>
-
- <!-- Sweet Alerts js -->
- <script src="{{ asset('assets/backend/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-
- <!-- Sweet alert init js-->
- <script src="{{ asset('assets/backend/js/pages/sweetalerts.init.js') }}"></script>
-
-<!-- dropzone min -->
-<script src="{{ asset('assets/backend/libs/dropzone/dropzone-min.js') }}"></script>
-<script src="{{ asset('assets/backend/js/pages/form-file-upload.init.js') }}"></script>
-
-<!-- quill js -->
-<script src="{{ asset('assets/backend/libs/quill/quill.min.js') }}"></script>
-
-<!-- init js -->
-<script src="{{ asset('assets/backend/js/pages/form-editor.init.js') }}"></script>
-
-<!-- App js -->
-<script src="{{ asset('assets/backend/js/app.js') }}"></script>
+<!--begin::Global Javascript Bundle(used by all pages)-->
+<script src="{{ asset('assets/backend/plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('assets/backend/js/scripts.bundle.js') }}"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Page Vendors Javascript(used by this page)-->
+<script src="{{ asset('assets/backend/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
+<!--end::Page Vendors Javascript-->
+<!--begin::Page Custom Javascript(used by this page)-->
+<script src="{{ asset('assets/backend/js/custom/apps/customers/list/export.js') }}"></script>
+<script src="{{ asset('assets/backend/js/custom/apps/customers/list/list.js') }}"></script>
+<script src="{{ asset('assets/backend/js/custom/apps/customers/add.js') }}"></script>
+<script src="{{ asset('assets/backend/js/widgets.bundle.js') }}"></script>
+<script src="{{ asset('assets/backend/js/custom/widgets.js') }}"></script>
+<script src="{{ asset('assets/backend/js/custom/apps/chat/chat.js') }}"></script>
+<script src="{{ asset('assets/backend/js/custom/intro.js') }}"></script>
+<script src="{{ asset('assets/backend/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+<script src="{{ asset('assets/backend/js/custom/utilities/modals/new-target.js') }}"></script>
+<script src="{{ asset('assets/backend/js/custom/utilities/modals/users-search.js') }}"></script>
+<!--end::Page Custom Javascript-->
+<!--end::Javascript-->

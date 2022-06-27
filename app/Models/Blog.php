@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Blog extends Model
 {
     use HasFactory, SoftDeletes, Sluggable, Taggable;
-
+  
     protected $fillable = [
         'title','slug','short_description','description','read_time','published_by','image','status'
     ];

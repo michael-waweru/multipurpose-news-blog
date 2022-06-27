@@ -10,30 +10,16 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/frontend/imgs/theme/favicon.png') }}">
 
-    <!-- Layout config Js -->
-    <script src="{{ asset('assets/backend/js/layout.js') }}"></script>
-
-    <!-- Bootstrap Css -->
-    <link href="{{ asset('assets/backend/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-   
-    <!-- Icons Css -->
-    <link href="{{ asset('assets/backend/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-
-    <!-- Sweet Alert css-->
-    <link href="{{ asset('assets/backend/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
-
-    <!-- dropzone css -->
-    <link rel="stylesheet" href="{{ asset('assets/backend/libs/dropzone/dropzone.css') }}" type="text/css" />
-
-    <!-- quill css -->
-    <link href="{{ asset('assets/backend/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/backend/libs/quill/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/backend/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
-
-    <!-- App Css-->
-    <link href="{{ asset('assets/backend/css/app.min.css') }}" rel="stylesheet" type="text/css" />
-
-    <!-- custom Css-->
-    <link href="{{ asset('assets/backend/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+   <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Page Vendor Stylesheets(used by this page)-->
+    <link href="{{ asset('assets/backend/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/backend/plugins/custom/vis-timeline/vis-timeline.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <!--end::Page Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="{{ asset('assets/backend/plugins/global/plugins.dark.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/backend/css/style.dark.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
 
     @toastr_css()
