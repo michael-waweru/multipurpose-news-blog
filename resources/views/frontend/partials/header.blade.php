@@ -238,12 +238,9 @@
                 <ul class="main-menu d-none d-lg-inline">
                     <li><a href="/">Home</a></li>                    
                     <li><a href="{{ route('about') }}">About</a></li>                    
-                    <li><a href="category.html">World</a></li>
-                    <li><a href="category.html">Politics</a></li>
-                    <li><a href="category.html">Business</a></li>
-                    <li><a href="category.html">Opinion</a></li>
-                    <li><a href="category.html">Tech</a></li>
-                    <li><a href="category.html">Science</a></li>
+                    @foreach (App\Models\Category::getCategories() as $category)
+                        <li><a href="{{ route('category',$category->slug) }}">{{ $category->category_name }}</a></li>
+                    @endforeach                    
                     <li><a href="{{ route('contact') }}">Contact</a></li>                   
                 </ul>                
                 <!--Mobile menu-->

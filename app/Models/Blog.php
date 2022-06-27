@@ -12,9 +12,11 @@ class Blog extends Model
 {
     use HasFactory, SoftDeletes, Sluggable, Taggable;
   
-    protected $fillable = [
-        'title','slug','short_description','description','read_time','published_by','image','status'
-    ];
+    // protected $fillable = [
+    //     'title','slug','short_description','description','read_time','published_by','image','status'
+    // ];
+
+    protected $guarded = [];
 
     public function sluggable(): array
     {
@@ -28,5 +30,10 @@ class Blog extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

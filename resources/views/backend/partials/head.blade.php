@@ -22,4 +22,7 @@
     <link href="{{ asset('assets/backend/css/style.dark.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 
+   <!-- Summernote Css --> 
+   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
     @toastr_css()

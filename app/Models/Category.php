@@ -30,4 +30,9 @@ class Category extends Model
     {
         return $this->hasMany(Blog::class);
     }
+
+    public static function getCategories()
+    {
+        return self::all()->take(3);
+    }
 }

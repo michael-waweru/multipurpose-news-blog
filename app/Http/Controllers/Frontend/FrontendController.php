@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\NewsletterSubscriber;
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ class FrontendController extends Controller
 {
     public function home()
     {
-        return view('frontend.index');
+        $categories = Category::all()->take(2);
+        return view('frontend.index', compact('categories'));
     }
 
     public function aboutUs()
@@ -23,6 +25,12 @@ class FrontendController extends Controller
     public function contactUs()
     {
         return view('frontend.contact-us');
+    }
+
+    public function category($slug)
+    {
+        $category_slug = Category::where('slug', $slug);
+        return view('frontend.category',compact('category_slug'));
     }
 
     public function storeNewsletterSubscriber(Request $request)

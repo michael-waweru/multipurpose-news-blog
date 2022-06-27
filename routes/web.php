@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 Route::get('/', [FrontendController::class,'home'])->name('homepage');
 Route::get('/page/about-us',[FrontendController::class,'aboutUs'])->name('about');
 Route::get('page/contact-us',[FrontendController::class,'contactUs'])->name('contact');
+Route::get('category/{slug}',[FrontendController::class,'category'])->name('category');
 Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubscriber'])->name('subscriber.store');
 Route::post('message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
 
@@ -37,5 +38,5 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
 
     Route::get('blogs',[BlogController::class,'index'])->name('admin.blogs');
     Route::get('blogs/create',[BlogController::class,'create'])->name('admin.blog.create');
-    Route::post('blog/store', [BlogController::class,'storeBlog'])->name('admin.blog.store');
+    Route::post('blog/store', [BlogController::class,'store'])->name('admin.blog.store');
 });

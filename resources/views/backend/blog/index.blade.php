@@ -1,190 +1,163 @@
 @extends('backend.layouts.base')
 
 @section('body')
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Welcome to your dashboard {{ Auth::user()->name }}</h4>
-
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>                        
-                        <li class="breadcrumb-item active">Blog Section</li>                      
-                    </ol>
-                </div>
-
+    <div class="toolbar" id="kt_toolbar">
+        <!--begin::Container-->
+        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                <!--begin::Title-->
+                <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Blogs List</h1>
+                <!--end::Title-->
+                <!--begin::Separator-->
+                <span class="h-20px border-gray-300 border-start mx-4"></span>
+                <!--end::Separator-->
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-muted">
+                        <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Dashboard</a>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-muted">Blog Section</li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-dark">All Blogs</li>
+                    <!--end::Item-->
+                </ul>
+                <!--end::Breadcrumb-->
             </div>
+            <!--end::Page title-->           
         </div>
-    </div> 
-
-    <div class="row">
-        <div class="col-lg-12">
+        <!--end::Container-->
+    </div>
+    <!--end::Toolbar-->
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Card-->
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title mb-0">Manage Blogs</h4>
-                </div><!-- end card header -->
-
-                <div class="card-body">
-                    <div id="customerList">
-                        <div class="row g-4 mb-3">
-                            <div class="col-sm-auto">
-                                <div>
-                                    <a href="{{ route('admin.blog.create') }}">
-                                        <button type="button" class="btn btn-success add-btn">
-                                            <i class="ri-add-line align-bottom me-1"></i> Add a New Blog
-                                        </button>
-                                    </a>                                    
-                                    <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="d-flex justify-content-sm-end">
-                                    <div class="search-box ms-2">
-                                        <input type="text" class="form-control search" placeholder="Search...">
-                                        <i class="ri-search-line search-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
+                <!--begin::Card header-->
+                <div class="card-header border-0 pt-6">
+                    <!--begin::Card title-->
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                            <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Categories" />
                         </div>
-
-                        <div id="success_message"></div>
-
-                        <div class="table-responsive table-card mt-3 mb-1">
-                            <table class="table align-middle table-nowrap" id="customerTable">
-                                <thead class="table-light">
-                                    <tr style="text-align:center">
-                                        <th scope="col" style="width: 50px;">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="checkAll" value="option">
-                                            </div>
-                                        </th>
-                                        <th class="sort" data-sort="customer_name">Blog Image</th>
-                                        <th class="sort" data-sort="customer_name">Blog Name</th>
-                                        <th class="sort" data-sort="email">Category</th>
-                                        <th class="sort" data-sort="action">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="list form-check-all">
-                                    @foreach ($blogs as $blog)
-                                        <tr style="text-align:center">
-                                            <th scope="row">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
-                                                </div>
-                                            </th>                                           
-                                            <td>{{ $blog->blog_name }}</td>
-                                            <td>{{ $blog->slug }}</td>
-                                            <td>
-                                                <div class="text-align:center">                                                    
-                                                    <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#showModal{{ $blog->id }}">View Record</button>                                                   
-                                                
-                                                    <a href="{{ route('admin.blog.edit',$blog->slug) }}">
-                                                        <button class="btn btn-sm btn-success edit-item-btn">Edit Record</button>                                                        
-                                                    </a>                                                   
-                                                
-                                                    <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal{{ $blog->id }}">Delete Record</button>                                                    
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <div class="modal fade" id="showModal{{ $blog->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header bg-light p-3">
-                                                        <h5 class="modal-title" id="exampleModalLabel">{{ $blog->blog_name }} blog</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                                                    </div>
-                                                   
-                                                    <div class="modal-body">                                    
-                                                        <div class="mb-3">
-                                                            <label for="id-field" class="form-label">ID</label>
-                                                            <input type="text" id="id-field" class="form-control" value="{{ $blog->id }}" disabled />
-                                                        </div>
-                                
-                                                        <div class="mb-3">
-                                                            <label for="customername-field" class="form-label">blog Name</label>
-                                                            <input type="text" id="customername-field" class="form-control" value="{{ $blog->blog_name }}" readonly />
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="customername-field" class="form-label">blog Slug</label>
-                                                            <input type="text" id="customername-field" class="form-control" value="{{ $blog->slug }}" readonly />
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <div class="hstack gap-2 justify-content-end">
-                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>                            
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                    
-                                         <!-- Delete Modal -->
-                                         <div class="modal fade zoomIn" id="deleteRecordModal{{ $blog->id }}" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="mt-2 text-center">  
-                                                            <div class="card-body p-4 pb-0">                                                               
-                                                                <div class="mt-3">
-                                                                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" 
-                                                                    trigger="loop" colors="primary:#f7b84b,secondary:#f06548" 
-                                                                    style="width:100px;height:100px"></lord-icon>
-                                                                    <div class="mt-4 pt-2 fs-15 mx-5">
-                                                                        <h4>Delete {{ $blog->blog_name }}?</h4>
-                                                                        <p class="text-muted mx-4 mb-0">
-                                                                            Are you Sure You want to proceed? Please note that this action cannot be undone.
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                                            <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                                                            <form action="{{ route('admin.blog.delete',$blog->slug) }}" method="POST">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <button type="submit" class="btn w-sm btn-danger">Yes, I'm Sure!</button>
-                                                            </form>                                                           
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end modal -->
-                                    @endforeach                                    
-                                </tbody>
-                            </table>
-                            <div class="noresult" style="display: none">
-                                <div class="text-center">                                   
-                                    <h5 class="mt-2">Sorry! No Result Found</h5>
-                                    <p class="text-muted mb-0">We've searched all records. We did not find any items related to your search.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-end">
-                            <div class="pagination-wrap hstack gap-2">
-                                <a class="page-item pagination-prev disabled" href="#">
-                                    Previous
-                                </a>
-                                <ul class="pagination listjs-pagination mb-0"></ul>
-                                <a class="page-item pagination-next" href="#">
-                                    Next
-                                </a>
-                            </div>
-                        </div>
+                        <!--end::Search-->
                     </div>
-                </div><!-- end card -->
+                    <!--begin::Card title-->
+                    <!--begin::Card toolbar-->
+                    <div class="card-toolbar">
+                        <!--begin::Toolbar-->
+                        <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">                            
+                            <!--begin::Add customer-->
+                            <a href="{{ route('admin.blog.create') }}">
+                                <button type="button" class="btn btn-primary">Add New Blog</button>
+                            </a>
+                        
+                            <!--end::Add customer-->
+                        </div>
+                        <!--end::Toolbar-->                        
+                    </div>
+                    <!--end::Card toolbar-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body pt-0">
+                    <!--begin::Table-->
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
+                        <!--begin::Table head-->
+                        <thead>
+                            <!--begin::Table row-->
+                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">                               
+                                <th class="min-w-125px">Blog Image</th>                               
+                                <th class="min-w-125px">Blog Name</th>
+                                <th class="min-w-125px">Blog Category</th>
+                                <th class="min-w-125px">Created Date</th>
+                                <th class="text-end min-w-70px">Actions</th>
+                            </tr>
+                            <!--end::Table row-->
+                        </thead>
+                        <!--end::Table head-->
+                        <!--begin::Table body-->
+                        <tbody class="fw-bold text-gray-600">
+                        @foreach ($blogs as $blog)
+                                <tr>                                   
+                                    <!--begin::Name=-->
+                                    <td>
+                                        <a href="view.html" class="text-gray-800 text-hover-primary mb-1">{{ $blog->name }}</a>
+                                    </td>
+                                    <!--end::Name=-->
+                                    <!--begin::Email=-->
+                                    <td>
+                                        <a href="#" class="text-gray-600 text-hover-primary mb-1">{{ $blog->category->category_name }}</a>
+                                    </td>
+                                    <!--end::Email=-->
+                                    <!--begin::Date=-->
+                                    <td>{{ $blog->created_at->diffForHumans() }}</td>
+                                    <!--end::Date=-->
+                                    <!--begin::Action=-->
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                        <span class="svg-icon svg-icon-5 m-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon--></a>
+                                        <!--begin::Menu-->
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="view.html" class="menu-link px-3">View</a>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="view.html" class="menu-link px-3">Edit</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3">Delete</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                        <!--end::Menu-->
+                                    </td>
+                                    <!--end::Action=-->
+                                </tr>
+                        @endforeach
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    <!--end::Table-->
+                </div>
+                <!--end::Card body-->
             </div>
-            <!-- end col -->
+            <!--end::Card-->            
         </div>
-        <!-- end col -->
+        <!--end::Container-->
     </div>      
 @endsection
