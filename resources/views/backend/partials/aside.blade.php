@@ -3,8 +3,8 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
-        <a href="../index.html">
-            <img alt="Logo" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/logos/logo-1-dark.svg" class="h-25px logo" />
+        <a href="{{ route('admin.dashboard') }}">            
+            <h3>News Board</h3>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->

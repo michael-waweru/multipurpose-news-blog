@@ -41,7 +41,7 @@ class BlogController extends Controller
             'short_description' => 'required',
             'description' => 'required',
             'status' => 'in:published,draft',
-            'image' => 'required|mimes:jpg,jpeg,svg,png|max:2048',
+            'image' => 'required|mimes:jpg,png,jpeg,svg|max:2048',
         ]);
 
         //check validation
@@ -52,8 +52,8 @@ class BlogController extends Controller
         }
         
         //capture data to store in DB
-        $input = $request->all();
-        
+        $input = $request->all(); 
+
         $imageName = time().'.'.$request->image->extension();
         $request->image->storeAs('blog', $imageName);
 
@@ -79,10 +79,11 @@ class BlogController extends Controller
         $blog_data->user_id = $user_id;
         $blog_data->category_name = $category->category_name;
 
-        dd($blog_data);
-        // if($blog_data->save()){
-        //     toastr()->success('Blog created successfully');
-        //     return redirect()->route('admin.blogs');
-        // }        
+        // dd($blog_data);
+        
+        if($blog_data->save()){
+            toastr()->success('Blog created successfully');
+            return redirect()->route('admin.blogs');
+        }        
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\BlogtestController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\SocialController;
@@ -38,5 +39,5 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
 
     Route::get('blogs',[BlogController::class,'index'])->name('admin.blogs');
     Route::get('blogs/create',[BlogController::class,'create'])->name('admin.blog.create');
-    Route::post('blog/store', [BlogController::class,'store'])->name('admin.blog.store');
+    Route::post('blog/store', [BlogController::class,'store'])->name('admin.blog.store');    
 });

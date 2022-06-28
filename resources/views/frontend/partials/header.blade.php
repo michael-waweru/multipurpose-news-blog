@@ -200,7 +200,7 @@
         <div class="position-absolute-center font-small d-none d-lg-block position-absolute position-right mr-30">
             <ul class="list-inline text-right">
                 @guest
-                    @if (Route::has('login'))                    
+                    @if (Route::has('login'))
                         <li class="list-inline-item mr-15"><a href="{{ route('login') }}"><i class="ti-user font-x-small mr-5"></i>Login / Register</a></li>                        
                     @endif 
                 @else                                    

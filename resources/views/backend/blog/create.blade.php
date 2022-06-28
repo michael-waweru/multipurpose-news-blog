@@ -1,88 +1,6 @@
 @extends('backend.layouts.base')
 
-@section('body')
-    {{-- <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Add a New Blog</h4>                    
-                </div><!-- end card header -->
-                <div class="card-body">
-                    <div class="live-preview"> 
-                        <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form">
-                            @csrf
-                            <div class="row gy-4">
-                                <div class="col-sm-3 col-md-4">
-                                    <div class="form-floating">                                    
-                                        <input type="text" class="form-control" id="blogNameInput" 
-                                        name="title" placeholder="Enter Blog Title" value="{{ old('title') }}">
-                                        <label for="blogNameInput">Blog Title</label>                                     
-                                    </div>
-                                </div> 
-
-                                <div class="col-sm-3 col-md-4">
-                                    <select class="form-select form-select-lg" aria-label=".form-select-lg example" name="category_id">
-                                        <option selected>Select Category</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                        @endforeach                                        
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-3 col-md-4">
-                                    <div class="form-floating">                                    
-                                        <input type="number" class="form-control" id="readTime" placeholder="Enter Read Time"
-                                        name="read_time" value="{{ old('read_time') }}"> 
-                                        <label for="readTime">Blog Read Time <em>(in minutes)</em></label>                                     
-                                    </div>
-                                </div>
-
-                                <div class="row gy-4">
-                                    <div class="col-sm-3 col-md-4">
-                                        <select class="form-select form-select-lg" aria-label=".form-select-lg example" name="published_by">
-                                            <option selected>Published by</option>
-                                            <option value="this_account">This Account</option>
-                                            <option value="guest_author">Guest Author</option>                                       
-                                        </select>
-                                    </div>
-    
-                                    <div class="col-sm-3 col-md-4">
-                                        <select class="form-select form-select-lg" aria-label=".form-select-lg example" name="status">
-                                            <option selected>Status</option>
-                                            <option value="published">Publish</option>
-                                            <option value="draft">Save as Draft</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-sm-3 col-md-4">
-                                        <input type="file" name="image" id="image">
-                                    </div>
-                                </div>
-                               
-                                <!-- end card body -->
-                                <div class="mt-5">                                   
-                                    <textarea class="form-control" name="short_description" rows="11" placeholder="Short Description"></textarea>
-                                </div>
-
-                                <div class="form-group mt-5">
-                                    <label for="description">Description</label>
-                                    <textarea id="description" name="description" class="summernote"></textarea>
-                                </div>
-                            </div>
-
-                           <div class="text-center pt-15">
-                        <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
-                        <button type="submit" id="kt_modal_new_card_submit" class="btn btn-primary">
-                            <span class="indicator-label">Submit</span>                            
-                        </button>
-                    </div>
-                        </form>                            
-                    </div>                                    
-                </div>
-            </div>
-        </div>
-        <!--end col-->
-    </div> --}}
+@section('body')  
 
     <div class="toolbar" id="kt_toolbar">
         <!--begin::Container-->
@@ -142,9 +60,9 @@
                     <div class="card-toolbar">
                         <!--begin::Toolbar-->
                         <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">                            
-                            <!--begin::Add customer-->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">All Blogs</button>
-                            <!--end::Add customer-->
+                            <a href="{{ route('admin.blogs') }}">
+                                <button type="button" class="btn btn-primary">All Blogs</button>
+                            </a>
                         </div>
                         <!--end::Toolbar-->                        
                     </div>
@@ -241,7 +159,7 @@
                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Click to upload the blog's image"></i>
                                 </label>
                                 <!--end::Label-->
-                                <input type="file" class="form-control" name="image" id="image">
+                                <input type="file" class="form-control" name="image">
                             </div>
                             <!--end::Input group-->                            
                         </div>
