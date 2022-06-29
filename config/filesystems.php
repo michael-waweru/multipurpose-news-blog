@@ -32,8 +32,8 @@ return [
 
         'local' => [
             'driver' => 'local',
-            // 'root' => storage_path('app/public'),
-            'root' => public_path('assets/backend/uploads'),
+            'root' => storage_path('app/public'),
+            // 'root' => public_path('assets/backend/uploads'),
             'throw' => false,
         ],
 

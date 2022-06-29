@@ -24,7 +24,8 @@ class CategoryController extends Controller
     public function storeCategory(Request $request)
     {
        $validator = Validator::make($request->all(), [
-           'category_name' => 'required|string|max:255'
+           'category_name' => 'required|string|max:255',
+           'description' => 'required',
        ]);
 
        if ($validator->fails()) {        
@@ -38,6 +39,8 @@ class CategoryController extends Controller
        else {
            $category = new Category();
            $category->category_name = $request->input('category_name');
+           $category->description = $request->input('description');
+           
            $category->save();
            if ($category->save()) {
                toastr()->success('Category saved successfully');

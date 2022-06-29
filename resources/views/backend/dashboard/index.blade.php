@@ -3,7 +3,7 @@
 @section('body')
 
     <!--begin::Content-->
-    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    {{-- <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
         <div class="toolbar bg-transparent pt-6 mb-5" id="kt_toolbar">
             <!--begin::Container-->
@@ -1926,7 +1926,13 @@
             <!--end::Container-->
         </div>
         <!--end::Post-->
+    </div> --}}
+    <!--end::Content--> 
+    
+    <div class="container">
+        <p>
+            <h1>This is the dashboard section</h1>
+        </p>
     </div>
-    <!--end::Content-->      
    
 @endsection

@@ -41,7 +41,7 @@ class BlogController extends Controller
             'short_description' => 'required',
             'description' => 'required',
             'status' => 'in:published,draft',
-            'image' => 'required|mimes:jpg,png,jpeg,svg|max:2048',
+            'image' => 'required|mimes:jpg,jpeg,svg,png|max:2048',
         ]);
 
         //check validation
@@ -53,6 +53,14 @@ class BlogController extends Controller
         
         //capture data to store in DB
         $input = $request->all(); 
+
+        // if($request->hasFile('image'))
+        // {
+        //     $file->$request->file('image');
+        //     $imageName = $file->getClientOriginalName();
+        //     $file->storeAs('blog', $imageName);
+        //     $input['image'] = $imageName;
+        // }
 
         $imageName = time().'.'.$request->image->extension();
         $request->image->storeAs('blog', $imageName);

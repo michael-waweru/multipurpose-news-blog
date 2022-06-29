@@ -14,6 +14,7 @@ Route::get('/', [FrontendController::class,'home'])->name('homepage');
 Route::get('/page/about-us',[FrontendController::class,'aboutUs'])->name('about');
 Route::get('page/contact-us',[FrontendController::class,'contactUs'])->name('contact');
 Route::get('category/{slug}',[FrontendController::class,'category'])->name('category');
+Route::get('post/{slug}', [FrontendController::class,'blogDetail'])->name('blog.detail');
 Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubscriber'])->name('subscriber.store');
 Route::post('message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
 

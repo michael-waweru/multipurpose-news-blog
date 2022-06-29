@@ -1,7 +1,7 @@
 @extends('backend.layouts.base')
 
 @section('body')   
-    <div class="toolbar" id="kt_toolbar">
+    {{-- <div class="toolbar" id="kt_toolbar">
         <!--begin::Container-->
         <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
             <!--begin::Page title-->
@@ -74,7 +74,7 @@
                         <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">                            
                             <!--begin::Add customer-->
                             <a href="{{ route('admin.category.create') }}">
-                                <button type="button" class="btn btn-primary">Add New Category</button>
+                                <button type="button" class="btn btn-sm btn-primary">Add New Category</button>
                             </a>
                            
                             <!--end::Add customer-->
@@ -158,7 +158,141 @@
             <!--end::Card-->            
         </div>
         <!--end::Container-->
-    </div>       
+    </div>        --}}
+
+    <div class="nk-content-body">
+        <div class="components-preview wide-md mx-auto">
+            <div class="nk-block nk-block-lg">
+                <div class="nk-block-head">
+                    <div class="nk-block-head-content">
+                        <h4 class="nk-block-title">All Categories
+                            <a href="{{ route('admin.category.create') }}" class="btn btn-sm btn-primary float-end">Add New Category</a>
+                        </h4>
+                    </div>
+                </div>
+                <div class="card card-bordered card-preview">
+                    <div class="card-inner">
+                        <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false">
+                            <thead>
+                                <tr class="nk-tb-item nk-tb-head">
+                                    <th class="nk-tb-col tb-col-mb"><span class="sub-text text-center">Category Name</span></th>
+                                    <th class="nk-tb-col tb-col-md"><span class="sub-text text-center">Category Slug</span></th>
+                                    <th class="nk-tb-col nk-tb-col-tools text-end">Actions </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($all_categories as $category)
+                                    <tr class="nk-tb-item">
+                                        <td class="nk-tb-col tb-col-mb">
+                                            <span class="tb-amount text-center">{{ $category->category_name }}</span>
+                                        </td>
+                                        <td class="nk-tb-col tb-col-mb">
+                                            <span class="tb-amount text-center">{{ $category->slug }}</span>
+                                        </td>
+                                        <td class="nk-tb-col nk-tb-col-tools">
+                                            <ul class="nk-tb-actions gx-1">
+                                                <li>
+                                                    <div class="drodown">
+                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <ul class="link-list-opt no-bdr">
+                                                                <li>
+                                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quickViewModal{{ $category->id }}" >
+                                                                        <em class="icon ni ni-eye"></em><span>Quick View</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                {{-- <li><a href="{{ route('admin.category.edit',['id' => $category->id]) }}/"><em class="icon ni ni-pen"></em><span>Edit Category</span></a></li> --}}
+                                                                <li>
+                                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $category->id }}">
+                                                                        <em class="icon ni ni-trash"></em><span>Delete Category</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="deleteModal{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="serviceModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="serviceModalCenterTitle">Delete {{ $category->title }}?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    You Cannot revert this action
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    {{-- <form class="d-inline-block" action="{{ route('admin.service.delete', $category->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-success">I'm Positive. DELETE IT!</button>
+                                                    </form> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" tabindex="-1" id="quickViewModal{{ $category->id }}">
+                                        <div class="modal-dialog modal-xl" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">{{ $category->category_name }}</h5>
+                                                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <em class="icon ni ni-cross"></em>
+                                                    </a>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="full-name">Category Title</label>
+                                                                <div class="form-control-wrap">
+                                                                    <input type="text" class="form-control" value="{{ $category->category_name }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="email-address">Category Slug</label>
+                                                                <div class="form-control-wrap">
+                                                                    <input type="text" class="form-control" value="{{ $category->slug }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12 mt-5">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="email-address">Category Description</label>
+                                                                <div class="form-control-wrap">
+                                                                    <textarea class="form-control" disabled>{{ $category->description }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer bg-light">
+                                                    <span class="sub-text">{{ config('app.name', 'NutriLab & Consulting Limited') }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- .card-preview -->
+            </div> <!-- nk-block -->
+        </div><!-- .components-preview -->
+    </div>
+
 @endsection
 
 @section('scripts')
