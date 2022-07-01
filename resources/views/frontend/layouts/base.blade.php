@@ -30,6 +30,32 @@
 
         @yield('scripts')
 
+        <script type="text/javascript">
+            jQuery(document).ready(function(){
+                jQuery('#submit').click(function(e){
+                    e.preventDefault();
+                    jQuery.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                        }
+                    });
+                    jQuery.ajax({
+                        url: "{{ url('/ajax') }}",
+                        method: 'post',
+                        data: {
+                            email: jQuery('#email').val(),                    
+                        },
+                        success: function(data){
+                                jQuery.each(data.errors, function(key, value){
+                                    jQuery('.alert-danger').show();
+                                    jQuery('.alert-danger').append('<p>'+value+'</p>');
+                                });
+                        }                    
+                    });
+                });
+            });
+        </script>
+
     </body>
 
 </html>

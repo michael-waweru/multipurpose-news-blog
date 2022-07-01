@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+    public function __construct(Type $args)
+    {
+        return $this->middleware(['auth','isAdmin']);
+    }
+    
     public function index()
     {
         $all_categories = Category::all();

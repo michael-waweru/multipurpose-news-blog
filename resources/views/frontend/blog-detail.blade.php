@@ -9,7 +9,7 @@
         <div class="container single-content">
             <div class="entry-header entry-header-style-1 mb-30 mt-50">
                 <h1 class="entry-title mb-30 font-weight-500">
-                    The effect of livestock on the physiological condition of roe deer is modulated by habitat quality
+                   {{ $blogDetail->title }}
                 </h1>
                 <div class="row">
                     <div class="col-lg-6">
@@ -40,12 +40,12 @@
             </div>
             <!--end single header-->
             <figure class="image mb-30 m-auto text-center border-radius-2">
-                <img src="{{ asset('storage/blog') }}/{{ $blogDetail->image }}" alt="post-title">
+                <img src="{{ asset('storage/blog') }}/{{ $blogDetail->image }}" alt="{{ $blogDetail->title }}">
             </figure>
             <!--figure-->
             <article class="entry-wraper mb-50">
                 <div class="excerpt mb-30">
-                    <p>Gosh jaguar ostrich quail one excited dear hello and bound and the and bland moral misheard roadrunner flapped lynx far that and jeepers giggled far and far bald that roadrunner python inside held shrewdly the manatee.</p>
+                    <p>{{ $blogDetail->short_description }}</p>
                 </div>
                 <div class="entry-left-col">
                     <div class="social-sticky">
@@ -55,38 +55,8 @@
                         <a href="#"><i class="ti-email"></i></a>
                     </div>
                 </div>
-                <div class="entry-main-content dropcap wow fadeIn animated">
-                    <p>Gosh jaguar ostrich quail one excited dear hello and <a href="#">bound</a><sup><a href="#">[1]</a></sup> and the and bland moral misheard roadrunner flapped lynx far that and jeepers giggled far and far bald that roadrunner python inside held shrewdly the manatee.</p>
-                    <hr class="wp-block-separator is-style-dots">
-                    <p>Thanks sniffed in hello after in foolhardy and some far purposefully much one at the much conjointly leapt skimpily that quail sheep some goodness <a href="#">nightingale</a> the instead exited expedient up far ouch mellifluous altruistic and and lighted more instead much when ferret but the.</p>
-                    <figure class="wp-block-gallery columns-3 wp-block-image">
-                        <ul class="blocks-gallery-grid">
-                            <li class="blocks-gallery-item"><a href="#"><img class="border-radius-5" src="{{ asset('assets/frontend/imgs/news/thumb-10.jpg') }}" alt=""></a></li>
-                            <li class="blocks-gallery-item"><a href="#"><img class="border-radius-5" src="{{ asset('assets/frontend/imgs/news/thumb-11.jpg') }}" alt=""></a></li>
-                            <li class="blocks-gallery-item"><a href="#"><img class="border-radius-5" src="{{ asset('assets/frontend/imgs/news/thumb-12.jpg') }}" alt=""></a></li>
-                        </ul>
-                        <figcaption> <i class="ti-credit-card mr-5"></i>Image credit: Behance </figcaption>
-                    </figure>
-                    <hr class="section-divider">
-                    <p>Yet more some certainly yet alas abandonedly whispered <a href="#">intriguingly</a><sup><a href="#">[2]</a></sup> well extensive one howled talkative admonishingly below a rethought overlaid dear gosh activated less <a href="#">however</a> hawk yet oh scratched ostrich some outside crud irrespective lightheartedly and much far amenably that the elephant since when.</p>
-                    <h2>The Guitar Legends</h2>
-                    <p>Furrowed this in the upset <a href="#">some across</a><sup><a href="#">[3]</a></sup> tiger oh loaded house gosh whispered <a href="#">faltering alas</a><sup><a href="#">[4]</a></sup> ouch cuckoo coward in scratched undid together bit fumblingly so besides salamander heron during the jeepers hello fitting jauntily much smoothly globefish darn blessedly far so along bluebird leopard and.</p>
-                    <blockquote>
-                        <p>Integer eu faucibus <a href="#">dolor</a><sup><a href="#">[5]</a></sup>. Ut venenatis tincidunt diam elementum imperdiet. Etiam accumsan semper nisl eu congue. Sed aliquam magna erat, ac eleifend lacus rhoncus in.</p>
-                    </blockquote>
-                    <p>Fretful human far recklessly while caterpillar well a well blubbered added one a some far whispered rampantly whispered while irksome far clung irrespective wailed more rosily and where saluted while black dear so yikes as considering recast to some crass until cow much less and rakishly overdrew consistent for by responsible oh one hypocritical less bastard hey oversaw zebra browbeat a well.</p>
-                    <h3>Getting Crypto Rich</h3>
-                    <hr class="wp-block-separator is-style-wide">
-                    <div class="wp-block-image">
-                        <figure class="alignleft is-resized">
-                            <img class="border-radius-5" src="{{ asset('assets/frontend/imgs/news/thumb-13.jpg') }}">
-                            <figcaption> And far contrary smoked some contrary among stealthy </figcaption>
-                        </figure>
-                    </div>
-                    <p>And far contrary smoked some contrary among stealthy engagingly suspiciously a cockatoo far circa sank dully lewd slick cracked llama the much gecko yikes more squirrel sniffed this and the the much within uninhibited this abominable a blubbered overdid foresaw through alas the pessimistic.</p>
-                    <p>Gosh jaguar ostrich quail one excited dear hello and bound and the and bland moral misheard roadrunner flapped lynx far that and jeepers giggled far and far bald that roadrunner python inside held shrewdly the manatee.</p>
-                    <hr class="section-divider">
-                    <p>Thanks sniffed in hello after in foolhardy and some far purposefully much one at the much conjointly leapt skimpily that quail sheep some goodness nightingale the instead exited expedient up far ouch mellifluous altruistic and and lighted more instead much when ferret but the.</p>
+                <div class="entry-main-content dropcap wow fadeIn animated">                    
+                    @php echo html_entity_decode($blogDetail->description) @endphp
                     <!--Begin Subcrible-->
                     <div class="border-radius-5 mb-50 border p-30 wow fadeIn animated">
                         <div class="row justify-content-between">
@@ -94,20 +64,33 @@
                                 <h5 class="font-weight-bold secondfont mb-30 mt-0">Become a member</h5>
                                 <p class="font-small">Get the latest news right in your inbox. We never spam!</p>
                             </div>
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" placeholder="Enter your e-mail address">
-                                    </div>
-                                    <div class="col-md-12 mt-2">
-                                        <button type="submit" class="btn btn-info btn-block">Subscribe</button>
-                                    </div>
+                            <div class="col-md-7">                                
+                                <div class="row">                                                                         
+                                    <strong>                                                                            
+                                        <span class="text-success" id="success-message"></span>                                                                                                              
+                                    </strong>                                    
+                                    <form id="contact-form">                                        
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your e-mail address">                                                                                  
+                                            <strong>
+                                                <span class="text-danger" id="email-error"></span>
+                                            </strong>                                            
+                                        </div>                                        
+                                        <div class="col-md-12 mt-2">
+                                            <button type="submit" class="btn btn-info btn-block">Subscribe</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--End Subcrible-->
-                    <p>Yet more some certainly yet alas abandonedly whispered intriguingly well extensive one howled talkative admonishingly below a rethought overlaid dear gosh activated less however hawk yet oh scratched ostrich some outside crud irrespective lightheartedly and much far amenably that the elephant since when.</p>
+                    <p>
+                        Yet more some certainly yet alas abandonedly whispered intriguingly well extensive 
+                        one howled talkative admonishingly below a rethought overlaid dear gosh activated 
+                        less however hawk yet oh scratched ostrich some outside crud irrespective lightheartedly 
+                        and much far amenably that the elephant since when.
+                    </p>
                 </div>
                 <div class="entry-bottom mt-50 mb-30 wow fadeIn animated">
                     <div class="tags">
@@ -136,7 +119,7 @@
                         <a href="author.html"><img src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="" class="avatar"></a>
                     </div>
                     <div class="author-info">
-                        <h3><span class="vcard author"><span class="fn"><a href="author.html" title="Posted by Barbara Cartland" rel="author">Barbara Cartland</a></span></span>
+                        <h3><span class="vcard author"><span class="fn"><a href="author.html" title="Posted by {{ $blogDetail->author_name }}" rel="author">{{ $blogDetail->author_name }}</a></span></span>
                         </h3>
                         <h5>About author</h5>
                         <div class="author-description">You should write because you love the shape of stories and sentences and the creation of different words on a page. </div>
@@ -336,26 +319,22 @@
                 <!--comment form-->
                 <div class="comment-form wow fadeIn animated">
                     <h3 class="mb-30">Leave a Reply</h3>
-                    <form class="form-contact comment_form" action="#" id="commentForm">
-                        <div class="row">
-                            <div class="col-12">
+                    <form action="{{ route('comment.store') }}" method="POST" class="form-contact comment_form" id="commentForm">
+                        @csrf
+                        <div class="row">                           
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                    <input class="form-control" name="name" type="text" placeholder="Name">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                                    <input class="form-control" name="email" type="email" placeholder="Email">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input class="form-control" name="website" id="website" type="text" placeholder="Website">
+                                    <textarea class="form-control w-100" name="comment" cols="30" rows="9" placeholder="Write Your Comment"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -368,4 +347,40 @@
         </div>
         <!--container-->
     </main>
+    
+    @section('scripts')
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        
+            $('#contact-form').on('submit', function(event){
+                event.preventDefault();           
+                $('#email-error').text('');
+            
+                email = $('#email').val();          
+        
+                $.ajax({
+                url: "/ajax",
+                type: "POST",
+                data:{                 
+                    email:email,                  
+                },
+                success:function(response){
+                    console.log(response);
+                    if (response) {
+                        $('#success-message').text(response.success);
+                        $("#contact-form")[0].reset();
+                        $("#contact-form").hide();
+                    }
+                },
+                error: function(response) {
+                    $('#email-error').text(response.responseJSON.errors.email);                 
+                    }
+                });
+            });
+        </script> 
+    @endsection
 @endsection

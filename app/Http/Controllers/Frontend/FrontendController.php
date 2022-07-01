@@ -5,18 +5,20 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\NewsletterSubscriber;
-use Conner\Tagging\Model\Tagged;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Validator;
 
 class FrontendController extends Controller
-{
+{ 
     public function home()
     {
         $categories = Category::all()->take(2);
-        return view('frontend.index', compact('categories'));
+        $recent_posts = Blog::orderBy('created_at', 'DESC')->take(2)->get();            
+        return view('frontend.index', compact(['categories','recent_posts']));
     }
 
     public function aboutUs()
@@ -34,93 +36,73 @@ class FrontendController extends Controller
         $category= Category::where('slug', $slug)->first();
 
         $recent_posts = Blog::where('category_id', $category->id)
-                            ->orderBy('created_at', 'DESC')->take(1)->get();
-        $blogs= Blog::where('category_id', '=', $category->id)->take(3)->get();        
+                        ->orderBy('created_at', 'DESC')->take(1)->get();
+
+        $blogs= Blog::where('category_id', '=', $category->id)->take(3)->get();
         
         return view('frontend.category',compact(['category','recent_posts','blogs']));
     }
 
-    public function blogDetail($slug)
-    {
-        $blogDetail = Blog::where('slug',$slug)->first();
+    public function blogDetail( $category, $slug)
+    {  
+        $blogDetail = Blog::where('slug', $slug)->first();
+                        
         return view('frontend.blog-detail', compact('blogDetail'));
+    }   
+
+    public function storeContactMessage(Request $request)
+    {     
+        $request->validate([
+            'name'    => 'required',
+            'email'   => 'required|email|unique:contacts',            
+            'message' => 'required'
+        ]);
+
+        Contact::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'message' => $request->message,
+        ]);
+       
+        return response()->json(['success'=>'We have successfully captured your message. Standby for a reply.']);             
     }
 
-    public function storeNewsletterSubscriber(Request $request)
-    {       
-        // if($request->ajax())
-        // {
-        //     $rules = array(
-        //         'email' => 'required|email'
-        //     );
+    public function storeBlogComment(Request $request)
+    {
+        $rules = array(
+            'email' => 'email|unique:comments',
+            'name' => 'required|string',
+            'comment' => 'required'
+        );   
 
-        //     $validator = Validator::make($request->all(), $rules);
-
-        //     if($validator->fails())
-        //     {
-        //         return response()->json([
-        //             'error' => $validator->errors()->all()
-        //         ]);
-        //     }
-
-        //     $email = $request->email;
-
-        //     for($count = 0; $count < count($email); $count++)
-        //     {
-        //         $data = array(
-        //             'email' => $email[$count],
-        //         );
-
-        //         $insert_data[] = $data;
-        //     }
-
-        //     NewsletterSubscriber::store($insert_data);
-        //     return response()->json([
-        //         'success' => 'You have successfully been subscribed.'
-        //     ]);
-        // }
-
-        $validatedData = Validator::make($request->all(),
-        [
-            'email' => 'required|email|unique:newsletter_subscribers',
-        ]);
+        $messages = array(
+            'name.required' => 'The name field is required.',
+            'email.unique' => 'We have already captured data from this email.',
+            'email.email' => 'Please enter a valid email address.',
+            'comment.required' => 'The comments field is a required field.',
+        );
+                    
+        $validatedData = Validator::make( $request->all(), $rules, $messages);
 
         if($validatedData->fails())
         {
             toastr()->error($validatedData->errors()->first());
             return back();
-        }        
+        }
 
-        $newsletter_subscriber = new NewsletterSubscriber();
-        $newsletter_subscriber->email = $request->email;
+        // $blog = Blog::where('slug', $slug)->first();
 
-        if($newsletter_subscriber->save())
+        $comment = new Comment();
+        // $comment->blog_id = $this->blog->id;
+        $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->comment = $request->comment;
+
+        if($comment->save())
         {
-            toastr()->success('We have captured your data');
+            toastr()->success('Your comment has been saved pending approval. Standby!');
             return back();
         }
     }
-
-    public function storeContactMessage(Request $request)
-    {
-        $request->validate([
-            'name'    => 'required',
-            'email'   => 'required|email|unique:users',            
-            'message' => 'required'
-        ]);
-
-        // Contact::create($request->all());
-
-        $newContact = new Contact();
-        $newContact->name = $request->name;
-        $newContact->email = $request->email;
-        $newContact->phone = $request->phone;
-        $newContact->message = $request->message;      
-
-        if($newContact->save())
-        {
-            toastr()->success('We have captured your data. Stay woke!');
-            return redirect()->route('contact');
-        }      
-    }    
 }

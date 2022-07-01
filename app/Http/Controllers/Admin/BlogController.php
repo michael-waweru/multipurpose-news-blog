@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware(['auth','isAdmin']);
+    }
     public function index()
     {
         $blogs = Blog::all();
@@ -52,15 +56,7 @@ class BlogController extends Controller
         }
         
         //capture data to store in DB
-        $input = $request->all(); 
-
-        // if($request->hasFile('image'))
-        // {
-        //     $file->$request->file('image');
-        //     $imageName = $file->getClientOriginalName();
-        //     $file->storeAs('blog', $imageName);
-        //     $input['image'] = $imageName;
-        // }
+        $input = $request->all();
 
         $imageName = time().'.'.$request->image->extension();
         $request->image->storeAs('blog', $imageName);

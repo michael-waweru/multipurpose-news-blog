@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\BlogtestController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\BlogAjaxController;
 use App\Http\Controllers\Frontend\SocialController;
 use App\Http\Controllers\Frontend\FrontendController;
 
@@ -14,9 +14,11 @@ Route::get('/', [FrontendController::class,'home'])->name('homepage');
 Route::get('/page/about-us',[FrontendController::class,'aboutUs'])->name('about');
 Route::get('page/contact-us',[FrontendController::class,'contactUs'])->name('contact');
 Route::get('category/{slug}',[FrontendController::class,'category'])->name('category');
-Route::get('post/{slug}', [FrontendController::class,'blogDetail'])->name('blog.detail');
+Route::get('{category}/article/{slug}', [FrontendController::class,'blogDetail'])->name('blog.detail');
 Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubscriber'])->name('subscriber.store');
-Route::post('message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
+Route::post('/message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
+Route::post('comment-store', [FrontendController::class,'storeBlogComment'])->name('comment.store');
+Route::post('/ajax',[BlogAjaxController::class,'testAjax']);
 
 Auth::routes();
 Route::get('auth/oauth/initiate/facebook-login', [SocialController::class,'facebookRedirect'])->name('facebook.login');

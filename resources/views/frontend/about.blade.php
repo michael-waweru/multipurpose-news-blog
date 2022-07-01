@@ -54,46 +54,100 @@
                     </p>
                     <hr class="wp-block-separator is-style-wide">
                     <h3 class="mb-30">Get in touch</h3>
-                    <form class="form-contact comment_form" action="#" id="commentForm">
+
+                    <div id="message-display">
+                        <strong><span class="text-success" id="success-message"></span></strong>
+                    </div>
+
+                    <form class="form-contact comment_form mt-3" id="contact-form">                           
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                                    <input class="form-control" name="name" id="name" type="text" placeholder="Name">                                  
+                                    <span class="text-danger" id="name-error"></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                                    <input class="form-control" name="email" id="email" type="text" placeholder="Email">                                  
+                                    <span class="text-danger" id="email-error"></span>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input class="form-control" name="website" id="website" type="text" placeholder="Phone">
+                                    <input class="form-control" name="phone" id="phone" type="text" placeholder="Phone">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Message"></textarea>
+                                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Message"></textarea>                                    
+                                    <span class="text-danger" id="message-error"></span>
+
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="button button-contactForm">Send message</button>
+                            <button type="submit" class="button button-contactForm" id="save-btn">Send message</button>
                         </div>
                     </form>
                     <hr class="wp-block-separator is-style-wide">
                 </div>
-                <div class="divider-1 mb-30"></div>
-                <div class="single-social-share clearfix ">
-                    <p class="text-uppercase">Share this post </p>
-                    <ul class="d-inline-block list-inline">
-                        <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-facebook"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-twitter-alt"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon pinterest-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-pinterest"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-instagram"></i></a></li>
-                    </ul>
-                </div>
+                <div class="divider-1 mb-30"></div>                
             </div>
         </div>
     </main>
+
+    @section('scripts')
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        
+            $('#contact-form').on('submit', function(event){
+                event.preventDefault();           
+                $('#name-error').text('');
+                $('#email-error').text('');
+                $('#message-error').text('');
+            
+                name = $('#name').val();
+                email = $('#email').val();
+                phone = $('#phone').val();
+                message = $('#message').val();
+        
+                $.ajax({
+                url: "/message-store",
+                type: "POST",
+                data:{                 
+                    name:name,                  
+                    email:email,                  
+                    phone:phone,                  
+                    message:message,                  
+                },
+                success:function(response){
+                    console.log(response);
+                    if (response) {
+                        $('#success-message').text(response.success);
+                        $("#contact-form")[0].reset();
+                        // $("#contact-form").hide();
+                    }
+                },
+                error: function(response) {
+                    $('#name-error').text(response.responseJSON.errors.name);
+                    $('#email-error').text(response.responseJSON.errors.email);
+                    $('#message-error').text(response.responseJSON.errors.message);
+                    }
+                });
+            });
+        </script> 
+
+        <script> 
+            window.setTimeout(function() {
+                $("#message-display").fadeTo(1000, 0).slideUp(1000, function(){
+                    $(this).remove(); 
+                });
+            }, 10000);
+        </script>
+    @endsection
 @endsection

@@ -13,47 +13,26 @@
                 <div class="loop-grid-3 row vertical-divider">
                     <div class="col-lg-7 col-md-12">
                         <div class="slide-fade mb-lg-0 mb-md-4 mb-sm-4">
-                            <article class="first-post slide-fade-item mb-md-4 mb-lg-0">
-                                <figure class="mb-30">
-                                    <a href="single.html">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-12.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <div class="post-content">
-                                    <h3 class="mb-20 position-relative font-weight-bold">
-                                        <a href="single.html">This magical drug mansion in Upstate New York is where the psychedelic ’60s took off</a>
-                                    </h3>
-                                    <p class="excerpt">
-                                        William Mellon Hitchcock was not your typical acid head. Billy, as he was called, was a tall, charming blonde stockbroker in his twenties who worked at Lehman Brothers, for one. He was heir to one of the largest fortunes in the country, for another.
-                                    </p>
-                                    <div class="entry-meta meta-0 mb-15 font-small">
-                                        <a href="category.html"><span class="post-cat position-relative"># America’s</span></a>
-                                        <a href="category.html"><span class="post-cat position-relative"># New York</span></a>
+                            @foreach ($recent_posts as $recent_post)
+                                <article class="first-post slide-fade-item mb-md-4 mb-lg-0">
+                                    <figure class="mb-30">
+                                        <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">
+                                            <img src="{{ asset('storage/blog/') }}/{{ $recent_post->image }}" alt="{{ $recent_post->title }}">
+                                        </a>
+                                    </figure>
+                                    <div class="post-content">
+                                        <h3 class="mb-20 position-relative font-weight-bold">
+                                            <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">{{ $recent_post->title }}</a>
+                                        </h3>
+                                        <p class="excerpt">
+                                            {{ $recent_post->short_description }}
+                                        </p>
+                                        <div class="entry-meta meta-0 mb-15 font-small">                                            
+                                            <a href="{{ route('category',$recent_post->category->slug) }}"><span class="post-cat position-relative">In {{ $recent_post->category->category_name }}</span></a>
+                                        </div>
                                     </div>
-                                </div>
-                            </article>
-                            <article class="first-post slide-fade-item mb-md-4 mb-lg-0">
-                                <figure class="mb-30">
-                                    <a href="single.html">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-19.jpg') }}" alt="">
-                                    </a>
-                                    <span class="post-format position-top-right text-uppercase font-small">
-                                        <i class="ti-stats-up"></i>
-                                    </span>
-                                </figure>
-                                <div class="post-content">
-                                    <h3 class="mb-20 position-relative font-weight-bold">
-                                        <a href="single.html">What I Learned From a Year of Reading Only Books by Women</a>
-                                    </h3>
-                                    <p class="excerpt">
-                                        Alice Fishburn set herself a challenge for 2018 to only read female authors. Here’s what she discovered. It started, as so many of the best things do, with my attempt to one-up a sibling. At the end of last year, my brother explained to me that when it
-                                    </p>
-                                    <div class="entry-meta meta-0 mb-15 font-small">
-                                        <a href="category.html"><span class="post-cat position-relative"># America’s</span></a>
-                                        <a href="category.html"><span class="post-cat position-relative"># New York</span></a>
-                                    </div>
-                                </div>
-                            </article>
+                                </article>
+                            @endforeach                            
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12">
@@ -544,7 +523,7 @@
                                     <p class="font-small mt-15 text-muted"><a href="#">View more</a></p>
                                 </div>
                             </div>
-                            <div class="sidebar-widget widget-latest-posts mb-30 mt-15 wow fadeIn animated">
+                            <div class="sidebar-widget widget-latest-posts mb-30 mt-15 wow fadeIn animated" id="newsletter-section">
                                 <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
                                     <span>Most comments</span>
                                 </h6>
@@ -606,19 +585,20 @@
                                     <span>Newsletter</span>
                                 </h6>
                                 <div class="newsletter">
-                                    <p class="">Continue reading uninterrupted with a subscription</p>
-                                    <form id="newsletter-subscriber" class="subscribe_form relative mail_part">
-                                        @csrf
+                                    <p class="">Always stay on track with the latest news straight to your inbox. Subscribe.</p>
+                                    <strong><span class="text-success" id="success-message"></span></strong>
+                                    <form id="newsletter-form">                                        
                                         <div class="form-newsletter-cover">
                                             <div class="form-newsletter">
-                                                <input type="email" name="email[]" id="email" placeholder="Email address">
-                                                <button type="submit" id="submit">Submit
-                                                    {{-- <span class="long-arrow long-arrow-right"></span> --}}
+                                                <input type="email" name="email" id="email" placeholder="Email address">                                               
+                                                <button type="submit">
+                                                    <span class="long-arrow long-arrow-right"></span>
                                                 </button>
-                                            </div>
+                                            </div>                                            
                                         </div>
                                     </form>
-                                </div>
+                                    <strong><span class="text-danger" id="email-error"></span></strong>
+                                </div>                                
                             </div>
                         </div>
                     </div>
@@ -626,74 +606,40 @@
             </section>
         </div>
     </main>
-@endsection
 
-@section('scripts')
-    <script>
-        // if ($("#newsletter-subscriber").length > 0) {
-        //         $("#newsletter-subscriber").validate({
-        //         rules: {                    
-        //             email: {
-        //                 required: true,
-        //                 maxlength: 50,
-        //                 email: true,
-        //             },
-        //         },
-
-        //         messages: {                
-        //             email: {
-        //                 required: "This attribute is required",
-        //                 email: "Please enter valid email",
-        //                 maxlength: "The email name should less than or equal to 50 characters",
-        //             },               
-        //         },
-
-        //         submitHandler: function(form) {
-        //             $.ajaxSetup({
-        //                 headers: {
-        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //                 }
-        //             });
-
-        //             $('#submit').html('Please Wait...');
-        //             $("#submit"). attr("disabled", true);
-        //             $.ajax({
-        //                 url: "{{url('/newsletter/store')}}",
-        //                 type: "POST",
-        //                 data: $('#newsletter-subscriber').serialize(),
-        //                 success: function( response ) {
-        //                     $('#submit').html('Submit');
-        //                     $("#submit"). attr("disabled", false);
-        //                     alert('You have successfully been subscribed.');
-        //                     document.getElementById("newsletter-subscriber").reset(); 
-        //                 }
-        //             });
-        //         }
-        //     })
-        // }
-        
-        $("#newsletter-subscriber").on('submit', function(e){
-            e.preventDefault();           
-            $ajax({
+    @section('scripts')
+        <script type="text/javascript">
+            $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-                url: '/newsletter-store',
-                method: 'POST',
-                data: $(this).serialize(),
-                dataType: 'json',
-                beforeSend:function() {
-                    $("#submit").attr('disabled','disabled');
+            });
+
+            $('#newsletter-form').on('submit', function(event){
+                event.preventDefault();           
+                $('#email-error').text('');
+            
+                email = $('#email').val();          
+
+                $.ajax({
+                url: "/ajax",
+                type: "POST",
+                data:{                 
+                    email:email,                  
                 },
-                success:function (data) {
-                    console.log(data);
-                    alert('You have successfully been subscribed.');
+                success:function(response){
+                    console.log(response);
+                    if (response) {
+                        $('#success-message').text(response.success);
+                        $("#contact-form")[0].reset();
+                        $("#contact-form").hide();
+                    }
                 },
-                error:function (error) {
-                    console.log(error);
-                    alert('There was an issue submitting your request');
-                }
-            })
-        })
-    </script>
+                error: function(response) {
+                    $('#email-error').text(response.responseJSON.errors.email);                 
+                    }
+                });
+            });
+        </script>
+    @endsection
 @endsection
