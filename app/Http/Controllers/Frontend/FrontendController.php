@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use Validator;
 use App\Models\Blog;
-use App\Models\Category;
+use App\Models\User;
 use App\Models\Comment;
 use App\Models\Contact;
-use App\Models\NewsletterSubscriber;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use Validator;
 
 class FrontendController extends Controller
 { 
@@ -43,12 +43,20 @@ class FrontendController extends Controller
         return view('frontend.category',compact(['category','recent_posts','blogs']));
     }
 
-    public function blogDetail( $category, $slug)
+    public function blogDetail($category, $slug)
     {  
         $blogDetail = Blog::where('slug', $slug)->first();
                         
         return view('frontend.blog-detail', compact('blogDetail'));
-    }   
+    }
+
+    public function author($author_name)
+    {
+        $author_archives = Blog::where('author_name', $author_name)->get();
+        $author_name = Blog::where('author_name', $author_name)->first();
+
+        return view('frontend.author',compact(['author_name','author_archives']));
+    }
 
     public function storeContactMessage(Request $request)
     {     

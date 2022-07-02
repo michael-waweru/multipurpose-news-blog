@@ -1,7 +1,7 @@
 @extends('frontend.layouts.base')
 
 @section('title')
-    
+    {{ $blogDetail->title }}
 @endsection
 
 @section('body')
@@ -16,7 +16,7 @@
                         <div class="entry-meta align-items-center meta-2 font-small color-muted">
                             <p class="mb-5">
                                 <a class="author-avatar" href="#"><img class="img-circle" src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt=""></a>
-                                By <a href="author.html"><span class="author-name font-weight-bold">{{ $blogDetail->author_name }}</span></a>
+                                By <a href="{{ route('author',$blogDetail->author_name) }}"><span class="author-name font-weight-bold">{{ $blogDetail->author_name }}</span></a>
                             </p>
                             <span class="mr-10">{{ $blogDetail->created_at->format('F, m Y') }}</span>
                             <span class="has-dot"> {{ $blogDetail->read_time }} mins read</span>

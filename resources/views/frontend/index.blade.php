@@ -1,7 +1,7 @@
 @extends('frontend.layouts.base')
 
 @section('title')
-    Home
+    Homepage
 @endsection
 
 @section('body')

@@ -1,5 +1,9 @@
 @extends('frontend.layouts.base')
 
+@section('title')
+    {{ $category->category_name }}
+@endsection
+
 @section('body')
     <main class="mt-30">
         <div class="container">

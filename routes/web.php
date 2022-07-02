@@ -15,6 +15,7 @@ Route::get('/page/about-us',[FrontendController::class,'aboutUs'])->name('about'
 Route::get('page/contact-us',[FrontendController::class,'contactUs'])->name('contact');
 Route::get('category/{slug}',[FrontendController::class,'category'])->name('category');
 Route::get('{category}/article/{slug}', [FrontendController::class,'blogDetail'])->name('blog.detail');
+Route::get('author-archive/{author_name}',[FrontendController::class,'author'])->name('author');
 Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubscriber'])->name('subscriber.store');
 Route::post('/message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
 Route::post('comment-store', [FrontendController::class,'storeBlogComment'])->name('comment.store');
