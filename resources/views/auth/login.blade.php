@@ -1,11 +1,10 @@
 @extends('frontend.layouts.base')
 
 @section('title')
-    Authentication
+    Login
 @endsection
 
 @section('body')
-
     <main class="mt-10 mb-100">
         <div class="container">
             <div class="row justify-content-center">

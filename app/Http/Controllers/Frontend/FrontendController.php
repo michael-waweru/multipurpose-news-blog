@@ -31,33 +31,6 @@ class FrontendController extends Controller
         return view('frontend.contact-us');
     }
 
-    public function category($slug)
-    {
-        $category= Category::where('slug', $slug)->first();
-
-        $recent_posts = Blog::where('category_id', $category->id)
-                        ->orderBy('created_at', 'DESC')->take(1)->get();
-
-        $blogs= Blog::where('category_id', '=', $category->id)->take(3)->get();
-        
-        return view('frontend.category',compact(['category','recent_posts','blogs']));
-    }
-
-    public function blogDetail($category, $slug)
-    {  
-        $blogDetail = Blog::where('slug', $slug)->first();
-                        
-        return view('frontend.blog-detail', compact('blogDetail'));
-    }
-
-    public function author($author_name)
-    {
-        $author_archives = Blog::where('author_name', $author_name)->get();
-        $author_name = Blog::where('author_name', $author_name)->first();
-
-        return view('frontend.author',compact(['author_name','author_archives']));
-    }
-
     public function storeContactMessage(Request $request)
     {     
         $request->validate([

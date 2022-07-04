@@ -12,13 +12,17 @@
                 <!--author box-->
                 <div class="author-bio mt-50">
                     <div class="author-image mb-30">
-                        <a href="author.html"><img src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="" class="avatar"></a>
+                     <img src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="" class="avatar">
                     </div>
                     <div class="author-info">
                         <h3 class="font-weight-bold">{{ $author_name->author_name }}</h3>
                         <h5><i class="ti-star font-x-small mr-5"></i>Elite author</h5>
                         <div class="author-description">You should write because you love the shape of stories and sentences and the creation of different words on a page. </div>
-                        <span class="mb-md-0 mb-3 text-muted mr-20">26k articles </span>
+                        @if($author_archives->count() > 0 && $author_archives->count() < 2)
+                            <span class="mb-md-0 mb-3 text-muted mr-20">{{ $author_archives->count() }} article </span>
+                        @else
+                            <span class="mb-md-0 mb-3 text-muted mr-20">{{ $author_archives->count() }} articles </span>
+                        @endif
                         <span class="mr-50 text-muted">15k follow</span>
                         <div class="author-social text-muted font-small15k follow">
                             <ul class="author-social-icons">
@@ -45,7 +49,9 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="entry-meta meta-0 mb-15 font-small">
-                                            <a href="{{ route('category',[$author_archive->category->slug]) }}"><span class="post-cat position-relative">In {{ $author_archive->category->category_name }}</span></a>                                            
+                                            <a href="{{ route('category',[$author_archive->category->slug]) }}">
+                                                <span class="post-cat position-relative">In {{ $author_archive->category->category_name }}</span>
+                                            </a>
                                         </div>
                                         <h3 class="post-title mb-10">
                                             <a href="{{ route('blog.detail',[$author_archive->category->slug,$author_archive->slug]) }}">{{ $author_archive->title }}</a>
@@ -95,58 +101,28 @@
                     <div class="widget-area">
                         <div class="sidebar-widget widget-latest-posts mb-30 wow fadeIn animated">
                             <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
-                                <span>Most Popular</span>
+                                <span>Read Also</span>
                             </h6>
                             <div class="post-block-list post-module-1 post-module-5">
                                 <ul class="list-post">
-                                    <li class="mb-15">
-                                        <div class="d-flex">
-                                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                <a class="color-white" href="single.html">
-                                                    <img src="{{ asset('assets/frontend/imgs/news/thumb-3.jpg') }}" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="post-content media-body">
-                                                <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">How I Made $11,000 From Writing in 30 Days</a></h6>
-                                                <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                                    <span class="post-on mr-15">25 April</span>
-                                                    <span class="hit-count has-dot">54k Views</span>
+                                    @foreach($randomPosts as $randomPost)
+                                        <li class="mb-15">
+                                            <div class="d-flex">
+                                                <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
+                                                    <a class="color-white" href="single.html">
+                                                        <img src="{{ asset('storage/blog/') }}/{{ $randomPost->image }}" alt="{{ $randomPost->title }}">
+                                                    </a>
+                                                </div>
+                                                <div class="post-content media-body">
+                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">{{ $randomPost->title }}</a></h6>
+                                                    <div class="entry-meta meta-1 font-x-small color-grey mt-10">
+                                                        <span class="post-on mr-15">{{ $randomPost->created_at->format('d M') }}</span>
+                                                        <span class="hit-count has-dot">54k Views</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="mb-15">
-                                        <div class="d-flex">
-                                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                <a class="color-white" href="single.html">
-                                                    <img src="{{ asset('assets/frontend/imgs/news/thumb-4.jpg') }}" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="post-content media-body">
-                                                <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">Incognito Mode Won’t Keep Your Browsing Private</a></h6>
-                                                <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                                    <span class="post-on mr-15">25 April</span>
-                                                    <span class="hit-count has-dot">54k Views</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-flex">
-                                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                <a class="color-white" href="single.html">
-                                                    <img src="{{ asset('assets/frontend/imgs/news/thumb-5.jpg') }}" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="post-content media-body">
-                                                <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">So You Want To Know The Cause of Avicii’s Death?</a></h6>
-                                                <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                                    <span class="post-on mr-15">25 April</span>
-                                                    <span class="hit-count has-dot">54k Views</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -193,16 +169,18 @@
                             </h6>
                             <div class="newsletter">
                                 <p class="">Continue reading uninterrupted with a subscription</p>
-                                <form target="_blank" action="#" method="get" class="subscribe_form relative mail_part">
+                                <strong><span class="text-success" id="success-message"></span></strong>
+                                <form class="subscribe_form relative mail_part" id="newsletter-form">
                                     <div class="form-newsletter-cover">
                                         <div class="form-newsletter">
-                                            <input type="email" name="EMAIL" placeholder="Email address" required="">
+                                            <input type="email" name="email" placeholder="Email address" id="email">
                                             <button type="submit">
                                                 <span class="long-arrow long-arrow-right"></span>
                                             </button>
                                         </div>
                                     </div>
                                 </form>
+                                <strong><span class="text-danger" id="email-error"></span></strong>
                             </div>
                         </div>
                     </div>
@@ -210,4 +188,40 @@
             </div>
         </div>
     </main>
+
+    @section('scripts')
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#newsletter-form').on('submit', function(event){
+                event.preventDefault();
+                $('#email-error').text('');
+
+                email = $('#email').val();
+
+                $.ajax({
+                    url: "/store-subscriber",
+                    type: "POST",
+                    data:{
+                        email:email,
+                    },
+                    success:function(response){
+                        console.log(response);
+                        if (response) {
+                            $('#success-message').text(response.success);
+                            $("#newsletter-form")[0].reset();
+                            $("#newsletter-form").hide();
+                        }
+                    },
+                    error: function(response) {
+                        $('#email-error').text(response.responseJSON.errors.email);
+                    }
+                });
+            });
+        </script>
+    @endsection
 @endsection

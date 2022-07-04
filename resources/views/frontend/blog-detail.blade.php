@@ -15,10 +15,12 @@
                     <div class="col-lg-6">
                         <div class="entry-meta align-items-center meta-2 font-small color-muted">
                             <p class="mb-5">
-                                <a class="author-avatar" href="#"><img class="img-circle" src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt=""></a>
-                                By <a href="{{ route('author',$blogDetail->author_name) }}"><span class="author-name font-weight-bold">{{ $blogDetail->author_name }}</span></a>
+                                <a class="author-avatar" href="{{ route('author',$blogDetail->user->slug) }}" title="Posted By {{ $blogDetail->author_name }}">
+                                    <img class="img-circle" src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="{{ $blogDetail->author_name }}">
+                                </a>
+                                By <a href="{{ route('author',$blogDetail->user->slug) }}" title="Posted by {{ $blogDetail->author_name }}"><span class="author-name font-weight-bold">{{ $blogDetail->author_name }}</span></a>
                             </p>
-                            <span class="mr-10">{{ $blogDetail->created_at->format('F, m Y') }}</span>
+                            <span class="mr-10">{{ $blogDetail->created_at->format('F, d Y') }}</span>
                             <span class="has-dot"> {{ $blogDetail->read_time }} mins read</span>
                         </div>
                     </div>
@@ -55,7 +57,7 @@
                         <a href="#"><i class="ti-email"></i></a>
                     </div>
                 </div>
-                <div class="entry-main-content dropcap wow fadeIn animated">                    
+                <div class="entry-main-content">                    
                     @php echo html_entity_decode($blogDetail->description) @endphp
                     <!--Begin Subcrible-->
                     <div class="border-radius-5 mb-50 border p-30 wow fadeIn animated">
@@ -94,36 +96,35 @@
                 </div>
                 <div class="entry-bottom mt-50 mb-30 wow fadeIn animated">
                     <div class="tags">
-                        <a href="category.html" rel="tag">deer</a>
-                        <a href="category.html" rel="tag">nature</a>
-                        <a href="category.html" rel="tag">conserve</a>
+{{--                        <a href="category.html" rel="tag">Arrticle</a>--}}
+{{--                        <a href="category.html" rel="tag">nature</a>--}}
+{{--                        <a href="category.html" rel="tag">conserve</a>--}}
                     </div>
                 </div>
                 <div class="single-social-share clearfix wow fadeIn animated">
                     <div class="entry-meta meta-1 font-small color-grey float-left mt-10">
                         <span class="hit-count mr-15"><i class="ti-comment mr-5"></i>182 comments</span>
-                        <span class="hit-count mr-15"><i class="ti-heart mr-5"></i>268 likes</span>
-                        <span class="hit-count"><i class="ti-star mr-5"></i>Rate: 9/10</span>
                     </div>
                     <ul class="d-inline-block list-inline float-md-right mt-md-0 mt-4">
                         <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center " target="_blank" href="#"><i class="ti-facebook"></i></a></li>
                         <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center" target="_blank" href="#"><i class="ti-twitter-alt"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon pinterest-icon text-xs-center" target="_blank" href="#"><i class="ti-pinterest"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center" target="_blank" href="#"><i class="ti-instagram"></i></a></li>
                     </ul>
                 </div>
                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                 <!--author box-->
                 <div class="author-bio wow fadeIn animated">
                     <div class="author-image mb-30">
-                        <a href="author.html"><img src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="" class="avatar"></a>
+                        <a href="{{ route('author',$blogDetail->user->slug) }}">
+                            <img src="{{asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="{{ $blogDetail->author_name }}" class="avatar">
+                        </a>
                     </div>
                     <div class="author-info">
-                        <h3><span class="vcard author"><span class="fn"><a href="author.html" title="Posted by {{ $blogDetail->author_name }}" rel="author">{{ $blogDetail->author_name }}</a></span></span>
+                        <h3><span class="vcard author"><span class="fn"><a href="{{ route('author',$blogDetail->user->slug) }}" title="Posted by {{ $blogDetail->author_name }}" rel="author">{{ $blogDetail->author_name }}</a></span></span>
                         </h3>
                         <h5>About author</h5>
                         <div class="author-description">You should write because you love the shape of stories and sentences and the creation of different words on a page. </div>
-                        <a href="author.html" class="author-bio-link mb-md-0 mb-3">View all posts</a>
+                        <a href="{{ route('author',[$blogDetail->user->slug]) }}" class="author-bio-link mb-md-0 mb-3"
+                           title="Posts By {{ $blogDetail->author_name }}">View all posts</a>
                         <div class="author-social">
                             <ul class="author-social-icons">
                                 <li class="author-social-link-facebook"><a href="#" target="_blank"><i class="ti-facebook"></i></a></li>
@@ -136,106 +137,59 @@
                 </div>
                 <!--related posts-->
                 <div class="related-posts">
-                    <h3 class="mb-30">Related posts</h3>
+                    <h3 class="mb-30">More From {{ $blogDetail->category_name }}</h3>
                     <div class="loop-list">
-                        <article class="row mb-30 wow fadeIn animated">
-                            <div class="col-md-4">
-                                <div class="post-thumb position-relative thumb-overlay mb-md-0 mb-3">
-                                    <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(assets/imgs/news/news-11.jpg)">
-                                        <a class="img-link" href="single.html"></a>
-                                        <span class="top-right-icon background8"><i class="mdi mdi-flash-on"></i></span>
+                        @foreach($relatedPosts as $relatedPost)
+                            <article class="row mb-30 wow fadeIn animated">
+                                <div class="col-md-4">
+                                    <div class="post-thumb position-relative thumb-overlay mb-md-0 mb-3">
+                                        <div class="img-hover-slide border-radius-5 position-relative">
+                                            <img src="{{ asset('storage/blog/') }}/{{ $relatedPost->image }}" />
+                                            <a class="img-link" href="single.html"></a>
+                                            <span class="top-right-icon background8"><i class="mdi mdi-flash-on"></i></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8 align-center-vertical">
-                                <div class="post-content">
-                                    <div class="entry-meta meta-0 font-small mb-15"><a href="category.html"><span class="post-cat background2 color-white"># Fashion</span></a></div>
-                                    <h4 class="post-title mb-15">
-                                        <a href="single.html">The World Caters to Average People and Mediocre Lifestyles</a>
-                                    </h4>
-                                    <p class="font-medium excerpt">These people envy me for having a lifestyle they don’t have, but the truth is, sometimes I envy their lifestyle instead. Struggling to sell one multi-million dollar home currently.</p>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="row mb-30 wow fadeIn animated">
-                            <div class="col-md-4">
-                                <div class="post-thumb position-relative thumb-overlay mb-md-0 mb-3">
-                                    <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(assets/imgs/news/news-12.jpg)">
-                                        <a class="img-link" href="single.html"></a>
-                                        <span class="top-right-icon background5"><i class="mdi mdi-favorite"></i></span>
+                                <div class="col-md-8 align-center-vertical">
+                                    <div class="post-content">
+                                        <div class="entry-meta meta-0 font-small mb-15"><a href="category.html">
+                                                <span class="post-cat background2 color-white">In {{ $relatedPost->category_name }}</span></a>
+                                        </div>
+                                        <h4 class="post-title mb-15">
+                                            <a href="single.html">{{ $relatedPost->title }}</a>
+                                        </h4>
+                                        <p class="font-medium excerpt">{{ $relatedPost->short_description }}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8 align-center-vertical">
-                                <div class="post-content">
-                                    <div class="entry-meta meta-0 font-small mb-15"><a href="category.html"><span class="post-cat background3 color-white"># Technology</span></a></div>
-                                    <h4 class="post-title mb-15">
-                                        <a href="single.html">Why Teamwork Really Makes The Dream Work</a>
-                                    </h4>
-                                    <p class="font-medium excerpt">We live in a world where disruption and dynamism reign supreme and businesses must be ready to adapt to the many unpredictable changes that come with this.</p>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="row mb-30 wow fadeIn animated">
-                            <div class="col-md-4">
-                                <div class="post-thumb position-relative thumb-overlay mb-md-0 mb-3">
-                                    <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(assets/imgs/news/news-13.jpg)">
-                                        <a class="img-link" href="single.html"></a>
-                                        <span class="top-right-icon background2"><i class="mdi mdi-audiotrack"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8 align-center-vertical">
-                                <div class="post-content">
-                                    <div class="entry-meta meta-0 font-small mb-15"><a href="category.html"><span class="post-cat background1 color-white"># Sport</span></a></div>
-                                    <h4 class="post-title mb-15">
-                                        <a href="single.html">9 Things I Love About Shaving My Head During Quarantine</a>
-                                    </h4>
-                                    <p class="font-medium excerpt">At the Emmys, broadcast scripted shows created by people of color gained ground relative to those pitched by White show creators, while broadcast scripted shows.</p>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
+                        @endforeach
                     </div>
                 </div>
                 <!--More posts-->
                 <div class="single-more-articles">
                     <h6 class="widget-title mb-30 font-weight-bold text">You might be interested in</h6>
-                    <div class="post-block-list post-module-1 post-module-5">
-                        <ul class="list-post">
-                            <li class="mb-15">
-                                <div class="d-flex">
-                                    <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                        <a class="color-white" href="single.html">
-                                            <img src="{{ asset('assets/frontend/imgs/news/thumb-1.jpg') }}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">America’s Governors Get Tested for a Virus That Is Testing Them</a></h6>
-                                        <div class="entry-meta meta-1 font-x-small color-grey">
-                                            <span class="post-on">25 Jun</span>
-                                            <span class="hit-count has-dot">126k Views</span>
+                    @foreach($interestedPosts as $interestedPost)
+                        <div class="post-block-list post-module-1 post-module-5">
+                            <ul class="list-post">
+                                <li class="mb-15">
+                                    <div class="d-flex">
+                                        <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
+                                            <a class="color-white" href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug]) }}">
+                                                <img src="{{ asset('storage/blog/') }}/{{ $interestedPost->image }}" alt="{{ $interestedPost->title }}">
+                                            </a>
+                                        </div>
+                                        <div class="post-content media-body">
+                                            <h6 class="post-title mb-10 text-limit-2-row"><a href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug]) }}">{{ $interestedPost->title }}</a></h6>
+                                            <div class="entry-meta meta-1 font-x-small color-grey">
+                                                <span class="post-on">{{ $interestedPost->created_at->format('d M') }}</span>
+                                                <span class="hit-count has-dot">126k Views</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex">
-                                    <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                        <a class="color-white" href="single.html">
-                                            <img src="{{ asset('assets/frontend/imgs/news/thumb-2.jpg') }}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">Bartering Child’s Dress for Food: Life in Lebanon’s Economic Crisis</a></h6>
-                                        <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                            <span class="post-on">25 April</span>
-                                            <span class="hit-count has-dot">37k Views</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    @endforeach
                 </div>
                 <!--Comments-->
                 <div class="comments-area">
@@ -363,7 +317,7 @@
                 email = $('#email').val();          
         
                 $.ajax({
-                url: "/ajax",
+                url: "/store-subscriber",
                 type: "POST",
                 data:{                 
                     email:email,                  

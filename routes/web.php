@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Frontend\PostsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\BlogAjaxController;
+use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Frontend\SocialController;
 use App\Http\Controllers\Frontend\FrontendController;
 
@@ -13,13 +14,13 @@ use App\Http\Controllers\Frontend\FrontendController;
 Route::get('/', [FrontendController::class,'home'])->name('homepage');
 Route::get('/page/about-us',[FrontendController::class,'aboutUs'])->name('about');
 Route::get('page/contact-us',[FrontendController::class,'contactUs'])->name('contact');
-Route::get('category/{slug}',[FrontendController::class,'category'])->name('category');
-Route::get('{category}/article/{slug}', [FrontendController::class,'blogDetail'])->name('blog.detail');
-Route::get('author-archive/{author_name}',[FrontendController::class,'author'])->name('author');
+Route::get('category/{slug}',[CategoriesController::class,'category'])->name('category');
+Route::get('{category}/article/{slug}', [PostsController::class,'blogDetail'])->name('blog.detail');
+Route::get('author-archive/{slug}',[PostsController::class,'author'])->name('author');
 Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubscriber'])->name('subscriber.store');
 Route::post('/message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
 Route::post('comment-store', [FrontendController::class,'storeBlogComment'])->name('comment.store');
-Route::post('/ajax',[BlogAjaxController::class,'testAjax']);
+Route::post('/store-subscriber',[PostsController::class,'storeBlogSubscribers']);
 
 Auth::routes();
 Route::get('auth/oauth/initiate/facebook-login', [SocialController::class,'facebookRedirect'])->name('facebook.login');
@@ -34,12 +35,12 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('dashboard',[DashboardController::class,'dashboard'])->name('admin.dashboard');
 
     //Blog Routes
-    Route::get('categories',[CategoryController::class,'index'])->name('admin.categories');
-    Route::get('categories/create',[CategoryController::class,'addCategory'])->name('admin.category.create');
-    Route::get('categories/edit/{slug}',[CategoryController::class,'edit'])->name('admin.category.edit');
-    Route::post('category/create/',[CategoryController::class,'storeCategory'])->name('admin.category.store');
-    Route::post('category/update/{slug}/',[CategoryController::class,'updateCategory'])->name('admin.category.update');
-    Route::delete('category/delete/{slug}/',[CategoryController::class,'deleteCategory'])->name('admin.category.delete');
+    Route::get('categories',[CategoriesController::class,'index'])->name('admin.categories');
+    Route::get('categories/create',[CategoriesController::class,'addCategory'])->name('admin.category.create');
+    Route::get('categories/edit/{slug}',[CategoriesController::class,'edit'])->name('admin.category.edit');
+    Route::post('category/create/',[CategoriesController::class,'storeCategory'])->name('admin.category.store');
+    Route::post('category/update/{slug}/',[CategoriesController::class,'updateCategory'])->name('admin.category.update');
+    Route::delete('category/delete/{slug}/',[CategoriesController::class,'deleteCategory'])->name('admin.category.delete');
 
     Route::get('blogs',[BlogController::class,'index'])->name('admin.blogs');
     Route::get('blogs/create',[BlogController::class,'create'])->name('admin.blog.create');

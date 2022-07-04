@@ -1,7 +1,7 @@
 @extends('frontend.layouts.base')
 
 @section('title')
-    Authentication
+    Register
 @endsection
 
 @section('body')

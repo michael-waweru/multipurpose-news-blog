@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlogSubscribers;
+use Validator;
 
 class BlogAjaxController extends Controller
 {
     public function testAjax(Request $request)
     {
-        $request->validate([ 
+        $request->validate([
 
-            'email' => 'required|email|unique:blog_subscribers',            
+            'email' => 'required|email|unique:blog_subscribers',
         ]);
 
        BlogSubscribers::create([
