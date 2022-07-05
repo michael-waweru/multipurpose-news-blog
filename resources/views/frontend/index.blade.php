@@ -326,7 +326,7 @@
                                 <div class="col-md-6 mb-md-0 mb-sm-3">
                                     <figure class="mb-0">
                                         <a href="single.html">
-                                            <img src="{{ asset('assets/frontend/imgs/news/news-15.jpg') }}" alt="">
+                                            <img src="{{ asset('storage/blog/') }}/{{ $recentsSection->image }}" alt="{{ $recentsSection->title }}">
                                         </a>
                                         <span class="post-format position-top-right text-uppercase font-small">
                                             <i class="ti-stats-up"></i>
@@ -336,16 +336,16 @@
                                 <div class="col-md-6 align-self-center">
                                     <div class="post-content text-center plr-5-percent">
                                         <div class="entry-meta meta-0 mb-15 font-small">
-                                            <a href="category.html"><span class="post-cat position-relative"># World</span></a>
-                                            <a href="category.html"><span class="post-cat position-relative"># Education</span></a>
+                                            <a href="{{ route('category',[$recentsSection->category->slug]) }}">
+                                                <span class="post-cat position-relative">In {{ $recentsSection->category_name }}</span>
+                                            </a>
                                         </div>
                                         <h2 class="post-title mb-30 position-relative divider-wave">
-                                            <a href="single.html">How to Reopen Schools: What Science and Other Countries Teach Us</a>
+                                            <a href="single.html">{{ $recentsSection->title }}</a>
                                         </h2>
                                         <p class="excerpt">
-                                            The pressure to bring American students back to classrooms is intense, but the calculus is tricky with infections still out of control in many communities.
+                                            {{ $recentsSection->short_description }}
                                         </p>
-                                        <p><span class="live-now text-danger">Live now</span></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -506,11 +506,11 @@
                         <div class="widget-area">
                             <div class="sidebar-widget widget-latest-posts mb-30 mt-15 wow fadeIn animated">
                                 <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
-                                    <span>Author Award</span>
+                                    <span>Author Board</span>
                                 </h6>
                                 <div class="author-content text-center">
                                     <a href="author.html"><img class="img-circle d-inline-block mb-10" src="{{ asset('assets/frontend/imgs/authors/author-1.jpg') }}" alt=""></a>
-                                    <p><img src="{{ asset('assets/frontend/imgs/authors/sign.png') }}" alt=""></p>
+                                    <p class="post-title">{{ $authorBoard->name }}</p>
                                     <p>
                                         You should write because you love the shape of stories and sentences and the creation of different words on a page. Writing comes from reading, and reading is the finest teacher of how to write.
                                     </p>
@@ -520,7 +520,7 @@
                                         <li class="list-inline-item"><a class="social-icon pinterest-icon text-xs-center" target="_blank" href="#"><i class="ti-pinterest"></i></a></li>
                                         <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center" target="_blank" href="#"><i class="ti-instagram"></i></a></li>
                                     </ul>
-                                    <p class="font-small mt-15 text-muted"><a href="#">View more</a></p>
+                                    <p class="font-small mt-15 text-muted">Posts by <a href="{{ route('author',[$authorBoard->slug]) }}">{{ $authorBoard->name }}</a></p>
                                 </div>
                             </div>
                             <div class="sidebar-widget widget-latest-posts mb-30 mt-15 wow fadeIn animated" id="newsletter-section">
@@ -587,7 +587,7 @@
                                 <div class="newsletter">
                                     <p class="">Always stay on track with the latest news straight to your inbox. Subscribe.</p>
                                     <strong><span class="text-success" id="success-message"></span></strong>
-                                    <form id="newsletter-form">                                        
+                                    <form id="newsletter-form">
                                         <div class="form-newsletter-cover">
                                             <div class="form-newsletter">
                                                 <input type="email" name="email" id="email" placeholder="Email address">                                               
@@ -597,7 +597,7 @@
                                             </div>                                            
                                         </div>
                                     </form>
-                                    <strong><span class="text-danger" id="email-error"></span></strong>
+                                    <strong><small class="text-danger" id="email-error"></small></strong>
                                 </div>                                
                             </div>
                         </div>
@@ -614,7 +614,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             $('#newsletter-form').on('submit', function(event){
                 event.preventDefault();           
                 $('#email-error').text('');
@@ -622,7 +621,7 @@
                 email = $('#email').val();          
 
                 $.ajax({
-                url: "/ajax",
+                url: "/store-subscriber",
                 type: "POST",
                 data:{                 
                     email:email,                  

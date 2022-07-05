@@ -17,8 +17,12 @@ class FrontendController extends Controller
     public function home()
     {
         $categories = Category::all()->take(2);
-        $recent_posts = Blog::orderBy('created_at', 'DESC')->take(2)->get();            
-        return view('frontend.index', compact(['categories','recent_posts']));
+        $recent_posts = Blog::orderBy('created_at', 'DESC')->take(2)->get();
+        $authorBoard = User::where('role_id', '=', 1)
+                            ->inRandomOrder()->first();
+        $recentsSection = Blog::orderBy('created_at', 'DESC')->first();
+
+        return view('frontend.index', compact(['categories','recent_posts','authorBoard','recentsSection']));
     }
 
     public function aboutUs()
