@@ -630,8 +630,8 @@
                     console.log(response);
                     if (response) {
                         $('#success-message').text(response.success);
-                        $("#contact-form")[0].reset();
-                        $("#contact-form").hide();
+                        $("#newsletter-form")[0].reset();
+                        $("#newsletter-form").hide();
                     }
                 },
                 error: function(response) {

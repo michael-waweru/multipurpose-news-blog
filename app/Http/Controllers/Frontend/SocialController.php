@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class SocialController extends Controller
 {
