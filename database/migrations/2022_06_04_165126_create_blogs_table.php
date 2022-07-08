@@ -21,13 +21,14 @@ return new class extends Migration
             $table->string('category_name')->nullable();
             $table->integer('user_id')->nullable();
             $table->string('author_name')->nullable();           
-            $table->enum('published_by',['this_account','guest_author']);  
+            $table->enum('published_by',['this_account','guest_author']);
             $table->integer('read_time');
-            $table->enum('status',['published','draft'])->default('draft');         
+            $table->enum('status',['published','draft'])->default('draft');
+            $table->enum('is_live',['isLive','notLive'])->default('notLive');
             $table->string('image')->nullable();
             $table->longText('short_description');
             $table->longText('description');
-            $table->string('files')->nullable();           
+            $table->string('files')->nullable();
             $table->text('tags')->nullable();
             $table->text('meta_keyword')->nullable();
             $table->text('meta_description')->nullable();

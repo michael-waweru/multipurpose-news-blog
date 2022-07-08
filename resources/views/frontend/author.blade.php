@@ -60,7 +60,7 @@
                                             {{ $author_archive->short_description }}
                                         </p>
                                         <div class="entry-meta meta-0 mb-15 font-small">
-                                            <span class="position-relative text-muted">Article By {{ $author_archive->author_name }}</span></a>                                            
+                                            <span class="position-relative text-muted">Article By {{ $author_archive->author_name }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -101,7 +101,7 @@
                     <div class="widget-area">
                         <div class="sidebar-widget widget-latest-posts mb-30 wow fadeIn animated">
                             <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
-                                <span>Read Also</span>
+                                <span>kindle your curiosity</span>
                             </h6>
                             <div class="post-block-list post-module-1 post-module-5">
                                 <ul class="list-post">

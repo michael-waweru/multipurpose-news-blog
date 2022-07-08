@@ -14,15 +14,17 @@ use Illuminate\Support\Facades\Redirect;
 
 class FrontendController extends Controller
 { 
-    public function home()
+    public function home(Category $category)
     {
-        $categories = Category::all()->take(2);
         $recent_posts = Blog::orderBy('created_at', 'DESC')->take(2)->get();
+        $blogs = Blog::inRandomOrder()->take(4)->get();
+        $todaysHighlights = Blog::orderBy('created_at', 'DESC')->take(5)->get();
+        $editorPicked = Blog::inRandomOrder()->take(2)->get();
         $authorBoard = User::where('role_id', '=', 1)
                             ->inRandomOrder()->first();
         $recentsSection = Blog::orderBy('created_at', 'DESC')->first();
 
-        return view('frontend.index', compact(['categories','recent_posts','authorBoard','recentsSection']));
+        return view('frontend.index', compact(['recent_posts','blogs','todaysHighlights','editorPicked','authorBoard','recentsSection']));
     }
 
     public function aboutUs()

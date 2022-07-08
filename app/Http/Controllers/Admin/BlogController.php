@@ -35,6 +35,13 @@ class BlogController extends Controller
         }
     }
 
+    public function edit($slug)
+    {
+        $blog = Blog::where('slug', $slug)->first();
+        $categories = Category::all();
+        return view('backend.blog.edit', compact('blog','categories'));
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -45,6 +52,7 @@ class BlogController extends Controller
             'short_description' => 'required',
             'description' => 'required',
             'status' => 'in:published,draft',
+            'is_live' => 'in:isLive,notLive',
             'image' => 'required|mimes:jpg,jpeg,svg,png|max:2048',
         ]);
 
@@ -78,6 +86,7 @@ class BlogController extends Controller
 
         $blog_data = Blog::create($input);
         $blog_data->image = $imageName;
+        $blog_data->status;
         $blog_data->tag($tags);
         $blog_data->author_name = $author_name;
         $blog_data->user_id = $user_id;
@@ -89,5 +98,67 @@ class BlogController extends Controller
             toastr()->success('Blog created successfully');
             return redirect()->route('admin.blogs');
         }        
+    }
+
+    public function update(Request $request, $slug)
+    {
+        $validator = Validator::make($request->all(),[
+            'title' => 'required|max:255',
+            'read_time' => 'required|integer',
+            'published_by' => 'in:this_account,guest_author',
+            'category_id' => 'required',
+            'short_description' => 'required',
+            'description' => 'required',
+            'status' => 'in:published,draft',
+            'is_live' => 'in:isLive,notLive',
+            'image' => 'nullable|mimes:jpg,jpeg,svg,png|max:2048',
+        ]);
+
+        if ($validator->fails()) 
+        {
+            toastr()->error($validator->errors()->first());
+            return back();
+        }
+
+        $blog = Blog::where('slug', $slug)->first();
+        $blog->slug = null;
+
+        $data = $request->all();
+        if($image = $request->file('image'))
+        {
+            $imageName = time().'.'.$request->image->extension();
+            $image->storeAs('blog', $imageName);
+            $data['image'] = $imageName;
+        } else{
+            unset($data['image']);
+        }
+
+        if($blog->update($data))
+        {
+            toastr()->success('Blog Updated Successfully.');
+            return redirect()->route('admin.blogs');
+        }
+    }
+
+    public function publish($id)
+    {
+        $publishBlog = Blog::find($id);
+        $publishBlog->status = 1;
+        if($publishBlog->save())
+        {
+            toastr()->success('Status changed to published');
+            return back();
+        }
+    }
+
+    public function unpublish($id)
+    {
+        $unpublishBlog = Blog::find($id);
+        $unpublishBlog->status = 0;
+        if($unpublishBlog->save())
+        {
+            toastr()->success('Status changed to unpublished');
+            return back();
+        }
     }
 }

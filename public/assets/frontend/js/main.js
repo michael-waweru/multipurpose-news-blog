@@ -352,7 +352,7 @@
 
         if ($.fn.vwScroller) {
             var $more_articles = $('.single-more-articles');
-            $more_articles.vwScroller({ visibleClass: 'single-more-articles--visible', position: 0.55 })
+            $more_articles.vwScroller({ visibleClass: 'single-more-articles--visible', position: 0.70 })
             $more_articles.find('.single-more-articles-close-button').on('click', function() {
                 $more_articles.hide();
             });

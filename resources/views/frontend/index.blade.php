@@ -14,214 +14,101 @@
                     <div class="col-lg-7 col-md-12">
                         <div class="slide-fade mb-lg-0 mb-md-4 mb-sm-4">
                             @foreach ($recent_posts as $recent_post)
-                                <article class="first-post slide-fade-item mb-md-4 mb-lg-0">
-                                    <figure class="mb-30">
-                                        <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">
-                                            <img src="{{ asset('storage/blog/') }}/{{ $recent_post->image }}" alt="{{ $recent_post->title }}">
-                                        </a>
-                                    </figure>
-                                    <div class="post-content">
-                                        <h3 class="mb-20 position-relative font-weight-bold">
-                                            <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">{{ $recent_post->title }}</a>
-                                        </h3>
-                                        <p class="excerpt">
-                                            {{ $recent_post->short_description }}
-                                        </p>
-                                        <div class="entry-meta meta-0 mb-15 font-small">                                            
-                                            <a href="{{ route('category',$recent_post->category->slug) }}"><span class="post-cat position-relative">In {{ $recent_post->category->category_name }}</span></a>
+                                @if($recent_post->status == 'published')
+                                    <article class="first-post slide-fade-item mb-md-4 mb-lg-0">
+                                        <figure class="mb-30">
+                                            <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">
+                                                <img src="{{ asset('storage/blog/') }}/{{ $recent_post->image }}" alt="{{ $recent_post->title }}">
+                                            </a>
+                                        </figure>
+                                        <div class="post-content">
+                                            <h3 class="mb-20 position-relative font-weight-bold">
+                                                <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">{{ $recent_post->title }}</a>
+                                            </h3>
+                                            @if($recent_post->is_live == 'isLive')
+                                                <p class="excerpt">
+                                                    <span class="live-now text-danger">Live</span> {{ $recent_post->short_description }}
+                                                </p>
+                                                @else
+                                                <p class="excerpt">
+                                                    {{ $recent_post->short_description }}
+                                                </p>
+                                            @endif
+                                            <div class="entry-meta meta-0 mb-15 font-span">                                               
+                                                <span class="post-cat position-relative">{{ $recent_post->created_at->diffforhumans() }}</span>                                               
+                                            </div>
                                         </div>
-                                    </div>
-                                </article>
+                                    </article>
+                                @endif
                             @endforeach                            
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12">
                         <div class="row vertical-divider">
-                            <article class="col-md-6 mb-sm-3 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <a href="single.html">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-2.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="single.html">There’s a 49 Percent Chance the World As We Know It Will End by 2050</a>
-                                </h6>
-                                <p class="excerpt">
-                                    Jared Diamond’s new book, Upheaval, addresses itself to a world very obviously in crisis.
-                                </p>
-                                <div class="entry-meta meta-2 font-x-small color-muted">
-                                    <p class="mb-5">
-                                        By <a href="author.html"><span class="author-name">Steven Kenedy</span></a>
-                                    </p>
-                                    <span class="mr-10"> 15 April 2020</span>
-                                    <span class="has-dot"> 8 mins read</span>
-                                </div>
-                            </article>
-                            <article class="col-md-6 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <a href="single.html">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-3.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="single.html">Why The New York City subway signage is considered iconic? The true story</a>
-                                </h6>
-                                <p class="excerpt">
-                                    <span class="live-now text-danger">Live</span>Black and white signs with Helvetica showing just the information subway riders
-                                </p>
-                                <div class="entry-meta meta-2 font-x-small color-muted">
-                                    <p class="mb-5">
-                                        By <a href="author.html"><span class="author-name">Steven Kenedy</span></a>
-                                    </p>
-                                    <span class="mr-10"> 15 April 2020</span>
-                                    <span class="has-dot"> 8 mins read</span>
-                                </div>
-                            </article>
-                            <div class="col-12">
-                                <div class="horizontal-divider mb-15 mt-15"></div>
-                            </div>
-                        </div>
-                        <div class="row vertical-divider">
-                            <article class="col-md-6 mb-sm-3 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <a href="single.html">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-4.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="single.html">This Freedom Rider was shot at, attacked, and put on death row—all by 20 years old</a>
-                                </h6>
-                                <p class="excerpt">
-                                    As Trumpauer left Jackson behind, she didn’t know if her life was about to get better or worse
-                                </p>
-                                <div class="entry-meta meta-2 font-x-small color-muted">
-                                    <p class="mb-5">
-                                        By <a href="author.html"><span class="author-name">Steven Kenedy</span></a>
-                                    </p>
-                                    <span class="mr-10"> 15 April 2020</span>
-                                    <span class="has-dot"> 8 mins read</span>
-                                </div>
-                            </article>
-                            <article class="col-md-6 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <a href="single.html">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-5.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="single.html">This athlete conquered poverty, racism, and polio in order to became an Olympian</a>
-                                </h6>
-                                <p class="excerpt">
-                                    Six-year-old Wilma Rudolph was different from the other kids.
-                                </p>
-                                <div class="entry-meta meta-2 font-x-small color-muted">
-                                    <p class="mb-5">
-                                        By <a href="author.html"><span class="author-name">Steven Kenedy</span></a>
-                                    </p>
-                                    <span class="mr-10"> 15 April 2020</span>
-                                    <span class="has-dot"> 8 mins read</span>
-                                </div>
-                            </article>
+                            @foreach($blogs as $blog)
+                                @if($blog->status == 'published')
+                                    <article class="col-md-6 mb-sm-3 wow fadeIn animated">
+                                        <figure class="mb-15">
+                                            <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug]) }}">
+                                                <img src="{{ asset('storage/blog/'.$blog->image) }}" alt="{{ $blog->title }}">
+                                            </a>
+                                        </figure>
+                                        <h6 class="post-title font-weight-bold mb-10">
+                                            <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug]) }}">{{ $blog->title }}</a>
+                                        </h6>
+                                        @if($blog->is_live == 'isLive')
+                                            <p class="excerpt">
+                                                <span class="live-now text-danger">Live</span> {{ $blog->short_description }}
+                                            </p>
+                                            @else
+                                            <p class="excerpt">
+                                                {{ $blog->short_description }}
+                                            </p>
+                                        @endif
+                                        <div class="entry-meta meta-2 font-x-span color-muted">
+                                            @if ($blog->is_live == 'isLive')
+                                                <p class="mb-5 text-danger">
+                                                Updated {{ $blog->updated_at->diffForHumans() }}
+                                                </p> 
+                                            @else
+                                                <p class="mb-5">By 
+                                                    <a href="{{ route('author',$blog->user->slug) }}">
+                                                        <span class="author-name">{{ $blog->author_name }}</span>
+                                                    </a>
+                                                </p>
+                                                <span class="mr-10">{{ $blog->created_at->format('d M Y') }}</span>
+                                                <span class="has-dot"> {{ $blog->read_time }} mins read</span>
+                                            @endif                                            
+                                        </div>
+                                    </article>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
             <section class="hightlight-today mb-30">
                 <h6 class="font-weight-bold widget-header widget-header-style-5 mb-10">
-                    <span class="d-inline-block block mb-10 widget-title font-family-normal">Today Highlight</span>
+                    <span class="d-inline-block block mb-10 widget-title font-family-normal">Today's Highlight</span>
                 </h6>
                 <div class="loop-grid-5 row vertical-divider">
-                    <article class="col-1-5 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-6.jpg') }}" alt="">
-                            </a>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">Poland’s Presidential Election Was Close but Voters Remain Far Apart</a></h6>
-                    </article>
-                    <article class="col-1-5 col-md-6 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-15.jpg') }}" alt="">
-                            </a>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">After Months of Debate, England Requires Face Masks for Shoppers</a></h6>
-                    </article>
-                    <article class="col-1-5 col-md-6 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-14.jpg') }}" alt="">
-                            </a>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">A Racial Awakening in France, Where Race Is a Taboo Topic</a></h6>
-                    </article>
-                    <article class="col-1-5 col-md-6 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-3.jpg') }}" alt="">
-                            </a>
-                            <span class="post-format position-top-right text-uppercase font-small">
-                                <i class="ti-image"></i>
-                            </span>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">Strains Show in Russia’s Make-Believe Politics</a></h6>
-                    </article>
-                    <article class="col-1-5 col-md-6 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-2.jpg') }}" alt="">
-                            </a>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">Ireland Has a New Coronavirus Fear: Americans Who Flout Quarantine</a></h6>
-                    </article>
+                    @foreach($todaysHighlights as $highlight)
+                        @if($highlight->status == 'published')
+                            <article class="col-1-5 col-sm-12 wow fadeIn animated">
+                                <figure class="mb-15">
+                                    <a href="{{ route('blog.detail',[$highlight->category->slug, $highlight->slug]) }}">
+                                        <img src="{{ asset('storage/blog/'.$highlight->image) }}" alt="{{ $highlight->title }}">
+                                    </a>
+                                </figure>
+                                <h6 class="font-weight-500 mb-20">
+                                    <a href="{{ route('blog.detail',[$highlight->category->slug, $highlight->slug]) }}">{{ $highlight->title }}</a>
+                                </h6>
+                            </article>
+                        @endif
+                    @endforeach
                     <div class="col-12">
                         <div class="horizontal-divider mb-15 mt-15"></div>
                     </div>
-                </div>
-                <div class="loop-grid-5 row vertical-divider">
-                    <article class="col-1-5 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-7.jpg') }}" alt="">
-                            </a>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">World Population Could Peak Decades Ahead of U.N. Forecast, Study Asserts</a></h6>
-                    </article>
-                    <article class="col-1-5 col-md-6 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-8.jpg') }}" alt="">
-                            </a>
-                            <span class="post-format position-top-right text-uppercase font-small">
-                                <i class="ti-headphone"></i>
-                            </span>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">Egyptian Dissident Battles Extradition in Spanish Court</a></h6>
-                    </article>
-                    <article class="col-1-5 col-md-6 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-9.jpg') }}" alt="">
-                            </a>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">He Changed His Country’s Name. Will North Macedonia Punish Him?</a></h6>
-                    </article>
-                    <article class="col-1-5 col-md-6 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-10.jpg') }}" alt="">
-                            </a>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">‘I Felt Defenseless’: Seoul Mayor’s Secretary Speaks Out About Alleged Abuse</a></h6>
-                    </article>
-                    <article class="col-1-5 col-md-6 col-sm-12 wow fadeIn animated">
-                        <figure class="mb-15">
-                            <a href="single.html">
-                                <img src="{{ asset('assets/frontend/imgs/news/news-11.jpg') }}" alt="">
-                            </a>
-                        </figure>
-                        <h6 class="font-weight-500 mb-20"><a href="single.html">Bahrain to Execute 2 Shiite Protesters After Years of Desperate Appeals</a></h6>
-                    </article>
                 </div>
             </section>
             <!--Loop Grid 4-->
@@ -233,47 +120,32 @@
                 <div class="loop-grid-3 row vertical-divider">
                     <div class="col-lg-7 col-md-12">
                         <div class="row vertical-divider">
-                            <article class="col-md-6 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <a href="single.html">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-21.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="single.html">Unlucky Charms: The Rise and Fall of Billion-Dollar Jewelry Empire Alex and Ani</a>
-                                </h6>
-                                <p class="excerpt">
-                                    The headwrap has undergone several iterations throughout American history. As a descendant of the cloths that adorned the heads of women in ancient Egypt and sub-Saharan Africa
-                                </p>
-                                <div class="entry-meta meta-0 mb-15 font-small">
-                                    <a href="category.html"><span class="post-cat position-relative"># Woman</span></a>
-                                    <a href="category.html"><span class="post-cat position-relative"># America</span></a>
-                                </div>
-                            </article>
-                            <article class="col-md-6 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <video autoplay="" class="photo-item__video" loop="" muted="" preload="none">
-                                        <source src="https://player.vimeo.com/external/420790802.sd.mp4?s=0ce6b08ddc38dd61b8d399921e45a4928fe19637&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
-                                    </video>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="single.html">Coronavirus May Be a Blood Vessel Disease, Which Explains Everything</a>
-                                </h6>
-                                <p class="excerpt">
-                                    April, blood clots emerged as one of the many mysterious symptoms attributed to Covid-19, a disease that had initially been thought to largely affect the lungs in the form of pneumonia.
-                                </p>
-                                <div class="entry-meta meta-0 mb-15 font-small">
-                                    <a href="category.html"><span class="post-cat position-relative"># Covid19</span></a>
-                                    <a href="category.html"><span class="post-cat position-relative"># Health</span></a>
-                                    <a href="category.html"><span class="post-cat position-relative"># WHO</span></a>
-                                </div>
-                            </article>
+                            @foreach ($editorPicked as $editor)
+                                <article class="col-md-6 wow fadeIn animated">
+                                    <figure class="mb-15">
+                                        <a href="single.html">
+                                            <img src="{{ asset('storage/blog/'.$editor->image) }}" alt="{{ $editor->title }}">
+                                        </a>
+                                    </figure>
+                                    <h6 class="post-title font-weight-bold mb-10">
+                                        <a href="single.html"></a>
+                                    </h6>
+                                    <p class="excerpt">
+                                        {{ $editor->short_description }}
+                                    </p>
+                                    <div class="entry-meta meta-0 mb-15 font-span">
+                                        <a href="{{ route('category', $editor->category->slug) }}">
+                                            <span class="post-cat position-relative">In {{ $editor->category_name }}</span>
+                                        </a>                                       
+                                    </div>
+                                </article> 
+                            @endforeach              
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12 d-none d-lg-block">
                         <article class="row wow fadeIn animated">
                             <div class="col-md-6">
-                                <div class="entry-meta meta-0 mb-15 font-small">
+                                <div class="entry-meta meta-0 mb-15 font-span">
                                     <a href="category.html"><span class="post-cat position-relative"># Stayhome</span></a>
                                 </div>
                                 <h6 class="post-title mb-20 font-weight-bold">
@@ -294,7 +166,7 @@
                                 <div class="has-top-border mb-15 mt-15"></div>
                             </div>
                             <div class="col-md-6">
-                                <div class="entry-meta meta-0 mb-15 font-small">
+                                <div class="entry-meta meta-0 mb-15 font-span">
                                     <a href="category.html"><span class="post-cat position-relative"># Agriculture</span></a>
                                 </div>
                                 <h6 class="post-title mb-20 font-weight-bold">
@@ -322,36 +194,44 @@
                             <span class="line-dots"></span>
                         </h5>
                         <div class="loop-grid-3">
-                            <article class="row wow fadeIn animated">
-                                <div class="col-md-6 mb-md-0 mb-sm-3">
-                                    <figure class="mb-0">
-                                        <a href="single.html">
-                                            <img src="{{ asset('storage/blog/') }}/{{ $recentsSection->image }}" alt="{{ $recentsSection->title }}">
-                                        </a>
-                                        <span class="post-format position-top-right text-uppercase font-small">
-                                            <i class="ti-stats-up"></i>
-                                        </span>
-                                    </figure>
-                                </div>
-                                <div class="col-md-6 align-self-center">
-                                    <div class="post-content text-center plr-5-percent">
-                                        <div class="entry-meta meta-0 mb-15 font-small">
-                                            <a href="{{ route('category',[$recentsSection->category->slug]) }}">
-                                                <span class="post-cat position-relative">In {{ $recentsSection->category_name }}</span>
+                            @if($recentsSection->status == 'published')
+                                <article class="row wow fadeIn animated">
+                                    <div class="col-md-6 mb-md-0 mb-sm-3">
+                                        <figure class="mb-0">
+                                            <a href="{{ route('blog.detail',[$recentsSection->category->slug, $recentsSection->slug]) }}">
+                                                <img src="{{ asset('storage/blog/') }}/{{ $recentsSection->image }}" alt="{{ $recentsSection->title }}">
                                             </a>
-                                        </div>
-                                        <h2 class="post-title mb-30 position-relative divider-wave">
-                                            <a href="single.html">{{ $recentsSection->title }}</a>
-                                        </h2>
-                                        <p class="excerpt">
-                                            {{ $recentsSection->short_description }}
-                                        </p>
+                                            <span class="post-format position-top-right text-uppercase font-span">
+                                                <i class="ti-stats-up"></i>
+                                            </span>
+                                        </figure>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="horizontal-divider mt-15 mb-15"></div>
-                                </div>
-                            </article>
+                                    <div class="col-md-6 align-self-center">
+                                        <div class="post-content text-center plr-5-percent">
+                                            <div class="entry-meta meta-0 mb-15 font-span">
+                                                <a href="{{ route('category',[$recentsSection->category->slug]) }}">
+                                                    <span class="post-cat position-relative">In {{ $recentsSection->category_name }}</span>
+                                                </a>
+                                            </div>
+                                            <h2 class="post-title mb-30 position-relative divider-wave">
+                                                <a href="{{ route('blog.detail',[$recentsSection->category->slug, $recentsSection->slug]) }}">{{ $recentsSection->title }}</a>
+                                            </h2>
+                                            @if($recentsSection->is_live == 'isLive')
+                                                <p class="excerpt">
+                                                    <span class="live-now text-danger">Live</span> {{ $recentsSection->short_description }}
+                                                </p>
+                                            @else
+                                                <p class="excerpt">
+                                                    {{ $recentsSection->short_description }}
+                                                </p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="horizontal-divider mt-15 mb-15"></div>
+                                    </div>
+                                </article>
+                            @endif
                             <div class="row vertical-divider">
                                 <div class="col-md-8">
                                     <article class="row wow fadeIn animated">
@@ -361,7 +241,7 @@
                                             </figure>
                                         </div>
                                         <div class="col-md-8 pl-0">
-                                            <div class="entry-meta meta-0 mb-15 font-small">
+                                            <div class="entry-meta meta-0 mb-15 font-span">
                                                 <a href="category.html"><span class="post-cat position-relative"># Technology</span></a>
                                             </div>
                                             <h6 class="post-title mb-20 font-weight-bold">
@@ -382,7 +262,7 @@
                                             </figure>
                                         </div>
                                         <div class="col-md-8 pl-0">
-                                            <div class="entry-meta meta-0 mb-15 font-small">
+                                            <div class="entry-meta meta-0 mb-15 font-span">
                                                 <a href="category.html"><span class="post-cat position-relative"># Music</span></a>
                                             </div>
                                             <h6 class="post-title mb-20 font-weight-bold">
@@ -403,7 +283,7 @@
                                             </figure>
                                         </div>
                                         <div class="col-md-8 pl-0">
-                                            <div class="entry-meta meta-0 mb-15 font-small">
+                                            <div class="entry-meta meta-0 mb-15 font-span">
                                                 <a href="category.html"><span class="post-cat position-relative"># Entertainment</span></a>
                                             </div>
                                             <h6 class="post-title mb-20 font-weight-bold">
@@ -424,7 +304,7 @@
                                             </figure>
                                         </div>
                                         <div class="col-md-8 pl-0">
-                                            <div class="entry-meta meta-0 mb-15 font-small">
+                                            <div class="entry-meta meta-0 mb-15 font-span">
                                                 <a href="category.html"><span class="post-cat position-relative">World</span></a>
                                             </div>
                                             <h6 class="post-title mb-20 font-weight-bold">
@@ -514,13 +394,13 @@
                                     <p>
                                         You should write because you love the shape of stories and sentences and the creation of different words on a page. Writing comes from reading, and reading is the finest teacher of how to write.
                                     </p>
-                                    <ul class="header-social-network d-inline-block list-inline font-small">
+                                    <ul class="header-social-network d-inline-block list-inline font-span">
                                         <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center" target="_blank" href="#"><i class="ti-facebook"></i></a></li>
                                         <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center" target="_blank" href="#"><i class="ti-twitter-alt"></i></a></li>
                                         <li class="list-inline-item"><a class="social-icon pinterest-icon text-xs-center" target="_blank" href="#"><i class="ti-pinterest"></i></a></li>
                                         <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center" target="_blank" href="#"><i class="ti-instagram"></i></a></li>
                                     </ul>
-                                    <p class="font-small mt-15 text-muted">Posts by <a href="{{ route('author',[$authorBoard->slug]) }}">{{ $authorBoard->name }}</a></p>
+                                    <p class="font-span mt-15 text-muted">Posts by <a href="{{ route('author',[$authorBoard->slug]) }}">{{ $authorBoard->name }}</a></p>
                                 </div>
                             </div>
                             <div class="sidebar-widget widget-latest-posts mb-30 mt-15 wow fadeIn animated" id="newsletter-section">
@@ -538,7 +418,7 @@
                                                 </div>
                                                 <div class="post-content media-body">
                                                     <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">How I Made $11,000 From Writing in 30 Days</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey mt-10">
+                                                    <div class="entry-meta meta-1 font-x-span color-grey mt-10">
                                                         <span class="post-on mr-15">25 April</span>
                                                         <span class="hit-count has-dot">54k Views</span>
                                                     </div>
@@ -554,7 +434,7 @@
                                                 </div>
                                                 <div class="post-content media-body">
                                                     <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">Incognito Mode Won’t Keep Your Browsing Private</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey mt-10">
+                                                    <div class="entry-meta meta-1 font-x-span color-grey mt-10">
                                                         <span class="post-on mr-15">25 April</span>
                                                         <span class="hit-count has-dot">54k Views</span>
                                                     </div>
@@ -570,7 +450,7 @@
                                                 </div>
                                                 <div class="post-content media-body">
                                                     <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">So You Want To Know The Cause of Avicii’s Death?</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey mt-10">
+                                                    <div class="entry-meta meta-1 font-x-span color-grey mt-10">
                                                         <span class="post-on mr-15">25 April</span>
                                                         <span class="hit-count has-dot">54k Views</span>
                                                     </div>
@@ -587,17 +467,17 @@
                                 <div class="newsletter">
                                     <p class="">Always stay on track with the latest news straight to your inbox. Subscribe.</p>
                                     <strong><span class="text-success" id="success-message"></span></strong>
+                                    <strong><span class="text-danger" id="email-error"></span></strong>
                                     <form id="newsletter-form">
                                         <div class="form-newsletter-cover">
                                             <div class="form-newsletter">
-                                                <input type="email" name="email" id="email" placeholder="Email address">                                               
+                                                <input type="email" name="email" id="email" placeholder="Email address">
                                                 <button type="submit">
                                                     <span class="long-arrow long-arrow-right"></span>
                                                 </button>
                                             </div>                                            
                                         </div>
                                     </form>
-                                    <strong><small class="text-danger" id="email-error"></small></strong>
                                 </div>                                
                             </div>
                         </div>

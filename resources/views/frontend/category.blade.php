@@ -24,62 +24,59 @@
                 <div class="loop-grid-3 row vertical-divider">
                     
                     @foreach ($recent_posts as $recent_post)
-                        <div class="col-lg-7 col-md-12">
-                            <article class="first-post wow fadeIn animated mb-md-4 mb-lg-0">
-                                <figure class="mb-30">
-                                    <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">
-                                        <img src="{{ asset('storage/blog/') }}/{{ $recent_post->image }}" alt="{{ $recent_post->title }}">
-                                    </a>
-                                    <span class="post-format position-top-right text-uppercase font-small">
-                                        <i class="ti-image"></i>
-                                    </span>
-                                </figure>
-                                <div class="post-content text-center plr-5-percent">
-                                    <h2 class="post-title mb-30 position-relative">
-                                        <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">{{ $recent_post->title }}</a>
-                                    </h2>
-                                    <p class="excerpt">
-                                        {{ $recent_post->short_description }}
-                                    </p>
-                                    <div class="entry-meta meta-0 mb-15 font-small">
-                                        <span class="post-cat position-relative">In {{ $recent_post->category->category_name }}</span>                                     
+                        @if($recent_post->status == 'published')
+                            <div class="col-lg-7 col-md-12">
+                                <article class="first-post wow fadeIn animated mb-md-4 mb-lg-0">
+                                    <figure class="mb-30">
+                                        <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">
+                                            <img src="{{ asset('storage/blog/') }}/{{ $recent_post->image }}" alt="{{ $recent_post->title }}">
+                                        </a>
+                                        <span class="post-format position-top-right text-uppercase font-small">
+                                            <i class="ti-image"></i>
+                                        </span>
+                                    </figure>
+                                    <div class="post-content text-center plr-5-percent">
+                                        <h2 class="post-title mb-30 position-relative">
+                                            <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">{{ $recent_post->title }}</a>
+                                        </h2>
+                                        <p class="excerpt">
+                                            {{ $recent_post->short_description }}
+                                        </p>
+                                        <div class="entry-meta meta-0 mb-15 font-small">
+                                            <span class="post-cat position-relative">In {{ $recent_post->category->category_name }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </article>
-                        </div>
+                                </article>
+                            </div>
+                        @endif
                     @endforeach
 
                     <div class="col-lg-5 col-md-12">
                         <div class="row vertical-divider">
                             @foreach ($blogs as $blog)
-                                <article class="col-md-6 wow fadeIn animated">
-                                    <figure class="mb-15">
-                                        <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">
-                                            <img src="{{ asset('storage/blog/') }}/{{ $blog->image }}" alt="{{ $blog->title }}">
-                                        </a>
-                                    </figure>
-                                    <h6 class="post-title font-weight-bold mb-10">
-                                        <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">{{ $blog->title }}</a>
-                                    </h6>
-                                    <p class="excerpt">
-                                       {{ $blog->short_description }}
-                                    </p>
-                                </article>
-                            @endforeach                            
+                                @if($blog->status == 'published')
+                                    <article class="col-md-6 wow fadeIn animated">
+                                        <figure class="mb-15">
+                                            <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">
+                                                <img src="{{ asset('storage/blog/') }}/{{ $blog->image }}" alt="{{ $blog->title }}">
+                                            </a>
+                                        </figure>
+                                        <h6 class="post-title font-weight-bold mb-10">
+                                            <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">{{ $blog->title }}</a>
+                                        </h6>
 
-                            {{-- <article class="col-md-6 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <a href="{{ route('blog.detail') }}">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-19.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="{{ route('blog.detail') }}">Why The New York City subway signage is considered iconic? The true story</a>
-                                </h6>
-                                <p class="excerpt">
-                                    Black and white signs with Helvetica showing just the information subway riders need at the points they need it and nothing more. After decades it still does its job remarkably well.
-                                </p>
-                            </article> --}}
+                                        @if($blog->is_live == 'isLive')
+                                            <p class="excerpt">
+                                                <span class="live-now text-danger">Live</span> {{ $blog->short_description }}
+                                            </p>
+                                            @else
+                                            <p class="excerpt">
+                                               {{ $blog->short_description }}
+                                            </p>
+                                        @endif
+                                    </article>
+                                @endif
+                            @endforeach
                             <div class="col-12">
                                 <div class="horizontal-divider mb-15 mt-15"></div>
                             </div>
