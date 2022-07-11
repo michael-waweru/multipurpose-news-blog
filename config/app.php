@@ -166,6 +166,7 @@ return [
         \Spatie\Permission\PermissionServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,        
 
         /*
          * Package Service Providers...
@@ -196,6 +197,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Image' => Intervention\Image\Facades\Image::class,        
     ])->toArray(),
 
 ];

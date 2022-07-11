@@ -76,39 +76,8 @@
                                         @endif
                                     </article>
                                 @endif
-                            @endforeach
-                            <div class="col-12">
-                                <div class="horizontal-divider mb-15 mt-15"></div>
-                            </div>
-                        </div>
-                        <div class="row vertical-divider">
-                            <article class="col-md-6 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <a href="#">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-8.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="#">This Freedom Rider was shot at, attacked, and put on death row—all by 20 years old</a>
-                                </h6>
-                                <p class="excerpt">
-                                    As Trumpauer left Jackson behind, she didn’t know if her life was about to get better or worse. The Riders, many of whom were student
-                                </p>
-                            </article>
-                            <article class="col-md-6 wow fadeIn animated">
-                                <figure class="mb-15">
-                                    <a href="#">
-                                        <img src="{{ asset('assets/frontend/imgs/news/news-4.jpg') }}" alt="">
-                                    </a>
-                                </figure>
-                                <h6 class="post-title font-weight-bold mb-10">
-                                    <a href="#">This athlete conquered poverty, racism, and polio in order to became an Olympian</a>
-                                </h6>
-                                <p class="excerpt">
-                                    <span class="live-now text-danger">Live</span>Six-year-old Wilma Rudolph was different from the other kids. They could walk, run, and jump
-                                </p>
-                            </article>
-                        </div>
+                            @endforeach                            
+                        </div>                        
                     </div>
                 </div>
                 <span class="line-dots mb-15 mt-30"></span>

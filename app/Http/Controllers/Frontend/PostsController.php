@@ -16,7 +16,7 @@ class PostsController extends Controller
     {
         $blogDetail = Blog::where('slug', $slug)->first();
 
-        // get the related categories id of the $post
+        // get the related categories id of the posts
         $related_category_ids = $blogDetail->category()->pluck('categories.id');
 
         // get the related post of the categories $related_category_ids

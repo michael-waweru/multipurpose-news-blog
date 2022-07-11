@@ -17,7 +17,7 @@ class FrontendController extends Controller
     public function home(Category $category)
     {
         $recent_posts = Blog::orderBy('created_at', 'DESC')->take(2)->get();
-        $blogs = Blog::inRandomOrder()->take(4)->get();
+        $blogs = Blog::inRandomOrder()->take(2)->get();
         $todaysHighlights = Blog::orderBy('created_at', 'DESC')->take(5)->get();
         $editorPicked = Blog::inRandomOrder()->take(2)->get();
         $authorBoard = User::where('role_id', '=', 1)

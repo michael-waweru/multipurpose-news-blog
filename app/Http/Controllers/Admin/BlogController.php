@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Image;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
+// use Intervention\Image\Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -65,7 +67,7 @@ class BlogController extends Controller
         
         //capture data to store in DB
         $input = $request->all();
-
+        
         $imageName = time().'.'.$request->image->extension();
         $request->image->storeAs('blog', $imageName);
 

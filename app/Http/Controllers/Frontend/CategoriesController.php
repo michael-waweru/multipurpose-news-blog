@@ -16,7 +16,7 @@ class CategoriesController extends Controller
         $recent_posts = Blog::where('category_id', $category->id)
             ->orderBy('created_at', 'DESC')->take(1)->get();
 
-        $blogs= Blog::where('category_id', '=', $category->id)->take(3)->get();
+        $blogs= Blog::where('category_id', '=', $category->id)->take(2)->get();
 
         return view('frontend.category',compact(['category','recent_posts','blogs']));
     }
