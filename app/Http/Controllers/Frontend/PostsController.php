@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\BlogSubscribers;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,12 +27,16 @@ class PostsController extends Controller
                ->take(3)->get();
 
         $interestedPosts = Blog::inRandomOrder()->take(2)->get();
+        $comments = Comment::where('blog_id', $blogDetail->id)
+                    ->where('approval', 1)->get();
 
         $article = Blog::with('tagged')->first(); // eager load
         foreach($article->tags as $tag) {
             $tag->name . ' with url slug of ' . $tag->slug;
         }
-        return view('frontend.blog-detail', compact(['blogDetail','relatedPosts','article','interestedPosts']));
+        return view('frontend.blog-detail', compact([
+            'blogDetail','relatedPosts','article','interestedPosts','comments'
+        ]));
     }
 
     public function author($slug)
@@ -56,5 +61,25 @@ class PostsController extends Controller
         ]);
 
         return response()->json(['success'=>'You have successfully subscribed to the newsletter!']);
+    }
+
+    public function storeBlogComment(Request $request, $slug)
+    {
+        $request->validate([
+            'name'    => 'required',
+            'email'   => 'required|email|unique:comments',
+            'comment' => 'required'
+        ]);
+
+        $blog = Blog::where('slug', $slug)->first();
+
+        Comment::create([
+            'name' => $request->name,
+            'blog_id' => $blog->id,
+            'email' => $request->email,
+            'comment' => $request->comment,
+        ]);
+       
+        return response()->json(['success'=>'Your comment has been captured pending approval.']);
     }
 }

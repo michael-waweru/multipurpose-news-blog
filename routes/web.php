@@ -19,7 +19,7 @@ Route::get('{category}/article/{slug}', [PostsController::class,'blogDetail'])->
 Route::get('author-archive/{slug}',[PostsController::class,'author'])->name('author');
 Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubscriber'])->name('subscriber.store');
 Route::post('/message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
-Route::post('comment-store', [FrontendController::class,'storeBlogComment'])->name('comment.store');
+Route::post('comment-store/{slug}', [FrontendController::class,'storeBlogComment'])->name('comment.store');
 Route::post('/store-subscriber',[PostsController::class,'storeBlogSubscribers']);
 
 Auth::routes();
@@ -41,7 +41,6 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::post('category/create/',[CategoryController::class,'storeCategory'])->name('admin.category.store');
     Route::post('category/update/{slug}/',[CategoryController::class,'updateCategory'])->name('admin.category.update');
     Route::delete('category/delete/{slug}/',[CategoryController::class,'deleteCategory'])->name('admin.category.delete');
-
     Route::get('blogs',[BlogController::class,'index'])->name('admin.blogs');
     Route::get('blogs/create',[BlogController::class,'create'])->name('admin.blog.create');
     Route::post('blog/store', [BlogController::class,'store'])->name('admin.blog.store');

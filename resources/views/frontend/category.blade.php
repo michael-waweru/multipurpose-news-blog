@@ -21,8 +21,7 @@
             </div>
             <!--Loop Grid 3-->
             <div class="the-world mb-30">
-                <div class="loop-grid-3 row vertical-divider">
-                    
+                <div class="loop-grid-3 row vertical-divider">                    
                     @foreach ($recent_posts as $recent_post)
                         @if($recent_post->status == 'published')
                             <div class="col-lg-7 col-md-12">
@@ -50,9 +49,8 @@
                             </div>
                         @endif
                     @endforeach
-
                     <div class="col-lg-5 col-md-12">
-                        <div class="row vertical-divider">
+                        <div class="row vertical-divider">                            
                             @foreach ($blogs as $blog)
                                 @if($blog->status == 'published')
                                     <article class="col-md-6 wow fadeIn animated">
@@ -64,19 +62,18 @@
                                         <h6 class="post-title font-weight-bold mb-10">
                                             <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">{{ $blog->title }}</a>
                                         </h6>
-
                                         @if($blog->is_live == 'isLive')
                                             <p class="excerpt">
                                                 <span class="live-now text-danger">Live</span> {{ $blog->short_description }}
                                             </p>
-                                            @else
+                                        @else
                                             <p class="excerpt">
-                                               {{ $blog->short_description }}
+                                                {{ $blog->short_description }}
                                             </p>
                                         @endif
-                                    </article>
+                                    </article>                                       
                                 @endif
-                            @endforeach                            
+                            @endforeach                                    
                         </div>                        
                     </div>
                 </div>
@@ -86,118 +83,46 @@
                 <div class="row vertical-divider">
                     <div class="col-lg-9 col-md-12">
                         <div class="loop-grid-3">
-                            <article class="row wow fadeIn animated">
-                                <div class="col-md-4">
-                                    <figure class="mb-md-0 mb-sm-3"><a href="#"><img src="{{ asset('assets/frontend/imgs/news/news-16.jpg') }}" alt=""></a></figure>
-                                </div>
-                                <div class="col-md-8">
-                                    <h4 class="post-title mb-10 font-weight-bold">
-                                        <a href="#">The Endgame for LinkedIn Is Coming</a>
-                                    </h4>
-                                    <p class="excerpt mb-20">
-                                        After two years, Microsoft still hasn’t delivered on its grand vision for LinkedIn. And it may never do so. Every time this LinkedIn commercial pops up on YouTube I am reminded of how low the company has fallen to.
-                                    </p>
-                                    <div class="entry-meta meta-2 font-x-small color-muted">
-                                        <p class="mb-5">
-                                            By <a href="author.html"><span class="author-name">Steven Kenedy</span></a>
-                                        </p>
-                                        <span class="mr-10"> 15 April 2020</span>
-                                        <span class="has-dot"> 8 mins read</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="horizontal-divider mt-15 mb-15"></div>
-                                </div>
-                            </article>
-                            <article class="row wow fadeIn animated">
-                                <div class="col-md-4">
-                                    <figure class="mb-md-0 mb-sm-3"><a href="#"><img src="{{ asset('assets/frontend/imgs/news/news-18.jpg') }}" alt=""></a></figure>
-                                </div>
-                                <div class="col-md-8">
-                                    <h4 class="post-title mb-10 font-weight-bold">
-                                        <a href="#">Neuroscience Says Listening to This Song Reduces Anxiety by Up to 65 Percent</a>
-                                    </h4>
-                                    <p class="excerpt mb-20">
-                                        After a calamitous drop in March, the stock market has had a ferocious rally, despite a cascade of awful news. How can investors cope?
-                                    </p>
-                                    <div class="entry-meta meta-2 font-x-small color-muted">
-                                        <p class="mb-5">
-                                            By <a href="author.html"><span class="author-name">Sally Rooney</span></a>
-                                        </p>
-                                        <span class="mr-10"> 12 May 2020</span>
-                                        <span class="has-dot"> 6 mins read</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="horizontal-divider mt-15 mb-15"></div>
-                                </div>
-                            </article>
-                            <article class="row wow fadeIn animated">
-                                <div class="col-md-4">
-                                    <figure class="mb-md-0 mb-sm-3"><a href="#"><img src="{{ asset('assets/frontend/imgs/news/news-15.jpg') }}" alt=""></a></figure>
-                                </div>
-                                <div class="col-md-8">
-                                    <h4 class="post-title mb-10 font-weight-bold">
-                                        <a href="#">I Have A Theory That Donald Glover And Childish Gambino Are Secretly The Same Person</a>
-                                    </h4>
-                                    <p class="excerpt mb-20">
-                                        For anyone who doesn’t know who these 2 dudes are, Donald Glover is a beloved actor/writer/comedian and Childish Gambino is a popular musician.
-                                    </p>
-                                    <div class="entry-meta meta-2 font-x-small color-muted">
-                                        <p class="mb-5">
-                                            By <a href="author.html"><span class="author-name">David Chariandy</span></a>
-                                        </p>
-                                        <span class="mr-10"> 15 May 2020</span>
-                                        <span class="has-dot"> 18 mins read</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="horizontal-divider mt-15 mb-15"></div>
-                                </div>
-                            </article>
-                            <article class="row wow fadeIn animated">
-                                <div class="col-md-4">
-                                    <figure class="mb-md-0 mb-sm-3"><a href="#"><img src="{{ asset('assets/frontend/imgs/news/news-14.jpg') }}" alt=""></a></figure>
-                                </div>
-                                <div class="col-md-8">
-                                    <h4 class="post-title mb-10 font-weight-bold">
-                                        <a href="#">Soft and Comfortable with the Buckyball Creative Office Chair</a>
-                                    </h4>
-                                    <p class="excerpt mb-20">
-                                        Buckyball – creative office chair created by designer Svyatoslav Zbroy – can be a part of the scientific research of fullerenes. Six spheres, consisting of twelve pentagons each, form an unusual structure. Like a stable and multifunctional carbon molecule, Buckyball can withstand heavy loads without losing its shape.
-                                    </p>
-                                    <div class="entry-meta meta-2 font-x-small color-muted">
-                                        <p class="mb-5">
-                                            By <a href="author.html"><span class="author-name">Jessie Greengrass</span></a>
-                                        </p>
-                                        <span class="mr-10"> 15 March 2020</span>
-                                        <span class="has-dot"> 11 mins read</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="horizontal-divider mt-15 mb-15"></div>
-                                </div>
-                            </article>
-                            <article class="row wow fadeIn animated">
-                                <div class="col-md-4">
-                                    <figure class="mb-md-0 mb-sm-3"><a href="#"><img src="{{ asset('assets/frontend/imgs/news/news-6.jpg') }}" alt=""></a></figure>
-                                </div>
-                                <div class="col-md-8">
-                                    <h4 class="post-title mb-10 font-weight-bold">
-                                        <a href="#">World’s 12 Most Expensive Luxury Cars</a>
-                                    </h4>
-                                    <p class="excerpt mb-20">
-                                        These beautiful vessels are built with the latest technology and of course incredibly luxurious. Their owners are very wealthy people – members of royal families, American business magnates, Russian billionaire businessmen and world-class politicians.
-                                    </p>
-                                    <div class="entry-meta meta-2 font-x-small color-muted">
-                                        <p class="mb-5">
-                                            By <a href="author.html"><span class="author-name">Eley Williams</span></a>
-                                        </p>
-                                        <span class="mr-10"> 25 February 2020</span>
-                                        <span class="has-dot"> 14 mins read</span>
-                                    </div>
-                                </div>
-                            </article>
+                            @if ($blogs->count() > 0)
+                                @foreach ($categories as $category)
+                                    @if ($category->status == 'published')
+                                        <article class="row wow fadeIn animated">
+                                            <div class="col-md-4">
+                                                <figure class="mb-md-0 mb-sm-3"><a href="{{ route('blog.detail',[$category->category->slug,$category->slug]) }}">
+                                                    <img src="{{ asset('storage/blog/'.$category->image) }}" alt="{{ $category->title }}"></a>
+                                                </figure>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h4 class="post-title mb-10 font-weight-bold">
+                                                    <a href="{{ route('blog.detail',[$category->category->slug,$category->slug]) }}">{{ $category->title }}</a>
+                                                </h4>
+                                                @if($category->is_live == 'isLive')
+                                                    <p class="excerpt mb-20">
+                                                        <span class="live-now text-danger">Live</span> {{ $category->short_description }}
+                                                    </p>
+                                                @else
+                                                    <p class="excerpt mb-20">
+                                                    {{ $category->short_description }}
+                                                    </p>
+                                                @endif                                            
+                                                <div class="entry-meta meta-2 font-x-small color-muted">
+                                                    <p class="mb-5">
+                                                        By <a href="{{ route('author',$category->user->slug) }}"><span class="author-name">{{ $category->author_name }}</span></a>
+                                                    </p>
+                                                    <span class="mr-10"> {{ $category->created_at->format('d M Y') }}</span>
+                                                    <span class="has-dot"> {{ $category->read_time }} mins read</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="horizontal-divider mt-15 mb-15"></div>
+                                            </div>
+                                        </article>
+                                    @endif                                
+                                @endforeach
+                            @else
+                                <img src="{{ asset('assets/frontend/imgs/No data.png') }}" alt="No-Data" style="width: 50%">
+                            @endif
+
                             <!--Start pagination -->
                             <div class="pagination-area pt-30 border-top-2 mt-30 font-heading wow fadeIn animated">
                                 <div class="container">
@@ -225,11 +150,11 @@
                         <div class="widget-area">
                             <div class="sidebar-widget widget-latest-posts mb-30 mt-15 wow fadeIn animated">
                                 <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
-                                    <span>Author Award</span>
+                                    <span>Author Board</span>
                                 </h6>
                                 <div class="author-content text-center">
-                                    <a href="author.html"><img class="img-circle d-inline-block mb-10" src="{{ asset('assets/frontend/imgs/authors/author-1.jpg') }}" alt=""></a>
-                                    <p><img src="{{ asset('assets/frontend/imgs/authors/sign.png') }}" alt=""></p>
+                                    <a href="author.html"><img class="img-circle d-inline-block mb-10" src="{{ asset('assets/frontend/imgs/authors/author-1.jpg') }}" alt=""></a>         
+                                    <p class="post-title">{{ $authorBoard->name }}</p>                           
                                     <p>
                                         You should write because you love the shape of stories and sentences and the creation of different words on a page. Writing comes from reading, and reading is the finest teacher of how to write.
                                     </p>
@@ -239,78 +164,21 @@
                                         <li class="list-inline-item"><a class="social-icon pinterest-icon text-xs-center" target="_blank" href="#"><i class="ti-pinterest"></i></a></li>
                                         <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center" target="_blank" href="#"><i class="ti-instagram"></i></a></li>
                                     </ul>
-                                    <p class="font-small mt-15 text-muted"><a href="#">View more</a></p>
+                                    <p class="font-small mt-15 text-muted">Posts By <a href="{{ route('author',$authorBoard->slug) }}">{{ $authorBoard->name }}</a></p>
                                 </div>
-                            </div>
-                            <div class="sidebar-widget widget-latest-posts mb-30 mt-15 wow fadeIn animated">
-                                <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
-                                    <span>Most comments</span>
-                                </h6>
-                                <div class="post-block-list post-module-1 post-module-5">
-                                    <ul class="list-post">
-                                        <li class="mb-15">
-                                            <div class="d-flex">
-                                                <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="#">
-                                                        <img src="{{ asset('assets/frontend/imgs/news/thumb-3.jpg') }}" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="#">How I Made $11,000 From Writing in 30 Days</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                                        <span class="post-on mr-15">25 April</span>
-                                                        <span class="hit-count has-dot">54k Views</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-15">
-                                            <div class="d-flex">
-                                                <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="#">
-                                                        <img src="{{ asset('assets/frontend/imgs/news/thumb-4.jpg') }}" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="#">Incognito Mode Won’t Keep Your Browsing Private</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                                        <span class="post-on mr-15">25 April</span>
-                                                        <span class="hit-count has-dot">54k Views</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex">
-                                                <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="#">
-                                                        <img src="{{ asset('assets/frontend/imgs/news/thumb-5.jpg') }}" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="#">So You Want To Know The Cause of Avicii’s Death?</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                                        <span class="post-on mr-15">25 April</span>
-                                                        <span class="hit-count has-dot">54k Views</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            </div>                           
                             <div class="sidebar-widget widget_newsletter wow fadeIn animated" id="newsletter">
                                 <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
                                     <span>Newsletter</span>
                                 </h6>
                                 <div class="newsletter">
                                     <p class="">Continue reading uninterrupted with a subscription</p>
-                                    <form action="{{ route('subscriber.store') }}" method="POST" enctype="form/multipart">
-                                        @csrf
+                                    <strong><span class="text-success" id="success-message"></span></strong>
+                                    <strong><span class="text-danger" id="email-error"></span></strong>
+                                    <form enctype="form/multipart" id="newsletter-form">                                       
                                         <div class="form-newsletter-cover">
-                                            <div class="form-newsletter">
-                                                <input type="email" name="email" placeholder="Email address" class="form-control @error('email') is-invalid @enderror">
-                                                @error('email')<span class="text-danger"><strong>{{ $message }}</strong></span>@enderror
+                                            <div class="form-newsletter">                                               
+                                                <input type="email" id="email" name="email" placeholder="Email address" class="form-control">                                                
                                                 <button type="submit">
                                                     <span class="long-arrow long-arrow-right"></span>
                                                 </button>
@@ -325,4 +193,40 @@
             </div>
         </div>
     </main>
+
+    @section('scripts')
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers : {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#newsletter-form').on('submit', function(event){
+                event.preventDefault();           
+                $('#email-error').text('');
+            
+                email = $('#email').val();          
+
+                $.ajax({
+                url: "/store-subscriber",
+                type: "POST",
+                data:{                 
+                    email:email,                  
+                },
+                success:function(response){
+                    console.log(response);
+                    if (response) {
+                        $('#success-message').text(response.success);
+                        $("#newsletter-form")[0].reset();
+                        $("#newsletter-form").hide();
+                    }
+                },
+                error: function(response) {
+                    $('#email-error').text(response.responseJSON.errors.email);                 
+                    }
+                });
+            });
+        </script>
+    @endsection
 @endsection

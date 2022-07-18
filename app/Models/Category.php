@@ -33,6 +33,11 @@ class Category extends Model
 
     public static function getCategories()
     {
-        return self::all()->take(3);
+        return self::all()->take(4);
+    }
+
+    public static function getFooterCategories()
+    {
+        return self::all()->take(18);
     }
 }

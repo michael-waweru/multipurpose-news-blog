@@ -22,8 +22,7 @@
                             <span class="mb-md-0 mb-3 text-muted mr-20">{{ $author_archives->count() }} article </span>
                         @else
                             <span class="mb-md-0 mb-3 text-muted mr-20">{{ $author_archives->count() }} articles </span>
-                        @endif
-                        <span class="mr-50 text-muted">15k follow</span>
+                        @endif                       
                         <div class="author-social text-muted font-small15k follow">
                             <ul class="author-social-icons">
                                 <li class="author-social-link-facebook"><a href="#" target="_blank"><i class="ti-facebook"></i></a></li>
@@ -49,24 +48,30 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="entry-meta meta-0 mb-15 font-small">
-                                            <a href="{{ route('category',[$author_archive->category->slug]) }}">
+                                            <a href="{{ route('category',[$author_archive->category->slug]) }}/">
                                                 <span class="post-cat position-relative">In {{ $author_archive->category->category_name }}</span>
                                             </a>
                                         </div>
                                         <h3 class="post-title mb-10">
-                                            <a href="{{ route('blog.detail',[$author_archive->category->slug,$author_archive->slug]) }}">{{ $author_archive->title }}</a>
+                                            <a href="{{ route('blog.detail',[$author_archive->category->slug,$author_archive->slug]) }}/">{{ $author_archive->title }}</a>
                                         </h3>
-                                        <p class="excerpt">
-                                            {{ $author_archive->short_description }}
-                                        </p>
+                                        @if($author_archive->is_live == 'isLive')
+                                            <p class="excerpt">
+                                                <span class="live-now text-danger">Live</span> {{ $author_archive->short_description }}
+                                            </p>
+                                        @else
+                                            <p class="excerpt">
+                                                {{ $author_archive->short_description }}
+                                            </p>
+                                        @endif                                         
                                         <div class="entry-meta meta-0 mb-15 font-small">
                                             <span class="position-relative text-muted">Article By {{ $author_archive->author_name }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <figure class="mt-md-0 mt-sm-3">
-                                            <a href="{{ route('blog.detail',[$author_archive->category->slug,$author_archive->slug]) }}">
-                                                <img src="{{ asset('storage/blog') }}/{{ $author_archive->image }}" alt="{{ $author_archive->title }}">
+                                            <a href="{{ route('blog.detail',[$author_archive->category->slug,$author_archive->slug]) }}/">
+                                                <img src="{{ asset('storage/blog/'.$author_archive->image) }}" alt="{{ $author_archive->title }}">
                                             </a>
                                         </figure>
                                     </div>
@@ -109,15 +114,16 @@
                                         <li class="mb-15">
                                             <div class="d-flex">
                                                 <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="single.html">
+                                                    <a class="color-white" href="{{ route('blog.detail',[$randomPost->category->slug,$randomPost->slug]) }}">
                                                         <img src="{{ asset('storage/blog/') }}/{{ $randomPost->image }}" alt="{{ $randomPost->title }}">
                                                     </a>
                                                 </div>
                                                 <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">{{ $randomPost->title }}</a></h6>
+                                                    <h6 class="post-title mb-10 text-limit-2-row">
+                                                        <a href="{{ route('blog.detail',[$randomPost->category->slug,$randomPost->slug]) }}">{{ $randomPost->title }}</a>
+                                                    </h6>
                                                     <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                                        <span class="post-on mr-15">{{ $randomPost->created_at->format('d M') }}</span>
-                                                        <span class="hit-count has-dot">54k Views</span>
+                                                        <span class="post-on mr-15">{{ $randomPost->created_at->format('d M') }}</span>                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,44 +131,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        </div>
-                        <div class="sidebar-widget widget-latest-comments mb-30 wow fadeIn  animated">
-                            <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
-                                <span>Recent comments</span>
-                            </h6>
-                            <div class="post-block-list post-module-6 mt-50">
-                                <div class="post-module-6-item d-flex wow fadeIn">
-                                    <span class="item-count vertical-align"><i class="ti-comment"></i></span>
-                                    <div class="alith_post_title_small">
-                                        <p class="font-medium mb-10"><a href="single.html">A writer is someone for whom writing is more difficult than it is for other people.</a></p>
-                                        <div class="entry-meta meta-1 font-x-small">
-                                            <span class="post-on">On 15 April</span>
-                                            <span class="hit-count has-dot">by Johan</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-module-6-item d-flex wow fadeIn">
-                                    <span class="item-count vertical-align"><i class="ti-comment"></i></span>
-                                    <div class="alith_post_title_small">
-                                        <p class="font-medium mb-10"><a href="single.html">Anybody who has survived his childhood has enough information about life to last him the rest of his days.</a></p>
-                                        <div class="entry-meta meta-1 font-x-small">
-                                            <span class="post-on">On 05 May</span>
-                                            <span class="hit-count has-dot">by Emma</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-module-6-item d-flex wow fadeIn">
-                                    <span class="item-count vertical-align"><i class="ti-comment"></i></span>
-                                    <div class="alith_post_title_small">
-                                        <p class="font-medium mb-10"><a href="single.html">A writer is someone for whom writing is more difficult than it is for other people.</a></p>
-                                        <div class="entry-meta meta-1 font-x-small">
-                                            <span class="post-on">On 15 May</span>
-                                            <span class="hit-count has-dot">by Steven</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </div>                       
                         <div class="sidebar-widget widget_newsletter mb-50 wow fadeIn animated">
                             <h6 class="widget-header widget-header-style-4 mb-20 text-center text-uppercase border-top-1 border-bottom-1 pt-5 pb-5">
                                 <span>Newsletter</span>

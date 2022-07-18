@@ -73,16 +73,12 @@
                             </div>
                             <div class="col-md-7">                                
                                 <div class="row">                                                                         
-                                    <strong>                                                                            
-                                        <span class="text-success" id="success-message"></span>                                                                                                              
-                                    </strong>                                    
+                                    <strong><span class="text-success" id="success-message"></span></strong>                                    
                                     <form id="contact-form">                                        
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" name="email" id="email" placeholder="Enter your e-mail address">                                                                                  
-                                            <strong>
-                                                <span class="text-danger" id="email-error"></span>
-                                            </strong>                                            
-                                        </div>                                        
+                                            <strong><span class="text-danger" id="email-error"></span></strong>
+                                        </div>
                                         <div class="col-md-12 mt-2">
                                             <button type="submit" class="btn btn-info btn-block">Subscribe</button>
                                         </div>
@@ -92,23 +88,22 @@
                         </div>
                     </div>
                     <!--End Subcrible-->
-                    <p>
-                        Yet more some certainly yet alas abandonedly whispered intriguingly well extensive 
-                        one howled talkative admonishingly below a rethought overlaid dear gosh activated 
-                        less however hawk yet oh scratched ostrich some outside crud irrespective lightheartedly 
-                        and much far amenably that the elephant since when.
-                    </p>
+                    <p>{{ $blogDetail->short_description }}</p>
                 </div>
                 <div class="entry-bottom mt-50 mb-30 wow fadeIn animated">
-                    <div class="tags">
-{{--                        <a href="category.html" rel="tag">Arrticle</a>--}}
-{{--                        <a href="category.html" rel="tag">nature</a>--}}
-{{--                        <a href="category.html" rel="tag">conserve</a>--}}
+                    <div class="tags">                       
+                       {{-- <a href="category.html" rel="tag">Article</a>
+                       <a href="category.html" rel="tag">nature</a>
+                       <a href="category.html" rel="tag">conserve</a>  --}}
                     </div>
                 </div>
                 <div class="single-social-share clearfix wow fadeIn animated">
                     <div class="entry-meta meta-1 font-small color-grey float-left mt-10">
-                        <span class="hit-count mr-15"><i class="ti-comment mr-5"></i>182 comments</span>
+                        @if ($comments->count() > 0 && $comments->count() < 2)
+                            <span class="hit-count mr-15"><i class="ti-comment mr-5"></i>{{ $comments->count() }} comment</span>
+                        @else
+                            <span class="hit-count mr-15"><i class="ti-comment mr-5"></i>{{ $comments->count() }} comments</span>
+                        @endif                       
                     </div>
                     <ul class="d-inline-block list-inline float-md-right mt-md-0 mt-4">
                         <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center " target="_blank" href="#"><i class="ti-facebook"></i></a></li>
@@ -145,28 +140,30 @@
                     <h3 class="mb-30">More From {{ $blogDetail->category_name }}</h3>
                     <div class="loop-list">
                         @foreach($relatedPosts as $relatedPost)
-                            <article class="row mb-30 wow fadeIn animated">
-                                <div class="col-md-4">
-                                    <div class="post-thumb position-relative thumb-overlay mb-md-0 mb-3">
-                                        <div class="img-hover-slide border-radius-5 position-relative">
-                                            <img src="{{ asset('storage/blog/') }}/{{ $relatedPost->image }}" />
-                                            <a class="img-link" href="{{ route('blog.detail',[$relatedPost->category->slug, $relatedPost->slug]) }}"></a>
-                                            <span class="top-right-icon background8"><i class="mdi mdi-flash-on"></i></span>
+                            @if ($relatedPost->status == 'published')
+                                <article class="row mb-30 wow fadeIn animated">
+                                    <div class="col-md-4">
+                                        <div class="post-thumb position-relative thumb-overlay mb-md-0 mb-3">
+                                            <div class="img-hover-slide border-radius-5 position-relative">
+                                                <img src="{{ asset('storage/blog/') }}/{{ $relatedPost->image }}"/>
+                                                <a class="img-link" href="{{ route('blog.detail',[$relatedPost->category->slug, $relatedPost->slug]) }}"></a>
+                                                <span class="top-right-icon background8"><i class="mdi mdi-flash-on"></i></span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-8 align-center-vertical">
-                                    <div class="post-content">
-                                        <div class="entry-meta meta-0 font-small mb-15"><a href="category.html">
+                                    <div class="col-md-8 align-center-vertical">
+                                        <div class="post-content">
+                                            <div class="entry-meta meta-0 font-small mb-15"><a href="{{ route('category',$relatedPost->category->slug) }}/">
                                                 <span class="post-cat background2 color-white">In {{ $relatedPost->category_name }}</span></a>
+                                            </div>
+                                            <h4 class="post-title mb-15">
+                                                <a href="{{ route('blog.detail',[$relatedPost->category->slug, $relatedPost->slug]) }}/">{{ $relatedPost->title }}</a>
+                                            </h4>
+                                            <p class="font-medium excerpt">{{ $relatedPost->short_description }}</p>
                                         </div>
-                                        <h4 class="post-title mb-15">
-                                            <a href="{{ route('blog.detail',[$relatedPost->category->slug, $relatedPost->slug]) }}">{{ $relatedPost->title }}</a>
-                                        </h4>
-                                        <p class="font-medium excerpt">{{ $relatedPost->short_description }}</p>
                                     </div>
-                                </div>
-                            </article>
+                                </article>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -174,125 +171,91 @@
                 <div class="single-more-articles">
                     <h6 class="widget-title mb-30 font-weight-bold text">You might be interested in</h6>
                     @foreach($interestedPosts as $interestedPost)
-                        <div class="post-block-list post-module-1 post-module-5">
-                            <ul class="list-post">
-                                <li class="mb-15">
-                                    <div class="d-flex">
-                                        <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                            <a class="color-white" href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug]) }}">
-                                                <img src="{{ asset('storage/blog/') }}/{{ $interestedPost->image }}" alt="{{ $interestedPost->title }}">
-                                            </a>
-                                        </div>
-                                        <div class="post-content media-body">
-                                            <h6 class="post-title mb-10 text-limit-2-row"><a href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug]) }}">{{ $interestedPost->title }}</a></h6>
-                                            <div class="entry-meta meta-1 font-x-small color-grey">
-                                                <span class="post-on">{{ $interestedPost->created_at->format('d M, Y') }}</span>                                               
+                        @if ($interestedPost->status == 'published')
+                            <div class="post-block-list post-module-1 post-module-5">
+                                <ul class="list-post">
+                                    <li class="mb-15">
+                                        <div class="d-flex">
+                                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
+                                                <a class="color-white" href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug]) }}/">
+                                                    <img src="{{ asset('storage/blog/'.$interestedPost->image) }}" alt="{{ $interestedPost->title }}">
+                                                </a>
+                                            </div>
+                                            <div class="post-content media-body">
+                                                <h6 class="post-title mb-10 text-limit-2-row">
+                                                    <a href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug]) }}/">{{ $interestedPost->title }}</a>
+                                                </h6>
+                                                <div class="entry-meta meta-1 font-x-small color-grey">
+                                                    <span class="post-on">{{ $interestedPost->created_at->format('d M, Y') }}</span>                                               
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
                 <!--Comments-->
                 <div class="comments-area">
-                    <h3 class="mb-30">03 Comments</h3>
-                    <div class="comment-list wow fadeIn animated">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="{{ asset('assets/frontend/imgs/authors/author-1.jpg') }}" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Vestibulum euismod, leo eget varius gravida, eros enim interdum urna, non rutrum enim ante quis metus. Duis porta ornare nulla ut bibendum
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Robert Edition</a>
-                                            </h5>
-                                            <p class="date">6 minutes ago </p>
+                    @if ($comments->count() > 0 && $comments->count() < 2)
+                        <h3 class="mb-30">{{ $comments->count() }} Comment</h3>
+                    @else
+                        <h3 class="mb-30">{{ $comments->count() }} Comments</h3>
+                    @endif
+                    
+                    @if ($comments->count() > 0)
+                        @foreach ($comments as $comment)                          
+                            <div class="comment-list wow fadeIn animated">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="{{ asset('assets/backend/avatar.png') }}" alt="commentor's-image">
                                         </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list wow fadeIn animated">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="{{ asset('assets/frontend/imgs/authors/author-2.jpg') }}" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Sed ac lorem felis. Ut in odio lorem. Quisque magna dui, maximus ut commodo sed, vestibulum ac nibh. Aenean a tortor in sem tempus auctor
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Agatha Christie</a>
-                                            </h5>
-                                            <p class="date">December 4, 2020 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply">Reply</a>
+                                        <div class="desc">
+                                            <p class="comment">
+                                                {{ $comment->comment }}
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        {{ $comment->name }}
+                                                    </h5>
+                                                    <p class="date">{{ $comment->created_at->diffForHumans() }}</p>
+                                                </div>                                            
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list wow fadeIn animated">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="{{ asset('assets/frontend/imgs/authors/author-4.jpg') }}" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Donec in ullamcorper quam. Aenean vel nibh eu magna gravida fermentum. Praesent eget nisi pulvinar, sollicitudin eros vitae, tristique odio.
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Danielle Steel</a>
-                                            </h5>
-                                            <p class="date">December 4, 2020 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            </div>                                                   
+                        @endforeach
+                    @else
+                        <img src="{{ asset('assets/frontend/imgs/No comment.png') }}" alt="No Comment" style="width: 50%">
+                    @endif
                 </div>
                 <!--comment form-->
                 <div class="comment-form wow fadeIn animated">
                     <h3 class="mb-30">Leave a Reply</h3>
-                    <form action="{{ route('comment.store') }}" method="POST" class="form-contact comment_form" id="commentForm">
-                        @csrf
+                    <strong><span class="text-success" id="success"></span></strong>
+                    <form action="{{ route('comment.store',$blogDetail->slug) }}" method="POST" class="form-contact comment_form" id="commentForm">
+                        @csrf                   
                         <div class="row">                           
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="name" type="text" placeholder="Name">
+                                    <input class="form-control" id="name" name="name" type="text" placeholder="Name">
+                                    <strong><span class="text-danger" id="name-error"></span></strong>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="email" type="email" placeholder="Email">
+                                    <input class="form-control" id="email" name="email" type="email" placeholder="Email">
+                                    <strong><span class="text-danger" id="email-error"></span></strong>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" name="comment" cols="30" rows="9" placeholder="Write Your Comment"></textarea>
+                                    <textarea class="form-control w-100" id="comment" name="comment" cols="30" rows="9" placeholder="Write Your Comment"></textarea>
+                                    <strong><span class="text-danger" id="comment-error"></span></strong>
                                 </div>
                             </div>
                         </div>
@@ -304,7 +267,7 @@
             </article>
         </div>
         <!--container-->
-    </main>
+    </main>   
     
     @section('scripts')
         <script type="text/javascript">
@@ -335,10 +298,58 @@
                     }
                 },
                 error: function(response) {
-                    $('#email-error').text(response.responseJSON.errors.email);                 
+                    $('#email-error').text(response.responseJSON.errors.email);
                     }
                 });
             });
         </script> 
     @endsection
+
+    {{-- @section('scripts')
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        
+            $('#commentForm').on('submit', function(event){
+                event.preventDefault();           
+                $('#name-error').text('');
+                $('#email-error').text('');
+                $('#comment-error').text('');
+            
+                name = $('#name').val();          
+                email = $('#email').val();          
+                comment = $('#comment').val();          
+                
+                var slug = $('#slug').val();
+                var url = '{{ route("comment.save", ":slug") }}';
+                url = url.replace(':slug', slug);
+
+                $.ajax({                
+                url: url,
+                type: "POST",
+                data:{                 
+                    name:name,
+                    email:email,                   
+                    comment:comment,
+                },
+                success:function(response){
+                    console.log(response);
+                    if (response) {
+                        $('#success').text(response.success);
+                        $("#commentForm")[0].reset();
+                        $("#commentForm").hide();
+                    }
+                },
+                error: function(response) {
+                    $('#name-error').text(response.responseJSON.errors.name);
+                    $('#email-error').text(response.responseJSON.errors.email);
+                    $('#comment-error').text(response.responseJSON.errors.comment);
+                    }
+                });
+            });
+        </script> 
+    @endsection --}}
 @endsection
