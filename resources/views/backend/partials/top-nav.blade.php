@@ -18,6 +18,13 @@
 
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
+                    <li>
+                        <div>
+                            <a href="{{ route('homepage') }}" target="_blank">
+                                <span class="nk-menu-icon"><em class="icon ni ni-home"></em></span>  
+                            </a>                                                  
+                        </div>
+                    </li>
                     <li class="dropdown user-dropdown">
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <div class="user-toggle">

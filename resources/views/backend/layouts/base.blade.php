@@ -5,9 +5,8 @@
         @include('backend.partials.head')
     </head>
 
-    <body class="{{ $theme . '-theme' }}">
-        <div class="nk-app-root">           
-
+    <body class="nk-body npc-crypto">
+        <div class="nk-app-root">
             <div class="nk-main">
                 <!-- wrap @s -->
                 <div class="nk-wrap">

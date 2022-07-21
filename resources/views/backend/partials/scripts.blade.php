@@ -12,6 +12,7 @@
 
 <script src="{{ asset('assets/backend/js/bundle.js') }}"></script>
 <script src="{{ asset('assets/backend/js/scripts.js') }}"></script>
+<script src="{{ asset('assets/backend/js/charts/chart-crypto.js') }}"></script>
 
 <!-- Summernote js -->
 <script src="{{ asset('assets/backend/js/libs/editors/summernote.js') }}"></script>
