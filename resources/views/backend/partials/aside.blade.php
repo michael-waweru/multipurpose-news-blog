@@ -3,13 +3,7 @@
         <ul class="nk-menu nk-menu-md">
             <li class="nk-menu-heading">
                 <h6 class="overline-title text-primary-alt">Quick Links</h6>
-            </li><!-- .nk-menu-heading -->
-            <li class="nk-menu-item">
-                <a href="{{ route('homepage') }}" class="nk-menu-link">
-                    <span class="nk-menu-icon"><em class="icon ni ni-home"></em></span>
-                    <span class="nk-menu-text">Homepage</span>
-                </a>
-            </li>
+            </li><!-- .nk-menu-heading -->            
             <li class="nk-menu-item">
                 <a href="{{ route('admin.dashboard') }}" class="nk-menu-link">
                     <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>

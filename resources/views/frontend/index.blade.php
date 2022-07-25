@@ -264,12 +264,12 @@
                                 <div class="col-md-4">
                                     <article class="wow fadeIn animated">
                                         <figure class="mb-15">
-                                            <a href="single.html">
+                                            <a href="{{ route('blog.detail',[$side->category->slug,$side->slug]) }}">
                                                 <img src="{{ asset('storage/blog/'.$side->image) }}" alt="{{ $side->title }}">
                                             </a>
                                         </figure>
                                         <h6 class="post-title font-weight-bold mb-10">
-                                            <a href="single.html">{{ $side->title }}</a>
+                                            <a href="{{ route('blog.detail',[$side->category->slug,$side->slug]) }}">{{ $side->title }}</a>
                                         </h6>
                                         <p class="excerpt">{{ $side->short_description }}</p>
                                         <div class="horizontal-divider mt-15 mb-15"></div>
@@ -277,7 +277,7 @@
                                     @foreach ($editorPicked as $random_blog)
                                         <article class="wow fadeIn animated">
                                             <h6 class="post-title mb-10 font-weight-bold">
-                                                <a href="single.html"> {{ $random_blog->title }}</a>
+                                                <a href="{{ route('blog.detail',[$random_blog->category->slug,$random_blog->slug]) }}">{{ $random_blog->title }}</a>
                                             </h6>
                                             @if ($random_blog->is_live == 'isLive')
                                                 <p class="excerpt">
