@@ -9,159 +9,39 @@
             </div>
             <div class="post-block-list post-module-1 post-module-5">
                 <ul class="list-post">
-                    <li class="mb-15">
-                        <div class="d-flex">
-                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                <a class="color-white" href="single.html">
-                                    <img src="{{ asset('assets/frontend/imgs/news/thumb-1.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="post-content media-body">
-                                <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">America’s Governors Get Tested for a Virus That Is Testing Them</a></h6>
-                                <div class="entry-meta meta-1 font-x-small color-grey">
-                                    <span class="post-on">25 Jun</span>
-                                    <span class="hit-count has-dot">126k Views</span>
+                    @foreach (\App\Models\Blog::getBlogs() as $blog)
+                        <li class="mb-15">
+                            <div class="d-flex">                                
+                                <div class="post-content media-body">
+                                    <h6 class="post-title mb-10 text-limit-2-row">
+                                        <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">{{ $blog->title }}</a>
+                                    </h6>
+                                    <div class="entry-meta meta-1 font-x-small color-grey">
+                                        <span class="post-on">{{ $blog->created_at->format('D, d M Y') }}</span>
+                                        <span class="hit-count has-dot">By {{ $blog->author_name }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="mb-15">
-                        <div class="d-flex">
-                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                <a class="color-white" href="single.html">
-                                    <img src="{{ asset('assets/frontend/imgs/news/thumb-2.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="post-content media-body">
-                                <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">Bartering Child’s Dress for Food: Life in Lebanon’s Economic Crisis</a></h6>
-                                <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                    <span class="post-on">25 April</span>
-                                    <span class="hit-count has-dot">37k Views</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="mb-15">
-                        <div class="d-flex">
-                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                <a class="color-white" href="single.html">
-                                    <img src="{{ asset('assets/frontend/imgs/news/thumb-3.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="post-content media-body">
-                                <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">Cairo Badly Needed a Detox. Lockdown Supplied One, at a Steep Price.</a></h6>
-                                <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                    <span class="post-on">25 April</span>
-                                    <span class="hit-count has-dot">54k Views</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="mb-15">
-                        <div class="d-flex">
-                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                <a class="color-white" href="single.html">
-                                    <img src="{{ asset('assets/frontend/imgs/news/thumb-4.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="post-content media-body">
-                                <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">Eating Thai Fruit Demands Serious Effort but Delivers Sublime Reward</a></h6>
-                                <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                    <span class="post-on">25 April</span>
-                                    <span class="hit-count has-dot">54k Views</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="mb-15">
-                        <div class="d-flex">
-                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                <a class="color-white" href="single.html">
-                                    <img src="{{ asset('assets/frontend/imgs/news/thumb-5.jpg') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="post-content media-body">
-                                <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">In Iraq, a New Prime Minister Takes Stock of His Bloodied Land</a></h6>
-                                <div class="entry-meta meta-1 font-x-small color-grey mt-10">
-                                    <span class="post-on">25 April</span>
-                                    <span class="hit-count has-dot">54k Views</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>                        
+                    @endforeach 
                 </ul>
             </div>
         </div>
         <!--Categories-->
         <div class="sidebar-widget widget_categories mb-50">
             <div class="widget-header position-relative mb-20">
-                <h5 class="widget-title mt-5">All Sections</h5>
+                <h5 class="widget-title mt-5">All Categories</h5>
             </div>
             <div class="widget_nav_menu">
                 <ul class="menu">
-                    <li class="cat-item cat-item-2 menu-item-has-children">
-                        <a href="category.html">World News</a>
-                        <ul class="sub-menu">
-                            <li class="cat-item"><a href="category.html">Africa</a></li>
-                            <li class="cat-item"><a href="category.html">Americas</a></li>
-                            <li class="cat-item"><a href="category.html">Asia</a></li>
-                            <li class="cat-item"><a href="category.html">Canada</a></li>
-                            <li class="cat-item"><a href="category.html">Europe</a></li>
-                            <li class="cat-item"><a href="category.html">Middle East</a></li>
-                        </ul>
-                    </li>
-                    <li class="cat-item cat-item-2 menu-item-has-children">
-                        <a href="category.html">Business</a>
-                        <ul class="sub-menu">
-                            <li class="cat-item"><a href="category.html">DealBook</a></li>
-                            <li class="cat-item"><a href="category.html">Economy</a></li>
-                            <li class="cat-item"><a href="category.html">Energy</a></li>
-                            <li class="cat-item"><a href="category.html">Markets</a></li>
-                            <li class="cat-item"><a href="category.html">Media</a></li>
-                            <li class="cat-item"><a href="category.html">Your Money</a></li>
-                            <li class="cat-item"><a href="category.html">Automobiles</a></li>
-                        </ul>
-                    </li>
-                    <li class="cat-item cat-item-2 menu-item-has-children">
-                        <a href="category.html">Sports News</a>
-                        <ul class="sub-menu">
-                            <li class="cat-item"><a href="category.html">Baseball</a></li>
-                            <li class="cat-item"><a href="category.html">Football</a></li>
-                            <li class="cat-item"><a href="category.html">Golf</a></li>
-                            <li class="cat-item"><a href="category.html">Hockey</a></li>
-                            <li class="cat-item"><a href="category.html">Soccer</a></li>
-                            <li class="cat-item"><a href="category.html">Tennist</a></li>
-                            <li class="cat-item"><a href="category.html">Marathon</a></li>
-                        </ul>
-                    </li>
-                    <li class="cat-item menu-item-has-children">
-                        <a href="category.html">Video News</a>
-                        <ul class="sub-menu">
-                            <li class="cat-item"><a href="category.html">Politics</a></li>
-                            <li class="cat-item"><a href="category.html">International</a></li>
-                            <li class="cat-item"><a href="category.html">Business</a></li>
-                            <li class="cat-item"><a href="category.html">Tech</a></li>
-                            <li class="cat-item"><a href="category.html">Culture</a></li>
-                            <li class="cat-item"><a href="category.html">Style</a></li>
-                            <li class="cat-item"><a href="category.html">Health</a></li>
-                            <li class="cat-item"><a href="category.html">Sports</a></li>
-                            <li class="cat-item"><a href="category.html">Travel</a></li>
-                            <li class="cat-item"><a href="category.html">Science</a></li>
-                        </ul>
-                    </li>
-                    <li class="cat-item"><a href="category.html">Opinion</a></li>
-                    <li class="cat-item"><a href="category.html">Technology</a></li>
-                    <li class="cat-item"><a href="category.html">Science</a></li>
-                    <li class="cat-item"><a href="category.html">Health</a></li>
-                    <li class="cat-item"><a href="category.html">Sports</a></li>
-                    <li class="cat-item"><a href="category.html">Food</a></li>
-                    <li class="cat-item"><a href="category.html">Travel</a></li>
-                    <li class="cat-item"><a href="category.html">Magazine</a></li>
+                    @foreach (App\Models\Category::getAllCategories() as $category)
+                        <li><a href="{{ route('category',$category->slug) }}/">{{ $category->category_name }}</a></li>
+                    @endforeach                   
                 </ul>
             </div>
         </div>
         <!--Ads-->
-        <span class="mb-15 text-muted">Advertise Here</span><br>
+        <span class="mb-15 text-muted">Advertise With Us</span><br>
         <div class="sidebar-widget mt-30">            
             <a href="{{ asset('assets/frontend/imgs/news/news-1.jpg') }}" class="play-video" data-animate="zoomIn" data-duration="1.5s" data-delay="0.1s">
                 <img src="{{ asset('assets/frontend/imgs/banners/banner-1.jpg') }}">
@@ -251,8 +131,7 @@
                         <ul class="col-md-2">
                             <li><a href="{{ route('about') }}">About Us</a></li>
                             <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                            <li><a href="category-big.html">Category big</a></li>
-                            <li><a href="category-metro.html">Category metro</a></li>
+                            <li><a href="javascript:void(0)">Careers</a></li>                            
                         </ul>
                     </li>                    
                 </ul>
@@ -292,16 +171,11 @@
             </div>
             <div class="row">
                 <div class="col-12 font-small suggested-area">
-                    <p class="suggested font-heading mb-10"><strong>Suggestion</strong></p>
+                    <p class="suggested font-heading mb-10"><strong>Suggestions</strong></p>
                     <ul class="list-inline d-inline-block">
-                        <li class="list-inline-item"><a href="category.html">World</a></li>
-                        <li class="list-inline-item"><a href="category.html">American</a></li>
-                        <li class="list-inline-item"><a href="category.html">Opinion</a></li>
-                        <li class="list-inline-item"><a href="category.html">Tech</a></li>
-                        <li class="list-inline-item"><a href="category.html">Science</a></li>
-                        <li class="list-inline-item"><a href="category.html">Books</a></li>
-                        <li class="list-inline-item"><a href="category.html">Travel</a></li>
-                        <li class="list-inline-item"><a href="category.html">Business</a></li>
+                        @foreach (\App\Models\Category::getCategories() as $suggestion)
+                            <li class="list-inline-item"><a href="{{ route('category',$suggestion->slug) }}">{{ $suggestion->category_name }}</a></li>                            
+                        @endforeach                        
                     </ul>
                 </div>
             </div>

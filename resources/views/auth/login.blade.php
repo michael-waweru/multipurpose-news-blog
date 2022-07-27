@@ -67,14 +67,15 @@
             </div>
         </div>
     </main> 
-@endsection
 
-@section('scripts')
-    <script>   
-        window.setTimeout(function() {
-            $("#error-alert").fadeTo(500, 0).slideUp(500, function(){
-                $(this).remove(); 
-            });
-        }, 5000);
-    </script>
+    @section('scripts')
+        <script>   
+            window.setTimeout(function() {
+                $("#error-alert").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove(); 
+                });
+            }, 5000);
+        </script>
+    @endsection
+
 @endsection

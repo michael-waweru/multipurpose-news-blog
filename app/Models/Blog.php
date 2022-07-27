@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Conner\Tagging\Taggable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,11 @@ class Blog extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function getBlogs()
+    {
+        // return DB::select('select * from blogs where status = published')->get();
+        return self::inRandomOrder()->take(4)->get();
     }
 }

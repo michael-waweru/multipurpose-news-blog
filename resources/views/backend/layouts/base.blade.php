@@ -16,8 +16,8 @@
                     @include('backend.partials.aside')
 
                     <!-- content @s -->
-                    <div class="nk-content">
-                        <div class="container-fluid">
+                    <div class="nk-content nk-content-fluid">
+                        <div class="container-xl wide-lg">
                             <div class="nk-content-inner">
                                 <div class="nk-content-body">
                                     @yield('body')
