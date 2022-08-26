@@ -16,7 +16,7 @@
                 </div>
             </div>
             <figure class="image mb-30 m-auto text-center border-radius-2">
-                <a href="single.html"><img class="border-radius-5" src="{{ asset('assets/frontend/imgs/news/news-26.jpg') }}" alt=""></a>
+                <a href="single.html"><img class="border-radius-5" src="{{ asset('assets/frontend/imgs/banners/Newsboard Banner.png') }}" alt="About Banner"></a>
             </figure>
             <div class="entry-wraper">
                 

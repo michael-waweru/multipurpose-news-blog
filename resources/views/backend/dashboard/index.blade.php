@@ -86,13 +86,7 @@
                                 </div>
                                 <div class="card-tools me-n1">
                                     <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="#"><em class="icon ni ni-setting"></em><span>Action Settings</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-notify"></em><span>Push Notification</span></a></li>
-                                            </ul>
-                                        </div>
+                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>                                        
                                     </div>
                                 </div>
                             </div>
@@ -101,10 +95,10 @@
                             <div class="nk-wg-action">
                                 <div class="nk-wg-action-content">
                                     <em class="icon ni ni-cc-alt-fill"></em>
-                                    <div class="title">Pending Buy/Sell Orders</div>
-                                    <p>We have still <strong>40 buy orders</strong> and <strong>12 sell orders</strong>, thats need to review.</p>
+                                    <div class="title">Pending Comments & Blogs</div>
+                                    <p>We have <strong>{{ $pendingComments->count() }} pending comments</strong> and <strong>{{ $pendingBlogs->count() }} pending blogs</strong> that need to be addressed.</p>
                                 </div>
-                                <a href="#" class="btn btn-icon btn-trigger me-n2"><em class="icon ni ni-forward-ios"></em></a>
+                                <a href="javascript:void(0)" class="btn btn-icon btn-trigger me-n2"><em class="icon ni ni-forward-ios"></em></a>
                             </div>
                         </div><!-- .card-inner -->
                         <div class="card-inner">
@@ -112,7 +106,7 @@
                                 <div class="nk-wg-action-content">
                                     <em class="icon ni ni-help-fill"></em>
                                     <div class="title">Support Messages</div>
-                                    <p>Here is <strong>18 new</strong> support message. </p>
+                                    <p>Here are <strong>0 new</strong> support messages. </p>
                                 </div>
                                 <a href="#" class="btn btn-icon btn-trigger me-n2"><em class="icon ni ni-forward-ios"></em></a>
                             </div>
