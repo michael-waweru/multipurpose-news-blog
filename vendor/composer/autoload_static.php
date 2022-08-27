@@ -129,6 +129,10 @@ class ComposerStaticInitfaf2e0e9a616d1a71642604d94d35587
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
         ),
+        'J' => 
+        array (
+            'Jorenvh\\Share\\' => 14,
+        ),
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
@@ -428,6 +432,10 @@ class ComposerStaticInitfaf2e0e9a616d1a71642604d94d35587
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
         ),
+        'Jorenvh\\Share\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src',
+        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
@@ -566,6 +574,7 @@ class ComposerStaticInitfaf2e0e9a616d1a71642604d94d35587
         'App\\Http\\Controllers\\Frontend\\CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CategoriesController.php',
         'App\\Http\\Controllers\\Frontend\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/FrontendController.php',
         'App\\Http\\Controllers\\Frontend\\PostsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/PostsController.php',
+        'App\\Http\\Controllers\\Frontend\\ShareButtonsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ShareButtonsController.php',
         'App\\Http\\Controllers\\Frontend\\SocialController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/SocialController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -2848,6 +2857,9 @@ class ComposerStaticInitfaf2e0e9a616d1a71642604d94d35587
         'Intervention\\Image\\Point' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Point.php',
         'Intervention\\Image\\Response' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Response.php',
         'Intervention\\Image\\Size' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Size.php',
+        'Jorenvh\\Share\\Providers\\ShareServiceProvider' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
+        'Jorenvh\\Share\\Share' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Share.php',
+        'Jorenvh\\Share\\ShareFacade' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',
         'Laravel\\Sail\\Console\\PublishCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/PublishCommand.php',
         'Laravel\\Sail\\SailServiceProvider' => __DIR__ . '/..' . '/laravel/sail/src/SailServiceProvider.php',
@@ -4884,7 +4896,6 @@ class ComposerStaticInitfaf2e0e9a616d1a71642604d94d35587
         'Spatie\\LaravelIgnition\\ContextProviders\\LaravelContextProviderDetector' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/ContextProviders/LaravelContextProviderDetector.php',
         'Spatie\\LaravelIgnition\\ContextProviders\\LaravelLivewireRequestContextProvider' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/ContextProviders/LaravelLivewireRequestContextProvider.php',
         'Spatie\\LaravelIgnition\\ContextProviders\\LaravelRequestContextProvider' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/ContextProviders/LaravelRequestContextProvider.php',
-        'Spatie\\LaravelIgnition\\Exceptions\\CannotExecuteSolutionForNonLocalEnvironment' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Exceptions/CannotExecuteSolutionForNonLocalEnvironment.php',
         'Spatie\\LaravelIgnition\\Exceptions\\CannotExecuteSolutionForNonLocalIp' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Exceptions/CannotExecuteSolutionForNonLocalIp.php',
         'Spatie\\LaravelIgnition\\Exceptions\\InvalidConfig' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Exceptions/InvalidConfig.php',
         'Spatie\\LaravelIgnition\\Exceptions\\ViewException' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Exceptions/ViewException.php',
@@ -4955,6 +4966,7 @@ class ComposerStaticInitfaf2e0e9a616d1a71642604d94d35587
         'Spatie\\LaravelIgnition\\Support\\LaravelDocumentationLinkFinder' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/LaravelDocumentationLinkFinder.php',
         'Spatie\\LaravelIgnition\\Support\\LaravelVersion' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/LaravelVersion.php',
         'Spatie\\LaravelIgnition\\Support\\LivewireComponentParser' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/LivewireComponentParser.php',
+        'Spatie\\LaravelIgnition\\Support\\RunnableSolutionsGuard' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/RunnableSolutionsGuard.php',
         'Spatie\\LaravelIgnition\\Support\\SentReports' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/SentReports.php',
         'Spatie\\LaravelIgnition\\Support\\StringComparator' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/StringComparator.php',
         'Spatie\\LaravelIgnition\\Views\\BladeSourceMapCompiler' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/BladeSourceMapCompiler.php',

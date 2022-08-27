@@ -9,6 +9,7 @@
         "cviebrock/eloquent-sluggable": "^9.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/socialite": "^5.5",

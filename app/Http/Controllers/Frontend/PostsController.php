@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Blog;
-use App\Models\BlogSubscribers;
 use App\Models\User;
-use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\BlogSubscribers;
+use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
@@ -34,8 +32,19 @@ class PostsController extends Controller
         foreach($article->tags as $tag) {
             $tag->name . ' with url slug of ' . $tag->slug;
         }
+
+        $socialShare = \Share::page(
+            'http://localhost:8080/',
+            $blogDetail->title,
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->whatsapp()
+        ->telegram();        
+
         return view('frontend.blog-detail', compact([
-            'blogDetail','relatedPosts','article','interestedPosts','comments'
+            'blogDetail','relatedPosts','article','interestedPosts','comments','socialShare'
         ]));
     }
 

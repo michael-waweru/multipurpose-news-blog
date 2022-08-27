@@ -93,5 +93,5 @@ class FrontendController extends Controller
             toastr()->success('Your comment has been submitted pending approval. Standby!');
             return back();
         }
-    }
+    }     
 }

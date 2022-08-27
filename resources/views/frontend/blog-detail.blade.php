@@ -74,7 +74,7 @@
                             <div class="col-md-7">                                
                                 <div class="row">                                                                         
                                     <strong><span class="text-success" id="success-message"></span></strong>                                    
-                                    <form id="contact-form">                                        
+                                    <form id="subscriber-form">                                        
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" name="email" id="email" placeholder="Enter your e-mail address">                                                                                  
                                             <strong><span class="text-danger" id="email-error"></span></strong>
@@ -99,16 +99,17 @@
                 </div>
                 <div class="single-social-share clearfix wow fadeIn animated">
                     <div class="entry-meta meta-1 font-small color-grey float-left mt-10">
-                        @if ($comments->count() > 0 && $comments->count() < 2)
-                            <span class="hit-count mr-15"><i class="ti-comment mr-5"></i>{{ $comments->count() }} comment</span>
+                        @if ($comments->count() > 0 && $comments->count() < 2)                            
+                            <span class="hit-count mr-15"><i class="ti-comment mr-5"></i>{{ $comments->count() }} comment</span>                            
                         @else
                             <span class="hit-count mr-15"><i class="ti-comment mr-5"></i>{{ $comments->count() }} comments</span>
                         @endif                       
-                    </div>
+                    </div>                   
                     <ul class="d-inline-block list-inline float-md-right mt-md-0 mt-4">
-                        <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center " target="_blank" href="#"><i class="ti-facebook"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center" target="_blank" href="#"><i class="ti-twitter-alt"></i></a></li>
-                    </ul>
+                        <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center"><i class="ti-facebook"></i></a></li>
+                        <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center"><i class="ti-twitter-alt"></i></a></li>                            
+                        {{-- <li class="list-inline-item">{{!! $socialShare !!}}</li> --}}
+                    </ul>                                       
                 </div>
                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                 <!--author box-->
@@ -197,7 +198,7 @@
                     @endforeach
                 </div>
                 <!--Comments-->
-                <div class="comments-area">
+                <div id="comments" class="comments-area">
                     @if ($comments->count() > 0 && $comments->count() < 2)
                         <h3 class="mb-30">{{ $comments->count() }} Comment</h3>
                     @else
@@ -277,7 +278,7 @@
                 }
             });
         
-            $('#contact-form').on('submit', function(event){
+            $('#subscriber-form').on('submit', function(event){
                 event.preventDefault();           
                 $('#email-error').text('');
             
@@ -293,8 +294,8 @@
                     console.log(response);
                     if (response) {
                         $('#success-message').text(response.success);
-                        $("#contact-form")[0].reset();
-                        $("#contact-form").hide();
+                        $("#subscriber-form")[0].reset();
+                        $("#subscriber-form").hide();
                     }
                 },
                 error: function(response) {
@@ -303,53 +304,5 @@
                 });
             });
         </script> 
-    @endsection
-
-    {{-- @section('scripts')
-        <script type="text/javascript">
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-        
-            $('#commentForm').on('submit', function(event){
-                event.preventDefault();           
-                $('#name-error').text('');
-                $('#email-error').text('');
-                $('#comment-error').text('');
-            
-                name = $('#name').val();          
-                email = $('#email').val();          
-                comment = $('#comment').val();          
-                
-                var slug = $('#slug').val();
-                var url = '{{ route("comment.save", ":slug") }}';
-                url = url.replace(':slug', slug);
-
-                $.ajax({                
-                url: url,
-                type: "POST",
-                data:{                 
-                    name:name,
-                    email:email,                   
-                    comment:comment,
-                },
-                success:function(response){
-                    console.log(response);
-                    if (response) {
-                        $('#success').text(response.success);
-                        $("#commentForm")[0].reset();
-                        $("#commentForm").hide();
-                    }
-                },
-                error: function(response) {
-                    $('#name-error').text(response.responseJSON.errors.name);
-                    $('#email-error').text(response.responseJSON.errors.email);
-                    $('#comment-error').text(response.responseJSON.errors.comment);
-                    }
-                });
-            });
-        </script> 
-    @endsection --}}
+    @endsection    
 @endsection
