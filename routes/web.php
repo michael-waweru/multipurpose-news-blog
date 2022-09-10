@@ -21,6 +21,7 @@ Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubsc
 Route::post('/message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');
 Route::post('comment-store/{slug}', [FrontendController::class,'storeBlogComment'])->name('comment.store');
 Route::post('/store-subscriber',[PostsController::class,'storeBlogSubscribers']);
+Route::get('/share-post',[FrontendController::class, 'share']);
 
 Auth::routes();
 Route::get('auth/oauth/initiate/facebook-login', [SocialController::class,'facebookRedirect'])->name('facebook.login');

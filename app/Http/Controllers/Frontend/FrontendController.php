@@ -40,11 +40,16 @@ class FrontendController extends Controller
         return view('frontend.contact-us');
     }
 
+    public function share()
+    {
+        return view('frontend.blog-detail');
+    }
+
     public function storeContactMessage(Request $request)
     {     
         $request->validate([
             'name'    => 'required',
-            'email'   => 'required|email|unique:contacts',            
+            'email'   => 'required|email|unique:contacts',
             'message' => 'required'
         ]);
 

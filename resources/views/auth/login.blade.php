@@ -28,7 +28,7 @@
                                         <div>
                                             <span class="text-danger text-center"><strong>There was a problem with your submission. Please try again.</strong></span>
                                         </div>
-                                    </div>                                   
+                                    </div>
                                 @endif
                                 
                                 <div class="divider-text-center mt-10 mb-15 text-muted">
@@ -66,16 +66,16 @@
                 </div>
             </div>
         </div>
-    </main> 
+    </main>
 
-    @section('scripts')
-        <script>   
-            window.setTimeout(function() {
-                $("#error-alert").fadeTo(500, 0).slideUp(500, function(){
-                    $(this).remove(); 
-                });
-            }, 5000);
-        </script>
-    @endsection
+@endsection
 
+@section('scripts')
+    <script>
+        window.setTimeout(function() {
+            $("#error-alert").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+            });
+        }, 5000);
+    </script>
 @endsection

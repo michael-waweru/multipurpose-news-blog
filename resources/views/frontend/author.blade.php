@@ -19,9 +19,9 @@
                         <h5><i class="ti-star font-x-small mr-5"></i>Elite author</h5>
                         <div class="author-description">You should write because you love the shape of stories and sentences and the creation of different words on a page. </div>
                         @if($author_archives->count() > 0 && $author_archives->count() < 2)
-                            <span class="mb-md-0 mb-3 text-muted mr-20">{{ $author_archives->count() }} article </span>
+                            <span class="mb-md-0 mb-3 text-muted mr-20">I have posted {{ $author_archives->count() }} article </span>
                         @else
-                            <span class="mb-md-0 mb-3 text-muted mr-20">{{ $author_archives->count() }} articles </span>
+                            <span class="mb-md-0 mb-3 text-muted mr-20">I have posted {{ $author_archives->count() }} articles </span>
                         @endif                       
                         <div class="author-social text-muted font-small15k follow">
                             <ul class="author-social-icons">

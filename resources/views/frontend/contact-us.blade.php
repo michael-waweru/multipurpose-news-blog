@@ -68,14 +68,12 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-                                        {{-- @error('name') <span class="text-danger"><strong>{{ $message }}</strong></span> @enderror --}}
                                         <span class="text-danger" id="name-error"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <input class="form-control" name="email" id="email" type="text" placeholder="Email">
-                                        {{-- @error('email') <span class="text-danger"><strong>{{ $message }}</strong></span> @enderror --}}
                                         <span class="text-danger" id="email-error"></span>
                                     </div>
                                 </div>
@@ -87,7 +85,6 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Message"></textarea>
-                                        {{-- @error('message') <span class="text-danger"><strong>{{ $message }}</strong></span> @enderror --}}
                                         <span class="text-danger" id="message-error"></span>
 
                                     </div>
@@ -115,35 +112,36 @@
                 </p>
             </div>
         </div>
-    </main> 
-    
-    @section('scripts')
-        <script type="text/javascript">
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-        
-            $('#contact-form').on('submit', function(event){
-                event.preventDefault();           
-                $('#name-error').text('');
-                $('#email-error').text('');
-                $('#message-error').text('');
-            
-                name = $('#name').val();
-                email = $('#email').val();
-                phone = $('#phone').val();
-                message = $('#message').val();
-        
-                $.ajax({
+    </main>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#contact-form').on('submit', function(event){
+            event.preventDefault();
+            $('#name-error').text('');
+            $('#email-error').text('');
+            $('#message-error').text('');
+
+            name = $('#name').val();
+            email = $('#email').val();
+            phone = $('#phone').val();
+            message = $('#message').val();
+
+            $.ajax({
                 url: "/message-store",
                 type: "POST",
-                data:{                 
-                    name:name,                  
-                    email:email,                  
-                    phone:phone,                  
-                    message:message,                  
+                data:{
+                    name:name,
+                    email:email,
+                    phone:phone,
+                    message:message,
                 },
                 success:function(response){
                     console.log(response);
@@ -157,17 +155,16 @@
                     $('#name-error').text(response.responseJSON.errors.name);
                     $('#email-error').text(response.responseJSON.errors.email);
                     $('#message-error').text(response.responseJSON.errors.message);
-                    }
-                });
+                }
             });
-        </script> 
+        });
+    </script>
 
-        <script> 
-            window.setTimeout(function() {
-                $("#message-display").fadeTo(1000, 0).slideUp(1000, function(){
-                    $(this).remove(); 
-                });
-            }, 10000);
-        </script>
-    @endsection
+    <script>
+        window.setTimeout(function() {
+            $("#message-display").fadeTo(1000, 0).slideUp(1000, function(){
+                $(this).remove();
+            });
+        }, 10000);
+    </script>
 @endsection
