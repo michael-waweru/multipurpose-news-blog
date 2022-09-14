@@ -37,9 +37,16 @@ class BlogController extends Controller
         }
     }
 
+    // public function edit($slug)
+    // {
+    //     $blog = Blog::where('slug', $slug)->first();
+    //     $categories = Category::all();
+    //     return view('backend.blog.edit', compact('blog','categories'));
+    // }
+
     public function edit($slug)
     {
-        $blog = Blog::where('slug', $slug)->first();
+        $blog = Blog::where('slug',$slug)->first();
         $categories = Category::all();
         return view('backend.blog.edit', compact('blog','categories'));
     }

@@ -78,6 +78,7 @@
                                                                 @endif                                                               
                                                                 <li class="divider"></li>
                                                                 <li><a href="{{ route('admin.blog.edit',['slug' => $blog->slug]) }}/"><em class="icon ni ni-pen"></em><span>Edit blog</span></a></li>
+                                                                {{-- <li><a href="{{ route('admin.blog.edit',['id' => $blog->id]) }}/"><em class="icon ni ni-pen"></em><span>Edit blog</span></a></li> --}}
                                                                 <li>
                                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $blog->id }}">
                                                                         <em class="icon ni ni-trash"></em><span>Delete blog</span>

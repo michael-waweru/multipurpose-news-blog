@@ -44,7 +44,7 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::delete('category/delete/{slug}/',[CategoryController::class,'deleteCategory'])->name('admin.category.delete');
     Route::get('blogs',[BlogController::class,'index'])->name('admin.blogs');
     Route::get('blogs/create',[BlogController::class,'create'])->name('admin.blog.create');
-    Route::post('blog/store', [BlogController::class,'store'])->name('admin.blog.store');
+    Route::post('blog/store', [BlogController::class,'store'])->name('admin.blog.store');    
     Route::get('blog/edit/{slug}',[BlogController::class,'edit'])->name('admin.blog.edit');
     Route::post('blog/update/{slug}',[BlogController::class,'update'])->name('admin.blog.update');
     Route::post('publish/{id}',[BlogController::class,'publish'])->name('publish');

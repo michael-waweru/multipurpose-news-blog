@@ -33,7 +33,7 @@
                                                 {{-- <label class="form-label">Category <span style="color:red">*</span></label> --}}
                                                 <select name="category_id" class="form-select form-select-sm mt-4" aria-label=".form-select-sm example">                                                    
                                                     @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }} {{ $category->id === $blog->category_id ? 'selected' : '' }}">
+                                                        <option value="{{ $category->id }}" {{ $category->id === $blog->category_id ? 'selected' : '' }}>
                                                             {{ $category->category_name }}
                                                         </option>
                                                     @endforeach
