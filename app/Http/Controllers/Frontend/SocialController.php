@@ -25,6 +25,7 @@ class SocialController extends Controller
 
             if ($isUser) {
                 Auth::login($isUser);
+                toastr()->success('You Have Been Successfully logged in');
                 return redirect('/');
             }else{
                 $createUser = User::create([
@@ -35,6 +36,7 @@ class SocialController extends Controller
                 ]);
 
                 Auth::login($createUser);
+                toastr()->success('You Have Been Successfully logged in');
                 return redirect()->route('homepage');
             }
         } catch(Exception $exception){
@@ -55,6 +57,7 @@ class SocialController extends Controller
 
             if($isUser){
                 Auth::login($isUser);
+                toastr()->success('You Have Been Successfully logged in');
                 return redirect()->route('homepage');
             }else{
                 $newUser = User::create([
@@ -64,6 +67,7 @@ class SocialController extends Controller
                     'password' => encrypt('authenticated')
                 ]);
                 Auth::login($newUser);
+                toastr()->success('You Have Been Successfully logged in');
                 return redirect()->route('homepage');
             }
         } catch (Exception $exception) {

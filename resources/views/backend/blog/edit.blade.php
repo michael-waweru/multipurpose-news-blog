@@ -114,7 +114,7 @@
                                     <hr class="preview-hr">
 
                                     <div class="row gy-4">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
                                                     <input type="text" name="meta_keyword" class="form-control form-control-outlined"
@@ -124,9 +124,9 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <select class="form-select form-select-sm" name="is_live">
+                                        <div class="col-md-6">
+                                            <div class="form-group">                                               
+                                                <select class="form-select form-select-sm" name="is_live" id="is_live">  
                                                     <option selected="notLive">Is it Live?</option>
                                                     <option value="isLive">Developing Story (Live)</option>
                                                     <option value="notLive">Not Live</option>

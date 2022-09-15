@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\Frontend\PostsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Frontend\PostsController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Frontend\SocialController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\CategoriesController;
+use App\Http\Controllers\Author\AuthorDashboardController;
 
 // Frontend Routes
 Route::get('/', [FrontendController::class,'home'])->name('homepage');
@@ -49,4 +50,8 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::post('blog/update/{slug}',[BlogController::class,'update'])->name('admin.blog.update');
     Route::post('publish/{id}',[BlogController::class,'publish'])->name('publish');
     Route::post('unpublish/{id}',[BlogController::class,'unpublish'])->name('unpublish');
+});
+
+Route::prefix('author')->middleware(['auth','isAuthor'])->group(function(){
+    Route::get('dashboard', [AuthorDashboardController::class,'index'])->name('author.dashboard');
 });

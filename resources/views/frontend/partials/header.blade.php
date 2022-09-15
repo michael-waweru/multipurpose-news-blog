@@ -92,7 +92,7 @@
                             @if (Auth::user()->role_id == 1)
                                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>                                
                             @elseif (Auth::user()->role_id == 2)
-                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="{{ route('author.dashboard') }}">Dashboard</a></li>
                             @else
                                 <li><a href="#">Dashboard</a></li>                         
                             @endif
