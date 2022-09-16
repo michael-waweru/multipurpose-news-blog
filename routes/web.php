@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\PostsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -50,8 +52,16 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::post('blog/update/{slug}',[BlogController::class,'update'])->name('admin.blog.update');
     Route::post('publish/{id}',[BlogController::class,'publish'])->name('publish');
     Route::post('unpublish/{id}',[BlogController::class,'unpublish'])->name('unpublish');
+    Route::get('blog/subscribers',[BlogController::class,'subscribers'])->name('admin.blog.subscribers');
+    
+    //comment section
+    Route::get('comments',[CommentController::class,'index'])->name('admin.comments');
+    Route::put('comment/update/{id}',[CommentController::class,'update'])->name('admin.comment.update');
 });
 
 Route::prefix('author')->middleware(['auth','isAuthor'])->group(function(){
     Route::get('dashboard', [AuthorDashboardController::class,'index'])->name('author.dashboard');
 });
+
+//page configurations
+Route::get('config', [ConfigController::class,'index'])->name('config');

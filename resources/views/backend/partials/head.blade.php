@@ -9,8 +9,6 @@
 <!-- App favicon -->
 {{-- <link rel="icon" href="{{ asset('frontend/logo/logo transparent.png') }}"> --}}
 
-<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
 <link rel="stylesheet" href="{{ asset('assets/backend/css/dashlite.css') }}">   
 <link id="skin-default" rel="stylesheet" href="{{ asset('assets/backend/css/theme.css') }}"> 
 

@@ -17,7 +17,7 @@
                                     <article class="first-post slide-fade-item mb-md-4 mb-lg-0">
                                         <figure class="mb-30">
                                             <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">
-                                                <img src="{{ asset('storage/blog/') }}/{{ $recent_post->image }}" alt="{{ $recent_post->title }}">
+                                                <img src="{{ asset('storage/blog/'.$recent_post->image) }}" alt="{{ $recent_post->title }}">
                                             </a>
                                         </figure>
                                         <div class="post-content">
@@ -57,11 +57,11 @@
                                         </h6>
                                         @if($blog->is_live == 'isLive')
                                             <p class="excerpt">
-                                                <span class="live-now text-danger">Live</span> {{ $blog->short_description }}
+                                                <span class="live-now text-danger">Live</span> {{ Str::limit($blog->short_description, 15) }}
                                             </p>
                                             @else
                                             <p class="excerpt">
-                                                {{ $blog->short_description }}
+                                                {{ Str::limit($blog->short_description, 70) }}
                                             </p>
                                         @endif
                                         <div class="entry-meta meta-2 font-x-span color-muted">

@@ -26,17 +26,15 @@ class PostsController extends Controller
 
         $interestedPosts = Blog::inRandomOrder()->take(2)->get();
         $comments = Comment::where('blog_id', $blogDetail->id)
-                    ->where('approval', 1)->get();
+                    ->where('approval', 1)
+                    ->orderBy('created_at', 'DESC')->get();
 
         $article = Blog::with('tagged')->first(); // eager load
         foreach($article->tags as $tag) {
             $tag->name . ' with url slug of ' . $tag->slug;
         }
 
-        $socialShare = \Share::page(
-            'http://localhost:8080/',
-            $blogDetail->title,
-        )
+        $socialShare = \Share::currentPage()
         ->facebook()
         ->twitter()
         ->linkedin()
@@ -53,7 +51,8 @@ class PostsController extends Controller
         $user = User::where('slug', $slug)->first();
         $author_archives = Blog::where('user_id', $user->id)->get();
         $author_name = Blog::where('user_id', $user->id)->first();
-        $randomPosts = Blog::inRandomOrder()->take(3)->get();
+        $randomPosts = Blog::where('status', 'published')
+                    ->inRandomOrder()->take(3)->get();
 
         return view('frontend.author',compact(['author_name','author_archives','randomPosts']));
     }

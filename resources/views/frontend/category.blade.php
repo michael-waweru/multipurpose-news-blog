@@ -124,7 +124,7 @@
                             @endif
 
                             <!--Start pagination -->
-                            <div class="pagination-area pt-30 border-top-2 mt-30 font-heading wow fadeIn animated">
+                            {{-- <div class="pagination-area pt-30 border-top-2 mt-30 font-heading wow fadeIn animated">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-xl-12">
@@ -142,7 +142,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- End pagination  -->
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                                     <span>Author Board</span>
                                 </h6>
                                 <div class="author-content text-center">
-                                    <a href="author.html"><img class="img-circle d-inline-block mb-10" src="{{ asset('assets/frontend/imgs/authors/author-1.jpg') }}" alt=""></a>         
+                                    <a href="{{ route('author',$authorBoard->slug) }}"><img class="img-circle d-inline-block mb-10" src="{{ asset('assets/frontend/imgs/authors/author-1.jpg') }}" alt=""></a>         
                                     <p class="post-title">{{ $authorBoard->name }}</p>                           
                                     <p>
                                         You should write because you love the shape of stories and sentences and the creation of different words on a page. Writing comes from reading, and reading is the finest teacher of how to write.

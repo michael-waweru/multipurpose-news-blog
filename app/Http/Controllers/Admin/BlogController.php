@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 // use Intervention\Image\Image;
+use App\Models\BlogSubscribers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -142,25 +143,34 @@ class BlogController extends Controller
         }
     }
 
-    public function publish($id)
-    {
-        $publishBlog = Blog::find($id);
-        $publishBlog->status = 1;
-        if($publishBlog->save())
-        {
-            toastr()->success('Status changed to published');
-            return back();
-        }
-    }
-
     public function unpublish($id)
     {
         $unpublishBlog = Blog::find($id);
-        $unpublishBlog->status = 0;
-        if($unpublishBlog->save())
+        $unpublishBlog->status === 'draft';
+        
+        if($unpublishBlog->update())
         {
             toastr()->success('Status changed to unpublished');
-            return back();
+            return redirect()->route('admin.blogs');        
         }
     }
+
+    public function publish($id)
+    {
+        $publishBlog = Blog::find($id);       
+        $publishBlog->update(['status' => 'published']); 
+
+        if($publishBlog)
+        {
+            toastr()->success('Status changed to published');
+            return redirect()->route('admin.blogs');
+        }
+    }
+
+    public function subscribers()
+    {
+        $subscribers = BlogSubscribers::all();
+        return view('backend.blog.subscribers', compact('subscribers'));
+    }
+    
 }

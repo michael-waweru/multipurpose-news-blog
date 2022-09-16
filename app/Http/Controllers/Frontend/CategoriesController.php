@@ -18,7 +18,7 @@ class CategoriesController extends Controller
         $recent_posts = Blog::where('category_id', $category->id)
             ->orderBy('created_at', 'DESC')->take(1)->get();
 
-        $authorBoard = User::where('role_id', '=', 1)
+        $authorBoard = User::where('role_id', '=', [1,2])
             ->inRandomOrder()->first();
 
         $blogs= Blog::where('category_id', '=', $category->id)->take(2)->get();

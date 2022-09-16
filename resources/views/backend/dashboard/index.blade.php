@@ -8,10 +8,7 @@
         </div>
         <div class="nk-block-between-md g-4">
             <div class="nk-block-head-content">
-                <h2 class="nk-block-title fw-normal">{{ Auth::user()->name }}</h2>
-                <div class="nk-block-des">
-                    <p>A Summary of the systsem at a glance.</p>
-                </div>
+                <h2 class="nk-block-title fw-normal">{{ Auth::user()->name }}</h2>                
             </div><!-- .nk-block-head-content -->
             <div class="nk-block-head-content">
                 <ul class="nk-block-tools gx-3">                                
@@ -35,38 +32,64 @@
                 <div class="card card-bordered h-100">
                     <div class="card-inner">                        
                         <div>
-                            <div class="row g-4 align-end">                                
-                                <div class="col-xxl-4">
+                            <div class="row g-4 align-end"> 
+                                <div class="card-inner card-inner-md">
+                                    <div class="card-title-group">
+                                        <div class="card-title">
+                                            <h6 class="title">A Summary of the systsem at a glance.</h6>
+                                        </div>                                        
+                                    </div>
+                                </div><!-- .card-inner -->                               
+                                <div class="col-xxl-12">
                                     <div class="row g-4">                                       
-                                        <div class="col-sm-6 col-xxl-12">
+                                        <div class="col-sm-6 col-xxl-6">
                                             <div class="nk-order-ovwg-data sell">
-                                                <div>System Users</div>
+                                                <div>System Users <a href="javascript:void(0);"><em class="icon ni ni-link-alt"></em></a></div>
                                                 <div class="info">All Users: <strong>{{ $allSystemUsers->count() }}</strong> Users</div>                                               
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-xxl-12">
+                                        <div class="col-sm-6 col-xxl-6">
                                             <div class="nk-order-ovwg-data sell">
-                                                <div>All Blogs</div>
+                                                <div>All Blogs <a href="{{ route('admin.blogs') }}"><em class="icon ni ni-link-alt"></em></a></div>
                                                 <div class="info">All Active Blogs: <strong>{{ $allBlogs->count() }}</strong> Blogs</div>                                               
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-xxl-12">
+                                        <div class="col-sm-6 col-xxl-6">
                                             <div class="nk-order-ovwg-data sell">
-                                                <div>Pending Blogs</div>
+                                                <div>Pending Blogs </div>
                                                 <div class="info">All Pending Blogs: <strong>{{ $pendingBlogs->count() }}</strong> Blogs</div>                                               
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-xxl-12">
+                                        <div class="col-sm-6 col-xxl-6">
                                             <div class="nk-order-ovwg-data sell">
-                                                <div>Pending Comments</div>
+                                                <div>Pending Comments 
+                                                    @if ($pendingComments->count() > 0)
+                                                        <a href="{{ route('admin.comments') }}">
+                                                            <button type="button" class="btn btn-sm btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">View</button>
+                                                        </a>
+                                                    @endif
+                                                </div>
                                                 @if ($pendingComments->count() > 0 && $pendingComments->count() < 2)
                                                     <div class="info">New & Pending Comments: <strong>{{ $pendingComments->count() }}</strong> Comment</div>
                                                 @else
                                                     <div class="info">New & Pending Comments: <strong>{{ $pendingComments->count() }}</strong> Comments</div>
                                                 @endif                                                                                             
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-xxl-6">
+                                            <div class="nk-order-ovwg-data sell">
+                                                <div>Newsletter Subscribers</div>                                                
+                                                <div class="info">Users subscribed <strong>{{ $newsletter_subscribers->count() }}</strong> People subscribed</div>                                                                                                                                            
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-xxl-6">
+                                            <div class="nk-order-ovwg-data sell">
+                                                <div>New Messages</div>                                                
+                                                <div class="info">WILL ADD DATA LATER</div>
+                                                                                                                                          
                                             </div>
                                         </div>
                                     </div>
@@ -86,7 +109,7 @@
                                 </div>
                                 <div class="card-tools me-n1">
                                     <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>                                        
+                                        <a href="javascript:void(0);" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>                                        
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +121,7 @@
                                     <div class="title">Pending Comments & Blogs</div>
                                     <p>We have <strong>{{ $pendingComments->count() }} pending comments</strong> and <strong>{{ $pendingBlogs->count() }} pending blogs</strong> that need to be addressed.</p>
                                 </div>
-                                <a href="javascript:void(0)" class="btn btn-icon btn-trigger me-n2"><em class="icon ni ni-forward-ios"></em></a>
+                                <a href="javascript:void(0);" class="btn btn-icon btn-trigger me-n2"><em class="icon ni ni-forward-ios"></em></a>
                             </div>
                         </div><!-- .card-inner -->
                         <div class="card-inner">
@@ -113,290 +136,12 @@
                         </div><!-- .card-inner -->
                         <div class="card-inner">
                             <div class="nk-wg-action">
-                                <div class="nk-wg-action-content">
-                                    <em class="icon ni ni-wallet-fill"></em>
-                                    <div class="title">Upcoming Deposit</div>
-                                    <p><strong>7 upcoming</strong> deposit need to review.</p>
-                                </div>
-                                <a href="#" class="btn btn-icon btn-trigger me-n2"><em class="icon ni ni-forward-ios"></em></a>
+                                
                             </div>
                         </div><!-- .card-inner -->
                     </div><!-- .card-inner-group -->
                 </div><!-- .card -->
-            </div><!-- .col -->
-            <div class="col-xl-7 col-xxl-8">
-                <div class="card card-bordered card-full">
-                    <div class="card-inner">
-                        <div class="card-title-group">
-                            <div class="card-title">
-                                <h6 class="title"><span class="me-2">Orders Activities</span> <a href="#" class="link d-none d-sm-inline">See History</a></h6>
-                            </div>
-                            <div class="card-tools">
-                                <ul class="card-tools-nav">
-                                    <li><a href="#"><span>Buy</span></a></li>
-                                    <li><a href="#"><span>Sell</span></a></li>
-                                    <li class="active"><a href="#"><span>All</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div><!-- .card-inner -->
-                    <div class="card-inner p-0 border-top">
-                        <div class="nk-tb-list nk-tb-orders">
-                            <div class="nk-tb-item nk-tb-head">
-                                <div class="nk-tb-col nk-tb-orders-type"><span>Type</span></div>
-                                <div class="nk-tb-col"><span>Desc</span></div>
-                                <div class="nk-tb-col tb-col-sm"><span>Date</span></div>
-                                <div class="nk-tb-col tb-col-xxl"><span>Time</span></div>
-                                <div class="nk-tb-col tb-col-xxl"><span>Ref</span></div>
-                                <div class="nk-tb-col tb-col-sm text-end"><span>USD Amount</span></div>
-                                <div class="nk-tb-col text-end"><span>Amount</span></div>
-                            </div><!-- .nk-tb-item -->
-                            <div class="nk-tb-item">
-                                <div class="nk-tb-col nk-tb-orders-type">
-                                    <ul class="icon-overlap">
-                                        <li><em class="bg-btc-dim icon-circle icon ni ni-sign-btc"></em></li>
-                                        <li><em class="bg-success-dim icon-circle icon ni ni-arrow-down-left"></em></li>
-                                    </ul>
-                                </div>
-                                <div class="nk-tb-col">
-                                    <span class="tb-lead">Buy Bitcoin</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm">
-                                    <span class="tb-sub">02/10/2020</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub">11:37 PM</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub text-primary">RE2309232</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm text-end">
-                                    <span class="tb-sub tb-amount">4,565.75 <span>USD</span></span>
-                                </div>
-                                <div class="nk-tb-col text-end">
-                                    <span class="tb-sub tb-amount ">+ 0.2040 <span>BTC</span></span>
-                                </div>
-                            </div><!-- .nk-tb-item -->
-                            <div class="nk-tb-item">
-                                <div class="nk-tb-col nk-tb-orders-type">
-                                    <ul class="icon-overlap">
-                                        <li><em class="bg-eth-dim icon-circle icon ni ni-sign-eth"></em></li>
-                                        <li><em class="bg-success-dim icon-circle icon ni ni-arrow-down-left"></em></li>
-                                    </ul>
-                                </div>
-                                <div class="nk-tb-col">
-                                    <span class="tb-lead">Buy Ethereum</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm">
-                                    <span class="tb-sub">02/10/2020</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub">10:37 PM</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub text-primary">RE2309232</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm text-end">
-                                    <span class="tb-sub tb-amount">2,039.39 <span>USD</span></span>
-                                </div>
-                                <div class="nk-tb-col text-end">
-                                    <span class="tb-sub tb-amount ">+ 0.12600 <span>BTC</span></span>
-                                </div>
-                            </div><!-- .nk-tb-item -->
-                            <div class="nk-tb-item">
-                                <div class="nk-tb-col nk-tb-orders-type">
-                                    <ul class="icon-overlap">
-                                        <li><em class="bg-btc-dim icon-circle icon ni ni-sign-btc"></em></li>
-                                        <li><em class="bg-purple-dim icon-circle icon ni ni-arrow-up-right"></em></li>
-                                    </ul>
-                                </div>
-                                <div class="nk-tb-col">
-                                    <span class="tb-lead">Sell Bitcoin</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm">
-                                    <span class="tb-sub">02/10/2020</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub">10:45 PM</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub text-primary">RE2309232</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm text-end">
-                                    <span class="tb-sub tb-amount">9,285.71 <span>USD</span></span>
-                                </div>
-                                <div class="nk-tb-col text-end">
-                                    <span class="tb-sub tb-amount ">+ 0.94750 <span>BTC</span></span>
-                                </div>
-                            </div><!-- .nk-tb-item -->
-                            <div class="nk-tb-item">
-                                <div class="nk-tb-col nk-tb-orders-type">
-                                    <ul class="icon-overlap">
-                                        <li><em class="bg-eth-dim icon-circle icon ni ni-sign-eth"></em></li>
-                                        <li><em class="bg-purple-dim icon-circle icon ni ni-arrow-up-right"></em></li>
-                                    </ul>
-                                </div>
-                                <div class="nk-tb-col">
-                                    <span class="tb-lead">Sell Etherum</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm">
-                                    <span class="tb-sub">02/11/2020</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub">10:25 PM</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub text-primary">RE2309232</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm text-end">
-                                    <span class="tb-sub tb-amount">12,596.75 <span>USD</span></span>
-                                </div>
-                                <div class="nk-tb-col text-end">
-                                    <span class="tb-sub tb-amount ">+ 1.02050 <span>BTC</span></span>
-                                </div>
-                            </div><!-- .nk-tb-item -->
-                            <div class="nk-tb-item">
-                                <div class="nk-tb-col nk-tb-orders-type">
-                                    <ul class="icon-overlap">
-                                        <li><em class="bg-btc-dim icon-circle icon ni ni-sign-btc"></em></li>
-                                        <li><em class="bg-success-dim icon-circle icon ni ni-arrow-down-left"></em></li>
-                                    </ul>
-                                </div>
-                                <div class="nk-tb-col">
-                                    <span class="tb-lead">Buy Bitcoin</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm">
-                                    <span class="tb-sub">02/10/2020</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub">10:12 PM</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub text-primary">RE2309232</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm text-end">
-                                    <span class="tb-sub tb-amount">400.00 <span>USD</span></span>
-                                </div>
-                                <div class="nk-tb-col text-end">
-                                    <span class="tb-sub tb-amount ">+ 0.00056 <span>BTC</span></span>
-                                </div>
-                            </div><!-- .nk-tb-item -->
-                            <div class="nk-tb-item">
-                                <div class="nk-tb-col nk-tb-orders-type">
-                                    <ul class="icon-overlap">
-                                        <li><em class="bg-eth-dim icon-circle icon ni ni-sign-eth"></em></li>
-                                        <li><em class="bg-purple-dim icon-circle icon ni ni-arrow-up-right"></em></li>
-                                    </ul>
-                                </div>
-                                <div class="nk-tb-col">
-                                    <span class="tb-lead">Sell Etherum</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm">
-                                    <span class="tb-sub">02/09/2020</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub">05:15 PM</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-xxl">
-                                    <span class="tb-sub text-primary">RE2309232</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-sm text-end">
-                                    <span class="tb-sub tb-amount">6,246.50 <span>USD</span></span>
-                                </div>
-                                <div class="nk-tb-col text-end">
-                                    <span class="tb-sub tb-amount ">+ 0.02575 <span>BTC</span></span>
-                                </div>
-                            </div><!-- .nk-tb-item -->
-                        </div>
-                    </div><!-- .card-inner -->
-                    <div class="card-inner-sm border-top text-center d-sm-none">
-                        <a href="#" class="btn btn-link btn-block">See History</a>
-                    </div><!-- .card-inner -->
-                </div><!-- .card -->
-            </div><!-- .col -->
-            <div class="col-xl-5 col-xxl-4">
-                <div class="row g-gs">
-                    <div class="col-md-6 col-lg-12">
-                        <div class="card card-bordered card-full">
-                            <div class="card-inner">
-                                <div class="card-title-group align-start mb-2">
-                                    <div class="card-title">
-                                        <h6 class="title">Top Coin in Orders</h6>
-                                        <p>In last 15 days buy and sells overview.</p>
-                                    </div>
-                                    <div class="card-tools mt-n1 me-n1">
-                                        <div class="drodown">
-                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                <ul class="link-list-opt no-bdr">
-                                                    <li><a href="#" class="active"><span>15 Days</span></a></li>
-                                                    <li><a href="#"><span>30 Days</span></a></li>
-                                                    <li><a href="#"><span>3 Months</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- .card-title-group -->
-                                <div class="nk-coin-ovwg">
-                                    <div class="nk-coin-ovwg-ck">
-                                        <canvas class="coin-overview-chart" id="coinOverview"></canvas>
-                                    </div>
-                                    <ul class="nk-coin-ovwg-legends">
-                                        <li><span class="dot dot-lg sq" data-bg="#f98c45"></span><span>Bitcoin</span></li>
-                                        <li><span class="dot dot-lg sq" data-bg="#9cabff"></span><span>Ethereum</span></li>
-                                        <li><span class="dot dot-lg sq" data-bg="#8feac5"></span><span>NioCoin</span></li>
-                                        <li><span class="dot dot-lg sq" data-bg="#6b79c8"></span><span>Litecoin</span></li>
-                                        <li><span class="dot dot-lg sq" data-bg="#79f1dc"></span><span>Bitcoin Cash</span></li>
-                                    </ul>
-                                </div><!-- .nk-coin-ovwg -->
-                            </div><!-- .card-inner -->
-                        </div><!-- .card -->
-                    </div><!-- .col -->
-                    <div class="col-md-6 col-lg-12">
-                        <div class="card card-bordered card-full">
-                            <div class="card-inner">
-                                <div class="card-title-group align-start mb-3">
-                                    <div class="card-title">
-                                        <h6 class="title">User Activities</h6>
-                                        <p>In last 30 days <em class="icon ni ni-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Referral Informations"></em></p>
-                                    </div>
-                                    <div class="card-tools mt-n1 me-n1">
-                                        <div class="drodown">
-                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                <ul class="link-list-opt no-bdr">
-                                                    <li><a href="#"><span>15 Days</span></a></li>
-                                                    <li><a href="#" class="active"><span>30 Days</span></a></li>
-                                                    <li><a href="#"><span>3 Months</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="user-activity-group g-4">
-                                    <div class="user-activity">
-                                        <em class="icon ni ni-users"></em>
-                                        <div class="info">
-                                            <span class="amount">345</span>
-                                            <span class="title">Direct Join</span>
-                                        </div>
-                                    </div>
-                                    <div class="user-activity">
-                                        <em class="icon ni ni-users"></em>
-                                        <div class="info">
-                                            <span class="amount">49</span>
-                                            <span class="title">Referral Join</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="user-activity-ck">
-                                <canvas class="usera-activity-chart" id="userActivity"></canvas>
-                            </div>
-                        </div><!-- .card -->
-                    </div><!-- .col -->
-                </div><!-- .row -->
-            </div><!-- .col -->
+            </div><!-- .col -->           
         </div><!-- .row -->
     </div><!-- .nk-block -->
     
@@ -440,7 +185,6 @@
             </div><!-- .card-inner -->
         </div><!-- .card -->
     </div><!-- .nk-block -->
-    <!--end::Content-->
-   
+    <!--end::Content-->  
    
 @endsection

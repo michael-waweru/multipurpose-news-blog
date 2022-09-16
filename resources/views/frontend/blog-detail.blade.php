@@ -56,17 +56,12 @@
                 </div>
                 <div class="entry-left-col">
                     <div class="social-sticky">
-                        {{-- <a href="#"><i class="ti-facebook"></i></a>
+                        {{-- <a href=""><i class="ti-facebook"></i></a>
                         <a href="#"><i class="ti-twitter"></i></a>
                         <a href="#"><i class="ti-heart"></i></a>
                         <a href="#"><i class="ti-email"></i></a> --}}
 
-                        {!!Share::page('{{ $url }}', 'Share title',["target"=>"_blank"])
-                            ->facebook()
-                            ->twitter()
-                            ->linkedin('Extra linkedin summary can be passed here')
-                            ->whatsapp();
-                        !!}
+                        {!! $socialShare !!}
                     </div>
                 </div>
                 <div class="entry-main-content">                    

@@ -19,7 +19,7 @@ class FrontendController extends Controller
         $blogs = Blog::inRandomOrder()->take(2)->get();
         $todaysHighlights = Blog::orderBy('created_at', 'DESC')->take(5)->get();
         $editorPicked = Blog::inRandomOrder()->take(2)->get();
-        $authorBoard = User::where('role_id', '=', 1)
+        $authorBoard = User::where('role_id', [1,2])
                             ->inRandomOrder()->first();
         $recentsSection = Blog::orderBy('created_at', 'DESC')->first();
         $random_blogs = Blog::inRandomOrder()->take(4)->get();

@@ -82,7 +82,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="pagination-area pt-15 border-top-2 mt-30 font-heading wow fadeIn  animated">
+                    {{-- <div class="pagination-area pt-15 border-top-2 mt-30 font-heading wow fadeIn  animated">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-12">
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-3 col-md-12 primary-sidebar sticky-sidebar">
                     <div class="widget-area">
@@ -137,7 +137,7 @@
                                 <span>Newsletter</span>
                             </h6>
                             <div class="newsletter">
-                                <p class="">Continue reading uninterrupted with a subscription</p>
+                                <p class="">Stay ahead of the curve. Subscribe to our weekly newsletter.</p>
                                 <strong><span class="text-success" id="success-message"></span></strong>
                                 <form class="subscribe_form relative mail_part" id="newsletter-form">
                                     <div class="form-newsletter-cover">

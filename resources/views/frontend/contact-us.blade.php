@@ -59,7 +59,7 @@
                     <div class="col-lg-12 col-md-12">
                         <h1 class="mb-30">Get in touch</h1>
 
-                        <div class="" id="message-display">
+                        <div id="message-display">
                             <strong><span class="text-success" id="success-message"></span></strong>
                         </div>
                         
@@ -86,7 +86,6 @@
                                     <div class="form-group">
                                         <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Message"></textarea>
                                         <span class="text-danger" id="message-error"></span>
-
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +97,7 @@
                     <div class="col-lg-6 col-md-12"><img src="{{ asset('assets/frontend/imgs/marginalia-productive-work.png') }}" alt=""></div>
                 </div>
                 <div class="single-social-share clearfix ">
-                    <p class="text-uppercase">Share this post </p>
+                    <p class="text-uppercase">Interact with us on our socials</p>
                     <ul class="d-inline-block list-inline">
                         <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-facebook"></i></a></li>
                         <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-twitter-alt"></i></a></li>
@@ -113,58 +112,59 @@
             </div>
         </div>
     </main>
-@endsection
 
-@section('scripts')
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('#contact-form').on('submit', function(event){
-            event.preventDefault();
-            $('#name-error').text('');
-            $('#email-error').text('');
-            $('#message-error').text('');
-
-            name = $('#name').val();
-            email = $('#email').val();
-            phone = $('#phone').val();
-            message = $('#message').val();
-
-            $.ajax({
-                url: "/message-store",
-                type: "POST",
-                data:{
-                    name:name,
-                    email:email,
-                    phone:phone,
-                    message:message,
-                },
-                success:function(response){
-                    console.log(response);
-                    if (response) {
-                        $('#success-message').text(response.success);
-                        $("#contact-form")[0].reset();
-                        // $("#contact-form").hide();
-                    }
-                },
-                error: function(response) {
-                    $('#name-error').text(response.responseJSON.errors.name);
-                    $('#email-error').text(response.responseJSON.errors.email);
-                    $('#message-error').text(response.responseJSON.errors.message);
+    @section('scripts')
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            });
-        });
-    </script>
+            });           
 
-    <script>
-        window.setTimeout(function() {
-            $("#message-display").fadeTo(1000, 0).slideUp(1000, function(){
-                $(this).remove();
-            });
-        }, 10000);
-    </script>
+            $('#contact-form').on('submit', function(event){
+                event.preventDefault();
+                $('#name-error').text('');
+                $('#email-error').text('');
+                $('#message-error').text('');
+
+                name = $('#name').val();
+                email = $('#email').val();
+                phone = $('#phone').val();
+                message = $('#message').val();
+
+                $.ajax({
+                    url: "/message-store",
+                    type: "POST",
+                    data:{
+                        name:name,
+                        email:email,
+                        phone:phone,
+                        message:message,
+                    },
+                    success:function(response){
+                        console.log(response);
+                        if (response) {
+                            $('#success-message').text(response.success);
+                            $("#contact-form")[0].reset();
+                            $("#contact-form").hide();
+                        }
+                    },
+                    error: function(response) {
+                        $('#name-error').text(response.responseJSON.errors.name);
+                        $('#email-error').text(response.responseJSON.errors.email);
+                        $('#message-error').text(response.responseJSON.errors.message);
+                    }
+                });
+            });            
+        </script>
+
+        {{-- <script>
+            window.setTimeout(function() {
+                $("#message-display").fadeTo(3000, 0).slideUp(1000, function(){
+                    $(this).remove();
+                });
+            }, 10000);
+        </script> --}}
+    @endsection
+
 @endsection

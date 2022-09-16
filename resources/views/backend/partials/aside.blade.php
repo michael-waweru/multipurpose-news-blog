@@ -43,36 +43,9 @@
                     <li class="nk-menu-item">
                         <a href="{{ route('admin.blogs') }}" class="nk-menu-link"><span class="nk-menu-text">Blogs</span></a>
                     </li>
-                    {{-- <li class="nk-menu-item">
+                    <li class="nk-menu-item">
                         <a href="{{ route('admin.blog.subscribers') }}" class="nk-menu-link"><span class="nk-menu-text">Blog Subscribers</span></a>
-                    </li> --}}
-                </ul><!-- .nk-menu-sub -->
-            </li>
-
-            <li class="nk-menu-item has-sub">
-                <a href="#" class="nk-menu-link nk-menu-toggle">
-                    <span class="nk-menu-icon"><em class="icon ni ni-laptop"></em></span>
-                    <span class="nk-menu-text">Blog Subscribers</span>
-                </a>
-                <ul class="nk-menu-sub">
-                    <li class="nk-menu-item">
-                        <a href="#" class="nk-menu-link"><span class="nk-menu-text">All Subscribers</span></a>
-                    </li>                                    
-                </ul><!-- .nk-menu-sub -->
-            </li>
-
-            {{-- <li class="nk-menu-item has-sub">
-                <a href="#" class="nk-menu-link nk-menu-toggle">
-                    <span class="nk-menu-icon"><em class="icon ni ni-contact"></em></span>
-                    <span class="nk-menu-text">Case Studies</span>
-                </a>
-                <ul class="nk-menu-sub">
-                    <li class="nk-menu-item">
-                        <a href="{{ route('admin.case-studies') }}" class="nk-menu-link"><span class="nk-menu-text">All Case Studies</span></a>
-                    </li>  
-                    <li class="nk-menu-item">
-                        <a href="{{ route('admin.case-testimonials') }}" class="nk-menu-link"><span class="nk-menu-text">Testimonials</span></a>
-                    </li>                  
+                    </li>
                 </ul><!-- .nk-menu-sub -->
             </li>
 
@@ -86,7 +59,22 @@
                         <a href="{{ route('admin.comments') }}" class="nk-menu-link"><span class="nk-menu-text">All Comments</span></a>
                     </li>                   
                 </ul><!-- .nk-menu-sub -->
-            </li> --}}
+            </li>
+
+            <li class="nk-menu-item has-sub">
+                <a href="#" class="nk-menu-link nk-menu-toggle">
+                    <span class="nk-menu-icon"><em class="icon ni ni-php"></em></em></span>
+                    <span class="nk-menu-text">Careers Section</span>
+                </a>
+                <ul class="nk-menu-sub">
+                    <li class="nk-menu-item">
+                        <a href="#" class="nk-menu-link"><span class="nk-menu-text">All Openings</span></a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="#" class="nk-menu-link"><span class="nk-menu-text">Career Subscribers</span></a>
+                    </li>                   
+                </ul><!-- .nk-menu-sub -->
+            </li>
 
             <li class="nk-menu-heading">
                 <h6 class="overline-title text-primary-alt">User Administration</h6>
@@ -143,20 +131,17 @@
             <li class="nk-menu-heading">
                 <h6 class="overline-title text-primary-alt">Configurations</h6>
             </li><!-- .nk-menu-heading -->
-            {{-- <li class="nk-menu-item has-sub">
+            <li class="nk-menu-item has-sub">
                 <a href="#" class="nk-menu-link nk-menu-toggle">
                     <span class="nk-menu-icon"><em class="icon ni ni-network"></em></span>
                     <span class="nk-menu-text">Page Config</span>
                 </a>
                 <ul class="nk-menu-sub">
                     <li class="nk-menu-item">
-                        <a href="{{ route('admin.config') }}" class="nk-menu-link"><span class="nk-menu-text">Clear Config</span></a>
-                    </li>
-                    <li class="nk-menu-item">
-                        <a href="{{ route('admin.linkStorage') }}" class="nk-menu-link"><span class="nk-menu-text">Link Storage</span></a>
-                    </li>  
+                        <a href="{{ route('config') }}" class="nk-menu-link"><span class="nk-menu-text">Clear Config</span></a>
+                    </li>                    
                 </ul><!-- .nk-menu-sub -->
-            </li><!-- .nk-menu-item --> --}}
+            </li><!-- .nk-menu-item -->
         </ul><!-- .nk-menu -->
     </div>
 </div>

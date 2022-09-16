@@ -59,7 +59,7 @@
                                                                     </a>
                                                                 </li> 
                                                                 
-                                                                @if($blog->status == 'draft')
+                                                                {{-- @if($blog->status == 'draft')
                                                                     <li>
                                                                         <a href="#" onclick="event.preventDefault(); document.getElementById('publish').submit();">
                                                                             <em class="icon ni ni-shield"></em><span>Publish</span>
@@ -75,10 +75,9 @@
                                                                         </a>
                                                                         <form id="unpublish" action="{{ route('unpublish',['id' => $blog->id]) }}" method="POST">@csrf</form>
                                                                     </li>
-                                                                @endif                                                               
+                                                                @endif                                                                --}}
                                                                 <li class="divider"></li>
-                                                                <li><a href="{{ route('admin.blog.edit',['slug' => $blog->slug]) }}/"><em class="icon ni ni-pen"></em><span>Edit blog</span></a></li>
-                                                                {{-- <li><a href="{{ route('admin.blog.edit',['id' => $blog->id]) }}/"><em class="icon ni ni-pen"></em><span>Edit blog</span></a></li> --}}
+                                                                <li><a href="{{ route('admin.blog.edit',['slug' => $blog->slug]) }}/"><em class="icon ni ni-pen"></em><span>Edit blog</span></a></li>                                                                
                                                                 <li>
                                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $blog->id }}">
                                                                         <em class="icon ni ni-trash"></em><span>Delete blog</span>
@@ -92,25 +91,25 @@
                                         </td>
                                     </tr>
                                     <div class="modal fade" id="deleteModal{{ $blog->id }}" tabindex="-1" role="dialog" aria-labelledby="blogModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="blogModalCenterTitle">Delete {{ $blog->title }}?</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <h5 class="modal-title" id="blogModalCenterTitle">Delete: <span>{{ $blog->title }}</span>?</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body text-center">
-                                                    You Cannot revert this action
+                                                    NOTE: YOU CANNOT REVERT THIS ACTION
                                                 </div>
-                                                <div class="modal-footer">
-                                                    {{-- <form class="d-inline-block" action="{{ route('admin.blog.delete', $blog->id) }}" method="POST">
+                                                {{-- <div class="modal-footer">
+                                                    <form class="d-inline-block" action="{{ route('admin.blog.delete', $blog->id) }}" method="POST">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
                                                         <button type="submit" class="btn btn-success">I'm Positive. DELETE IT!</button>
-                                                    </form> --}}
-                                                </div>
+                                                    </form>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
