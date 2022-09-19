@@ -68,10 +68,10 @@
                 </a>
                 <ul class="nk-menu-sub">
                     <li class="nk-menu-item">
-                        <a href="#" class="nk-menu-link"><span class="nk-menu-text">All Openings</span></a>
+                        <a href="javascript:void(0);" class="nk-menu-link"><span class="nk-menu-text">All Openings</span></a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="#" class="nk-menu-link"><span class="nk-menu-text">Career Subscribers</span></a>
+                        <a href="javascript:void(0);" class="nk-menu-link"><span class="nk-menu-text">Career Subscribers</span></a>
                     </li>                   
                 </ul><!-- .nk-menu-sub -->
             </li>
@@ -80,19 +80,19 @@
                 <h6 class="overline-title text-primary-alt">User Administration</h6>
             </li><!-- .nk-menu-heading -->
 
-            {{-- <li class="nk-menu-item has-sub">
+            <li class="nk-menu-item has-sub">
                 <a href="#" class="nk-menu-link nk-menu-toggle">
                     <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
                     <span class="nk-menu-text">System Users</span>
                 </a>
                 <ul class="nk-menu-sub">
                     <li class="nk-menu-item">
-                        <a href="{{ route('admin.users') }}" class="nk-menu-link"><span class="nk-menu-text">All Users</span></a>
+                        <a href="javascript:void(0);" class="nk-menu-link"><span class="nk-menu-text">All Users</span></a>
                     </li>                   
                 </ul><!-- .nk-menu-sub -->
-            </li> --}}
+            </li>
 
-            {{-- <li class="nk-menu-item has-sub">
+            <li class="nk-menu-item has-sub">
                 <a href="#" class="nk-menu-link nk-menu-toggle">
                     <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
                     <span class="nk-menu-text">Account Management</span>
@@ -102,31 +102,19 @@
                         <a href="{{ route('admin.profile') }}" class="nk-menu-link"><span class="nk-menu-text">Profile</span></a>
                     </li>                   
                 </ul><!-- .nk-menu-sub -->
-            </li> --}}
+            </li>
 
-            {{-- <li class="nk-menu-item has-sub">
-                <a href="#" class="nk-menu-link nk-menu-toggle">
-                    <span class="nk-menu-icon"><em class="icon ni ni-call-alt"></em></span>
-                    <span class="nk-menu-text">Callback Requests</span>
-                </a>
-                <ul class="nk-menu-sub">
-                    <li class="nk-menu-item">
-                        <a href="{{ route('admin.callback') }}" class="nk-menu-link"><span class="nk-menu-text">All Call Requests</span></a>
-                    </li>                   
-                </ul><!-- .nk-menu-sub -->
-            </li> --}}
-
-            {{-- <li class="nk-menu-item has-sub">
+            <li class="nk-menu-item has-sub">
                 <a href="#" class="nk-menu-link nk-menu-toggle">
                     <span class="nk-menu-icon"><em class="icon ni ni-chat"></em></span>
                     <span class="nk-menu-text">Contact Messages</span>
                 </a>
                 <ul class="nk-menu-sub">
                     <li class="nk-menu-item">
-                        <a href="{{ route('admin.contact.messages') }}" class="nk-menu-link"><span class="nk-menu-text">All Contact Messages</span></a>
+                        <a href="javascript:void(0);" class="nk-menu-link"><span class="nk-menu-text">All Contact Messages</span></a>
                     </li>                   
                 </ul><!-- .nk-menu-sub -->
-            </li> --}}
+            </li>
             
             <li class="nk-menu-heading">
                 <h6 class="overline-title text-primary-alt">Configurations</h6>

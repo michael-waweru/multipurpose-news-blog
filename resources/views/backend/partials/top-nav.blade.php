@@ -55,7 +55,7 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    {{-- <li><a href="{{ route('admin.profile') }}"><em class="icon ni ni-account-setting"></em><span>View Profile</span></a></li>                                     --}}
+                                    <li><a href="{{ route('admin.profile') }}"><em class="icon ni ni-account-setting"></em><span>View Profile</span></a></li>                                    
                                     <li>
                                         <a id="theme-toggle"><em class="icon ni ni-{{ $theme == 'dark' ? 'sun-fill' : 'moon-fill' }}"></em><span>Dark Mode</span></a>                                        
                                     </li>

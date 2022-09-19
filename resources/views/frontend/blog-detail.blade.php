@@ -56,11 +56,6 @@
                 </div>
                 <div class="entry-left-col">
                     <div class="social-sticky">
-                        {{-- <a href=""><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter"></i></a>
-                        <a href="#"><i class="ti-heart"></i></a>
-                        <a href="#"><i class="ti-email"></i></a> --}}
-
                         {!! $socialShare !!}
                     </div>
                 </div>
@@ -75,7 +70,7 @@
                             </div>
                             <div class="col-md-7">                                
                                 <div class="row">                                                                         
-                                    <strong><span class="text-success" id="success-message"></span></strong>                                    
+                                    <strong><span class="text-success"id="success-message"></span></strong>                                                                     
                                     <form id="subscriber-form">                                        
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" name="email" id="email" placeholder="Enter your e-mail address">                                                                                  
@@ -109,8 +104,7 @@
                     </div>                   
                     <ul class="d-inline-block list-inline float-md-right mt-md-0 mt-4">
                         <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center"><i class="ti-facebook"></i></a></li>
-                        <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center"><i class="ti-twitter-alt"></i></a></li>                            
-                        {{-- <li class="list-inline-item">{{!! $socialShare !!}}</li> --}}
+                        <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center"><i class="ti-twitter-alt"></i></a></li>                        
                     </ul>                                       
                 </div>
                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
@@ -295,7 +289,7 @@
                 success:function(response){
                     console.log(response);
                     if (response) {
-                        $('#success-message').text(response.success);
+                        $('#success-message').text(response.success);                        
                         $("#subscriber-form")[0].reset();
                         $("#subscriber-form").hide();
                     }

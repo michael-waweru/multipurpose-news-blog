@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\PostsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Frontend\SocialController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Author\AuthorDashboardController;
+use App\Http\Controllers\User\UserDashboardController;
 
 // Frontend Routes
 Route::get('/', [FrontendController::class,'home'])->name('homepage');
@@ -57,10 +59,25 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     //comment section
     Route::get('comments',[CommentController::class,'index'])->name('admin.comments');
     Route::put('comment/update/{id}',[CommentController::class,'update'])->name('admin.comment.update');
+
+    //profile section
+    Route::get('profile', [ProfileController::class,'index'])->name('admin.profile');
+    Route::get('profile/socials', [ProfileController::class,'socials'])->name('admin.profile.socials');
+    Route::get('profile/basic-info', [ProfileController::class,'create'])->name('profile.basic');
+    Route::get('profile/{id}/edit',[ProfileController::class,'edit'])->name('profile.edit.basic');
+    Route::get('profile/security',[ProfileController::class,'security'])->name('profile.security');
+    Route::get('profile/{id}/update-password',[ProfileController::class,'updatepassword'])->name('profile.password');
+    Route::post('profile/update-password',[ProfileController::class,'storeUpdatedpassword'])->name('profile.password.update');
+    Route::post('profile/post',[ProfileController::class,'store'])->name('admin.profile.store');
+    Route::post('profile/update/{id}',[ProfileController::class,'update'])->name('profile.update.basic');
 });
 
 Route::prefix('author')->middleware(['auth','isAuthor'])->group(function(){
     Route::get('dashboard', [AuthorDashboardController::class,'index'])->name('author.dashboard');
+});
+
+Route::prefix('user')->middleware(['auth','isUser'])->group(function(){
+    Route::get('dashboard', [UserDashboardController::class,'index'])->name('user.dashboard');
 });
 
 //page configurations

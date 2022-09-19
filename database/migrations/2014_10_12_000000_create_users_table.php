@@ -22,7 +22,11 @@ return new class extends Migration
             $table->string('password'); 
             $table->integer('role_id')->default(3);    
             $table->string('avatar')->nullable();
-            $table->string('about_author')->nullable();
+            $table->longText('about_author')->nullable();
+            $table->string('social_facebook')->nullable();
+            $table->string('social_twitter')->nullable();
+            $table->string('social_instagram')->nullable();
+            $table->integer('is_active')->default(0);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

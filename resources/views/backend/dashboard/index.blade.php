@@ -120,8 +120,7 @@
                                     <em class="icon ni ni-cc-alt-fill"></em>
                                     <div class="title">Pending Comments & Blogs</div>
                                     <p>We have <strong>{{ $pendingComments->count() }} pending comments</strong> and <strong>{{ $pendingBlogs->count() }} pending blogs</strong> that need to be addressed.</p>
-                                </div>
-                                <a href="javascript:void(0);" class="btn btn-icon btn-trigger me-n2"><em class="icon ni ni-forward-ios"></em></a>
+                                </div>                                
                             </div>
                         </div><!-- .card-inner -->
                         <div class="card-inner">
@@ -130,13 +129,12 @@
                                     <em class="icon ni ni-help-fill"></em>
                                     <div class="title">Support Messages</div>
                                     <p>Here are <strong>0 new</strong> support messages. </p>
-                                </div>
-                                <a href="#" class="btn btn-icon btn-trigger me-n2"><em class="icon ni ni-forward-ios"></em></a>
+                                </div>                               
                             </div>
                         </div><!-- .card-inner -->
                         <div class="card-inner">
                             <div class="nk-wg-action">
-                                
+                                <p>NEWSBOARD</p>
                             </div>
                         </div><!-- .card-inner -->
                     </div><!-- .card-inner-group -->

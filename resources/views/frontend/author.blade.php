@@ -17,7 +17,10 @@
                     <div class="author-info">
                         <h3 class="font-weight-bold">{{ $author_name->author_name }}</h3>
                         <h5><i class="ti-star font-x-small mr-5"></i>Elite author</h5>
-                        <div class="author-description">You should write because you love the shape of stories and sentences and the creation of different words on a page. </div>
+                        @if ($author_name->user->about_author != null)
+                            <div class="author-description">{{ $author_name->user->about_author }}. </div>
+                        @endif
+                        
                         @if($author_archives->count() > 0 && $author_archives->count() < 2)
                             <span class="mb-md-0 mb-3 text-muted mr-20">I have posted {{ $author_archives->count() }} article </span>
                         @else
@@ -25,10 +28,17 @@
                         @endif                       
                         <div class="author-social text-muted font-small15k follow">
                             <ul class="author-social-icons">
-                                <li class="author-social-link-facebook"><a href="#" target="_blank"><i class="ti-facebook"></i></a></li>
-                                <li class="author-social-link-twitter"><a href="#" target="_blank"><i class="ti-twitter-alt"></i></a></li>
-                                <li class="author-social-link-pinterest"><a href="#" target="_blank"><i class="ti-pinterest"></i></a></li>
-                                <li class="author-social-link-instagram"><a href="#" target="_blank"><i class="ti-instagram"></i></a></li>
+                                @if ($author_name->user->social_facebook != null)
+                                    <li class="author-social-link-facebook"><a href="{{ $author_name->user->social_facebook }}" target="_blank" ><i class="ti-facebook"></i></a></li> 
+                                @endif
+
+                                @if ($author_name->user->social_twitter != null)
+                                    <li class="author-social-link-twitter"><a href="{{ $author_name->user->social_twitter }}" target="_blank"><i class="ti-twitter-alt"></i></a></li> 
+                                @endif
+
+                                @if ($author_name->user->social_instagram != null)
+                                    <li class="author-social-link-instagram"><a href="{{ $author_name->user->social_instagram }}" target="_blank"><i class="ti-instagram"></i></a></li> 
+                                @endif                                
                             </ul>
                         </div>
                     </div>
