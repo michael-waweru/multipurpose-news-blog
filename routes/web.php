@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -11,9 +12,9 @@ use App\Http\Controllers\Frontend\PostsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\SocialController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Author\AuthorDashboardController;
-use App\Http\Controllers\User\UserDashboardController;
 
 // Frontend Routes
 Route::get('/', [FrontendController::class,'home'])->name('homepage');
@@ -70,6 +71,12 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::post('profile/update-password',[ProfileController::class,'storeUpdatedpassword'])->name('profile.password.update');
     Route::post('profile/post',[ProfileController::class,'store'])->name('admin.profile.store');
     Route::post('profile/update/{id}',[ProfileController::class,'update'])->name('profile.update.basic');
+
+     //users
+     Route::get('users',[UserController::class,'index'])->name('admin.users');
+     Route::get('user/create', [UserController::class,'create'])->name('admin.user.add');
+     Route::post('users/user',[UserController::class,'store'])->name('admin.user.create');
+     Route::delete('user/{id}',[UserController::class,'destroy'])->name('admin.user.delete');
 });
 
 Route::prefix('author')->middleware(['auth','isAuthor'])->group(function(){

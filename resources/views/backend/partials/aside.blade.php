@@ -87,7 +87,7 @@
                 </a>
                 <ul class="nk-menu-sub">
                     <li class="nk-menu-item">
-                        <a href="javascript:void(0);" class="nk-menu-link"><span class="nk-menu-text">All Users</span></a>
+                        <a href="{{ route('admin.users') }}" class="nk-menu-link"><span class="nk-menu-text">All Users</span></a>
                     </li>                   
                 </ul><!-- .nk-menu-sub -->
             </li>
