@@ -153,16 +153,39 @@
                                     <span>Author Board</span>
                                 </h6>
                                 <div class="author-content text-center">
-                                    <a href="{{ route('author',$authorBoard->slug) }}"><img class="img-circle d-inline-block mb-10" src="{{ asset('assets/frontend/imgs/authors/author-1.jpg') }}" alt=""></a>         
+                                    <a href="{{ route('author',$authorBoard->slug) }}">
+                                        @if (!empty($authorBoard->avatar))
+                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('storage/avatar/'.$authorBoard->avatar) }}" alt="{{ $authorBoard->avatar }}">                                       
+                                        @else
+                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('assets/backend/avatar.png') }}" alt="{{ $authorBoard->avatar }}"></a>
+                                        @endif
+                                    </a>
                                     <p class="post-title">{{ $authorBoard->name }}</p>                           
                                     <p>
-                                        You should write because you love the shape of stories and sentences and the creation of different words on a page. Writing comes from reading, and reading is the finest teacher of how to write.
+                                        @if (!empty($authorBoard->about_author))
+                                            {{ $authorBoard->about_author }}
+                                        @else
+                                            <p>Elite Author</p>
+                                        @endif
                                     </p>
                                     <ul class="header-social-network d-inline-block list-inline font-small">
-                                        <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center" target="_blank" href="#"><i class="ti-facebook"></i></a></li>
-                                        <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center" target="_blank" href="#"><i class="ti-twitter-alt"></i></a></li>
-                                        <li class="list-inline-item"><a class="social-icon pinterest-icon text-xs-center" target="_blank" href="#"><i class="ti-pinterest"></i></a></li>
-                                        <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center" target="_blank" href="#"><i class="ti-instagram"></i></a></li>
+                                        @if ($authorBoard->social_facebook != null)                                           
+                                            <li class="list-inline-item">
+                                                <a class="social-icon facebook-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_facebook }}"><i class="ti-facebook"></i></a>
+                                            </li>
+                                        @endif
+        
+                                        @if ($authorBoard->social_twitter != null)
+                                        <li class="list-inline-item">
+                                            <a class="social-icon twitter-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_twitter }}"><i class="ti-twitter-alt"></i></a>
+                                        </li>
+                                        @endif
+        
+                                        @if ($authorBoard->social_instagram != null)
+                                        <li class="list-inline-item">
+                                            <a class="social-icon instagrm-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_instagram }}"><i class="ti-instagram"></i></a>
+                                        </li>
+                                        @endif                                         
                                     </ul>
                                     <p class="font-small mt-15 text-muted">Posts By <a href="{{ route('author',$authorBoard->slug) }}">{{ $authorBoard->name }}</a></p>
                                 </div>

@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div>
-                    <form action="{{ route('profile.update.basic', $userProfile->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('profile.update.basic', $userProfile->slug) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card card-bordered card-preview">
                             <div class="card-inner">

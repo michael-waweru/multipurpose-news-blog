@@ -12,7 +12,11 @@
                 <!--author box-->
                 <div class="author-bio mt-50">
                     <div class="author-image mb-30">
-                     <img src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="" class="avatar">
+                        @if (!empty($author_name->user->avatar))
+                            <img src="{{ asset('storage/avatar/'.$author_name->user->avatar) }}" alt="{{ $author_name->author_name }}" class="avatar">
+                        @else
+                            <img src="{{ asset('assets/backendavatar.png') }}" alt="{{ $author_name->author_name }}" class="avatar">
+                        @endif
                     </div>
                     <div class="author-info">
                         <h3 class="font-weight-bold">{{ $author_name->author_name }}</h3>

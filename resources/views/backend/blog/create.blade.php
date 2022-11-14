@@ -96,7 +96,7 @@
                                             </div>
                                             @error('short_description')<span class="text-danger"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
-                                    </div>                                   
+                                    </div>
 
                                     <div class="card-inner">
                                         <textarea name="description" class="summernote-basic form-control"></textarea>
@@ -129,7 +129,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" data-role="tagsinput" name="tags" class="form-control form-control-outlined"
-                                                    placeholder="Tags">                                        
+                                                    placeholder="Tags">
                                             </div>
                                         </div>
 
@@ -160,7 +160,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.summernote').summernote({
-                height: 450,               
+                height: 450,
             });
         });
     </script>

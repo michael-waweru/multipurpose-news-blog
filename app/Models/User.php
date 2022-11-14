@@ -23,6 +23,12 @@ class User extends Authenticatable
         'name',
         'email',
         'slug',
+        'avatar',
+        'role_id',
+        'about_author',
+        'social_facebook',
+        'social_twitter',
+        'social_instagram',
         'password',
         'fb_id',
         'google_id'

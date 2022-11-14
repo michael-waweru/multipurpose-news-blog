@@ -105,7 +105,7 @@ class ProfileController extends Controller
         }
     }
     
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $validator = Validator::make($request->all(),
         [
@@ -122,21 +122,21 @@ class ProfileController extends Controller
             return back();
         }
         
-        $user = Auth::id();
-        $userData = User::findOrFail($user);
-        $userData->slug = null;
+        $user = User::where('slug', $slug)->first();      
 
-        $updatedData = $request->all();  
-
-        if ($avatar = $request->file('avatar')) {
-            $avatarName = time().'.'.$request->avatar->extension();
-            $avatar->storeAs('avatar', $avatarName);
-            $updatedData['avatar'] = $avatarName;
+        $updatedData = $request->all();
+        $user->slug = null;
+        
+        if($avatar = $request->file('avatar'))
+        {
+            $imageName = time().'.'.$request->avatar->extension();
+            $request->avatar->storeAs('avatar', $imageName);
+            $updatedData['avatar'] = $imageName;
         }else{
             unset($updatedData['avatar']);
-        }            
+        }       
 
-        if($userData->update($updatedData))
+        if($user->update($updatedData))
         {
             toastr()->success('Data Updated Successfully.');
             return redirect()->route('admin.profile');

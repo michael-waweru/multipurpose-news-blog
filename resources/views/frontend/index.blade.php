@@ -300,7 +300,14 @@
                                     <span>Author Board</span>
                                 </h6>
                                 <div class="author-content text-center">
-                                    <a href="{{ route('author',$authorBoard->slug) }}"><img class="img-circle d-inline-block mb-10" src="{{ asset('assets/frontend/imgs/authors/author-1.jpg') }}" alt=""></a>
+                                    <a href="{{ route('author',$authorBoard->slug) }}">
+                                        @if (!empty($authorBoard->avatar))
+                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('storage/avatar/'.$authorBoard->avatar) }}" alt="{{ $authorBoard->name }}">
+                                        @else
+                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('assets/backendavatar.png') }}" alt="{{ $authorBoard->name }}">
+                                        @endif
+                                       
+                                    </a>
                                     <p class="post-title">{{ $authorBoard->name }}</p>
                                     <p>
                                         {{ $authorBoard->about_author }}

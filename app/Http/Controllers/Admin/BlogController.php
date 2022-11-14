@@ -25,19 +25,19 @@ class BlogController extends Controller
     }
 
     public function create()
-    {        
+    {
         $categories = Category::all();
 
         if(count($categories) > 0)
         {
-            return view('backend.blog.create',compact('categories'));    
+            return view('backend.blog.create',compact('categories'));
         }
-        else{            
+        else{
             toastr()->info('Please create a category first');
             return redirect()->route('admin.category.create');
         }
     }
-    
+
     public function edit($slug)
     {
         $blog = Blog::where('slug',$slug)->first();
@@ -60,15 +60,15 @@ class BlogController extends Controller
         ]);
 
         //check validation
-        if ($validator->fails()) 
+        if ($validator->fails())
         {
             toastr()->error($validator->errors()->first());
             return back();
         }
-        
+
         //capture data to store in DB
         $input = $request->all();
-        
+
         $imageName = time().'.'.$request->image->extension();
         $request->image->storeAs('blog', $imageName);
 
@@ -96,11 +96,11 @@ class BlogController extends Controller
         $blog_data->category_name = $category->category_name;
 
         // dd($blog_data);
-        
+
         if($blog_data->save()){
             toastr()->success('Blog created successfully');
             return redirect()->route('admin.blogs');
-        }        
+        }
     }
 
     public function update(Request $request, $slug)
@@ -117,7 +117,7 @@ class BlogController extends Controller
             'image' => 'nullable|mimes:jpg,jpeg,svg,png|max:2048',
         ]);
 
-        if ($validator->fails()) 
+        if ($validator->fails())
         {
             toastr()->error($validator->errors()->first());
             return back();
@@ -147,18 +147,18 @@ class BlogController extends Controller
     {
         $unpublishBlog = Blog::find($id);
         $unpublishBlog->status === 'draft';
-        
+
         if($unpublishBlog->update())
         {
             toastr()->success('Status changed to unpublished');
-            return redirect()->route('admin.blogs');        
+            return redirect()->route('admin.blogs');
         }
     }
 
     public function publish($id)
     {
-        $publishBlog = Blog::find($id);       
-        $publishBlog->update(['status' => 'published']); 
+        $publishBlog = Blog::find($id);
+        $publishBlog->update(['status' => 'published']);
 
         if($publishBlog)
         {
@@ -172,5 +172,5 @@ class BlogController extends Controller
         $subscribers = BlogSubscribers::all();
         return view('backend.blog.subscribers', compact('subscribers'));
     }
-    
+
 }

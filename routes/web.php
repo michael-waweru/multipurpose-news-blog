@@ -70,7 +70,7 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('profile/{id}/update-password',[ProfileController::class,'updatepassword'])->name('profile.password');
     Route::post('profile/update-password',[ProfileController::class,'storeUpdatedpassword'])->name('profile.password.update');
     Route::post('profile/post',[ProfileController::class,'store'])->name('admin.profile.store');
-    Route::post('profile/update/{id}',[ProfileController::class,'update'])->name('profile.update.basic');
+    Route::post('profile/update/{slug}',[ProfileController::class,'update'])->name('profile.update.basic');
 
      //users
      Route::get('users',[UserController::class,'index'])->name('admin.users');

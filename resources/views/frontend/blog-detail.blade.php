@@ -21,7 +21,11 @@
                         <div class="entry-meta align-items-center meta-2 font-small color-muted">
                             <p class="mb-5">
                                 <a class="author-avatar" href="{{ route('author',$blogDetail->user->slug) }}" title="Posted By {{ $blogDetail->author_name }}">
-                                    <img class="img-circle" src="{{ asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="{{ $blogDetail->author_name }}">
+                                    @if (!empty($blogDetail->user->avatar))
+                                        <img class="img-circle" src="{{ asset('storage/avatar/'.$blogDetail->user->avatar) }}" alt="{{ $blogDetail->author_name }}">
+                                    @else
+                                        <img class="img-circle" src="{{ asset('assets/backend/avatar.png') }}" alt="{{ $blogDetail->author_name }}">
+                                    @endif
                                 </a>
                                 By <a href="{{ route('author',$blogDetail->user->slug) }}" title="Posted by {{ $blogDetail->author_name }}"><span class="author-name font-weight-bold">{{ $blogDetail->author_name }}</span></a>
                             </p>
@@ -112,22 +116,37 @@
                 <div class="author-bio wow fadeIn animated">
                     <div class="author-image mb-30">
                         <a href="{{ route('author',$blogDetail->user->slug) }}">
-                            <img src="{{asset('assets/frontend/imgs/authors/author-3.jpg') }}" alt="{{ $blogDetail->author_name }}" class="avatar">
+                            @if (!empty($blogDetail->user->avatar))
+                                <img class="img-circle" src="{{ asset('storage/avatar/'.$blogDetail->user->avatar) }}" alt="{{ $blogDetail->blogDetail }}">
+                            @else
+                                <img class="img-circle" src="{{ asset('assets/backend/avatar.png') }}" alt="{{ $blogDetail->blogDetail }}">
+                            @endif
                         </a>
                     </div>
                     <div class="author-info">
-                        <h3><span class="vcard author"><span class="fn"><a href="{{ route('author',$blogDetail->user->slug) }}" title="Posted by {{ $blogDetail->author_name }}" rel="author">{{ $blogDetail->author_name }}</a></span></span>
+                        <h3><span class="vcard author"><span class="fn"><a href="{{ route('author',$blogDetail->user->slug) }}" title="Posted by {{ $blogDetail->blogDetail }}" rel="author">{{ $blogDetail->blogDetail }}</a></span></span>
                         </h3>
                         <h5>About author</h5>
-                        <div class="author-description">You should write because you love the shape of stories and sentences and the creation of different words on a page. </div>
+                        @if(!empty($blogDetail->user->about_author))
+                            <div class="author-description">{{ $blogDetail->user->about_author }}</div>
+                        @else
+                            <div class="author-description">Elite Author</div>
+                        @endif
                         <a href="{{ route('author',[$blogDetail->user->slug]) }}" class="author-bio-link mb-md-0 mb-3"
                            title="Posts By {{ $blogDetail->author_name }}">View all posts</a>
                         <div class="author-social">
                             <ul class="author-social-icons">
-                                <li class="author-social-link-facebook"><a href="#" target="_blank"><i class="ti-facebook"></i></a></li>
-                                <li class="author-social-link-twitter"><a href="#" target="_blank"><i class="ti-twitter-alt"></i></a></li>
-                                <li class="author-social-link-pinterest"><a href="#" target="_blank"><i class="ti-pinterest"></i></a></li>
-                                <li class="author-social-link-instagram"><a href="#" target="_blank"><i class="ti-instagram"></i></a></li>
+                                @if ($blogDetail->user->social_facebook != null)
+                                    <li class="author-social-link-facebook"><a href="{{ $blogDetail->user->social_facebook }}" target="_blank" ><i class="ti-facebook"></i></a></li> 
+                                @endif
+
+                                @if ($blogDetail->user->social_twitter != null)
+                                    <li class="author-social-link-twitter"><a href="{{ $blogDetail->user->social_twitter }}" target="_blank"><i class="ti-twitter-alt"></i></a></li> 
+                                @endif
+
+                                @if ($blogDetail->user->social_instagram != null)
+                                    <li class="author-social-link-instagram"><a href="{{ $blogDetail->user->social_instagram }}" target="_blank"><i class="ti-instagram"></i></a></li> 
+                                @endif
                             </ul>
                         </div>
                     </div>
