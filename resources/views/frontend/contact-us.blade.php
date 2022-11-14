@@ -31,27 +31,31 @@
 
             <div class="entry-wraper">
                 <div class="mb-30">
-                    <p>We are <strong>AliThemes</strong> , a creative and dedicated group of individuals who love web development almost as much as we love our customers. We are passionate team with the mission for achieving the perfection in web design. All designs are made by love with pixel perfect design and excellent coding quality. Speed, security and SEO friendly alway in our mind.</p>
+                    <p>
+                        Have an idea, compliment or complain? Get in touch with us via the details below or fill in the form and a 
+                        representative will contact you shortly.
+                    </p>
                     <hr class="wp-block-separator is-style-dots">
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <h3 class="mb-30">Contact</h3>
                         <p>
-                            <strong>Address:</strong> Lorem 142 Str., 2352, Ipsum, State, USA <br>
-                            <strong>Phone:</strong> +01-234 56789
+                            <strong>Address:</strong> 1482 St, Nairobi, KENYA <br>
+                            <strong>Phone:</strong> +254 713 672 772
                         </p>
-                        <p>If you would like to partner with Ultra at our next event, contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="12717d7c66737166527c776561707d7360763c717d7f3c">[email&#160;protected]</a></p>
+                        <p>If you would like to partner with us, contact us at <a href="mailto:info@newsboard.com" class="__cf_email__" data-cfemail="12717d7c66737166527c776561707d7360763c717d7f3c">info@newsboard.com</a></p>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <h3 class="mb-30">Advertise</h3>
-                        <p>Please contact us directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="88e9ecfbc8e6edfffbeae7e9faeca6ebe7e5a6">[email&#160;protected]</a> </p>
-                        <p>For large or unique campaigns please email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8dfeece1e8cde3e8fafeefe2ecffe9a3eee2e0">[email&#160;protected]</a> for requests-for-proposal and additional pricing information. </p>
+                        <p>Please contact us directly at <a href="mailto:advertise@newsboard.com" class="__cf_email__" data-cfemail="88e9ecfbc8e6edfffbeae7e9faeca6ebe7e5a6">advertise@newsboard.com</a> </p>
+                        <p>For large or unique campaigns please email <a href="mailto:advertise@newsboard.com" class="__cf_email__" data-cfemail="8dfeece1e8cde3e8fafeefe2ecffe9a3eee2e0">advertise@newsboard.com</a> 
+                            with subject matter <strong>Unique Campaign</strong>. </p>
                     </div>
                     <div class="col-md-4 col-sm-12">
-                        <h3 class="mb-30">Event</h3>
+                        <h3 class="mb-30">Events</h3>
                         <p>We are a professional event management team, starting in 2012.</p>
-                        <p>Please send request details to email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="472231222933072922303425282635236924282a">[email&#160;protected]</a></p>
+                        <p>Please send request details to email <a href="mailto:events@newsboard.com" class="__cf_email__" data-cfemail="472231222933072922303425282635236924282a">events@newsboard.com</a></p>
                     </div>
                 </div>
                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
