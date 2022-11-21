@@ -102,14 +102,14 @@
                                                 <div class="modal-body text-center">
                                                     NOTE: YOU CANNOT REVERT THIS ACTION
                                                 </div>
-                                                {{-- <div class="modal-footer">
-                                                    <form class="d-inline-block" action="{{ route('admin.blog.delete', $blog->id) }}" method="POST">
+                                                <div class="modal-footer">
+                                                    <form class="d-inline-block" action="{{ route('admin.blog.delete', $blog->slug) }}" method="POST">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-success">I'm Positive. DELETE IT!</button>
+                                                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger">I'm Positive. DELETE IT!</button>
                                                     </form>
-                                                </div> --}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

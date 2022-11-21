@@ -56,6 +56,7 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::post('publish/{id}',[BlogController::class,'publish'])->name('publish');
     Route::post('unpublish/{id}',[BlogController::class,'unpublish'])->name('unpublish');
     Route::get('blog/subscribers',[BlogController::class,'subscribers'])->name('admin.blog.subscribers');
+    Route::delete('blog/{slug}',[BlogController::class,'destroy'])->name('admin.blog.delete');
     
     //comment section
     Route::get('comments',[CommentController::class,'index'])->name('admin.comments');

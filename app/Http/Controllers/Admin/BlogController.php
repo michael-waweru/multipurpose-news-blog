@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\BlogSubscribers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
@@ -171,6 +172,22 @@ class BlogController extends Controller
     {
         $subscribers = BlogSubscribers::all();
         return view('backend.blog.subscribers', compact('subscribers'));
+    }
+
+    public function destroy($slug)
+    {
+        $blog = Blog::where('slug', $slug)->first();
+
+        $folder = 'storage/blog';
+
+        File::delete(public_path($folder.$blog->image));
+
+        if($blog->delete())
+        {
+            toastr()->success('Blog Deleted Successfully.');
+            return redirect()->route('admin.blogs');            
+        }
+        
     }
 
 }
