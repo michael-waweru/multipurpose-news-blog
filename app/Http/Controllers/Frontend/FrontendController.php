@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Validator;
 use App\Models\Blog;
 use App\Models\User;
@@ -13,7 +15,7 @@ use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
 { 
-    public function home(Category $category)
+    public function home(Category $category): Factory|View|\Illuminate\Contracts\Foundation\Application
     {
         $recent_posts = Blog::orderBy('created_at', 'DESC')->take(2)->get();
         $blogs = Blog::inRandomOrder()->take(2)->get();

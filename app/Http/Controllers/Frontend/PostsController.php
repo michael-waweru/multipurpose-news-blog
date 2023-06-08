@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Mail\SubscriberWelcomeMail;
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Comment;
@@ -64,10 +65,11 @@ class PostsController extends Controller
             'email' => 'required|email|unique:blog_subscribers',
         ]);
 
-        BlogSubscribers::create([
+        $data = BlogSubscribers::create([
             'email' => $request->email,
         ]);
 
+//        Mail::to($email)->send(new SubscriberWelcomeMail($data));
         return response()->json(['success'=>'You have successfully subscribed to the newsletter!']);
     }
 

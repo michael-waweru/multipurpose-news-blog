@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class SocialController extends Controller
 {
-    public function facebookRedirect()
+    public function facebookRedirect(): RedirectResponse|\Illuminate\Http\RedirectResponse
     {
         return Socialite::driver('facebook')->redirect();
     }

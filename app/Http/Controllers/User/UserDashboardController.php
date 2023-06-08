@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class UserDashboardController extends Controller
 {
-    //
+    public function index(): string
+    {
+        return "This is the user dashboard";
+    }
 }
