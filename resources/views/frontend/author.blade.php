@@ -13,7 +13,7 @@
                 <div class="author-bio mt-50">
                     <div class="author-image mb-30">
                         @if (!empty($author_name->user->avatar))
-                            <img src="{{ asset('storage/avatar/'.$author_name->user->avatar) }}" alt="{{ $author_name->author_name }}" class="avatar">
+                            <img src="{{ asset('storage/avatar/'.$author_name->user->avatar) }}" alt="{{ $author_name->author_name }}" class="avatar" title="{{ $author_name->author_name }}">
                         @else
                             <img src="{{ asset('assets/backendavatar.png') }}" alt="{{ $author_name->author_name }}" class="avatar">
                         @endif
@@ -28,7 +28,7 @@
                         @if($author_archives->count() > 0 && $author_archives->count() < 2)
                             <span class="mb-md-0 mb-3 text-muted mr-20">I have posted {{ $author_archives->count() }} article </span>
                         @else
-                            <span class="mb-md-0 mb-3 text-muted mr-20">I have posted {{ $author_archives->count() }} articles </span>
+                            <span class="mb-md-0 mb-3 text-muted mr-20">The author has no articles posted yet.</span>
                         @endif                       
                         <div class="author-social text-muted font-small15k follow">
                             <ul class="author-social-icons">
@@ -67,7 +67,7 @@
                                             </a>
                                         </div>
                                         <h3 class="post-title mb-10">
-                                            <a href="{{ route('blog.detail',[$author_archive->category->slug,$author_archive->slug]) }}/">{{ $author_archive->title }}</a>
+                                            <a href="{{ route('blog.detail',[$author_archive->category->slug, $author_archive->slug, $author_archive->id]) }}/">{{ $author_archive->title }}</a>
                                         </h3>
                                         @if($author_archive->is_live == 'isLive')
                                             <p class="excerpt">
@@ -84,8 +84,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <figure class="mt-md-0 mt-sm-3">
-                                            <a href="{{ route('blog.detail',[$author_archive->category->slug,$author_archive->slug]) }}/">
-                                                <img src="{{ asset('storage/blog/'.$author_archive->image) }}" alt="{{ $author_archive->title }}">
+                                            <a href="{{ route('blog.detail',[$author_archive->category->slug ,$author_archive->slug, $author_archive->id]) }}/">
+                                                <img src="{{ asset('storage/blog/'.$author_archive->image) }}" alt="{{ $author_archive->title }}" title="{{ $author_archive->title }}">
                                             </a>
                                         </figure>
                                     </div>
@@ -128,13 +128,13 @@
                                         <li class="mb-15">
                                             <div class="d-flex">
                                                 <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="{{ route('blog.detail',[$randomPost->category->slug,$randomPost->slug]) }}">
-                                                        <img src="{{ asset('storage/blog/') }}/{{ $randomPost->image }}" alt="{{ $randomPost->title }}">
+                                                    <a class="color-white" href="{{ route('blog.detail',[$randomPost->category->slug, $randomPost->slug, $randomPost->id]) }}">
+                                                        <img src="{{ asset('storage/blog/') }}/{{ $randomPost->image }}" alt="{{ $randomPost->title }}" title="{{ $randomPost->title }}">
                                                     </a>
                                                 </div>
                                                 <div class="post-content media-body">
                                                     <h6 class="post-title mb-10 text-limit-2-row">
-                                                        <a href="{{ route('blog.detail',[$randomPost->category->slug,$randomPost->slug]) }}">{{ $randomPost->title }}</a>
+                                                        <a href="{{ route('blog.detail',[$randomPost->category->slug, $randomPost->slug, $randomPost->id]) }}">{{ $randomPost->title }}</a>
                                                     </h6>
                                                     <div class="entry-meta meta-1 font-x-small color-grey mt-10">
                                                         <span class="post-on mr-15">{{ $randomPost->created_at->format('d M') }}</span>                                                       

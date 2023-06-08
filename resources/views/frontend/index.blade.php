@@ -17,13 +17,13 @@
                                     @if($recent_post->status == 'published')
                                         <article class="first-post slide-fade-item mb-md-4 mb-lg-0">
                                             <figure class="mb-30">
-                                                <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">
-                                                    <img src="{{ asset('storage/blog/'.$recent_post->image) }}" alt="{{ $recent_post->title }}">
+                                                <a href="{{ route('blog.detail',[$recent_post->category->slug, $recent_post->slug, $recent_post->id]) }}">
+                                                    <img src="{{ asset('storage/blog/'.$recent_post->image) }}" alt="{{ $recent_post->title }}" title="{{ $recent_post->title }}">
                                                 </a>
                                             </figure>
                                             <div class="post-content">
                                                 <h3 class="mb-20 position-relative font-weight-bold">
-                                                    <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">{{ $recent_post->title }}</a>
+                                                    <a href="{{ route('blog.detail',[$recent_post->category->slug, $recent_post->slug, $recent_post->id]) }}">{{ $recent_post->title }}</a>
                                                 </h3>
                                                 @if($recent_post->is_live == 'isLive')
                                                     <p class="excerpt">
@@ -55,12 +55,12 @@
                                     @if($blog->status == 'published')
                                         <article class="col-md-6 mb-sm-3 wow fadeIn animated">
                                             <figure class="mb-15">
-                                                <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug]) }}">
+                                                <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug, $blog->id]) }}">
                                                     <img src="{{ asset('storage/blog/'.$blog->image) }}" alt="{{ $blog->title }}">
                                                 </a>
                                             </figure>
                                             <h6 class="post-title font-weight-bold mb-10">
-                                                <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug]) }}">{{ $blog->title }}</a>
+                                                <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug, $blog->id]) }}">{{ $blog->title }}</a>
                                             </h6>
                                             @if($blog->is_live == 'isLive')
                                                 <p class="excerpt">
@@ -108,12 +108,12 @@
                             @if($highlight->status == 'published')
                                 <article class="col-1-5 col-sm-12 wow fadeIn animated">
                                     <figure class="mb-15">
-                                        <a href="{{ route('blog.detail',[$highlight->category->slug, $highlight->slug]) }}">
+                                        <a href="{{ route('blog.detail',[$highlight->category->slug, $highlight->slug, $highlight->id]) }}">
                                             <img src="{{ asset('storage/blog/'.$highlight->image) }}" alt="{{ $highlight->title }}">
                                         </a>
                                     </figure>
                                     <h6 class="font-weight-500 mb-20">
-                                        <a href="{{ route('blog.detail',[$highlight->category->slug, $highlight->slug]) }}">{{ $highlight->title }}</a>
+                                        <a href="{{ route('blog.detail',[$highlight->category->slug, $highlight->slug, $highlight->id]) }}">{{ $highlight->title }}</a>
                                     </h6>
                                 </article>
                             @endif
@@ -140,12 +140,12 @@
                                     @if ($editor->status == 'published')
                                         <article class="col-md-6 wow fadeIn animated">
                                             <figure class="mb-15">
-                                                <a href="{{ route('blog.detail',[$editor->category->slug, $editor->slug]) }}">
+                                                <a href="{{ route('blog.detail',[$editor->category->slug, $editor->id, $editor->slug]) }}">
                                                     <img src="{{ asset('storage/blog/'.$editor->image) }}" alt="{{ $editor->title }}">
                                                 </a>
                                             </figure>
                                             <h6 class="post-title font-weight-bold mb-10">
-                                                <a href="{{ route('blog.detail',[$editor->category->slug, $editor->slug]) }}">
+                                                <a href="{{ route('blog.detail',[$editor->category->slug, $editor->id, $editor->slug]) }}">
                                                     {{ $editor->title }}
                                                 </a>
                                             </h6>
@@ -178,7 +178,7 @@
                                         </a>
                                     </div>
                                     <h6 class="post-title mb-20 font-weight-bold">
-                                        <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}/">{{ $blog->title }}</a>
+                                        <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug, $blog->id]) }}/">{{ $blog->title }}</a>
                                     </h6>
                                     @if ($blog->is_live == 'isLive')
                                         <span class="live-now text-danger">Live</span> {{ $blog->short_description }}
@@ -211,7 +211,7 @@
                                     <article class="row wow fadeIn animated">
                                         <div class="col-md-6 mb-md-0 mb-sm-3">
                                             <figure class="mb-0">
-                                                <a href="{{ route('blog.detail',[$recentsSection->category->slug, $recentsSection->slug]) }}">
+                                                <a href="{{ route('blog.detail',[$recentsSection->category->slug, $recentsSection->id, $recentsSection->slug]) }}">
                                                     <img src="{{ asset('storage/blog/') }}/{{ $recentsSection->image }}" alt="{{ $recentsSection->title }}">
                                                 </a>
                                                 <span class="post-format position-top-right text-uppercase font-span">
@@ -227,7 +227,7 @@
                                                     </a>
                                                 </div>
                                                 <h2 class="post-title mb-30 position-relative divider-wave">
-                                                    <a href="{{ route('blog.detail',[$recentsSection->category->slug, $recentsSection->slug]) }}">{{ $recentsSection->title }}</a>
+                                                    <a href="{{ route('blog.detail',[$recentsSection->category->slug, $recentsSection->id, $recentsSection->slug]) }}">{{ $recentsSection->title }}</a>
                                                 </h2>
                                                 @if($recentsSection->is_live == 'isLive')
                                                     <p class="excerpt">
@@ -266,7 +266,7 @@
                                                             </a>
                                                         </div>
                                                         <h6 class="post-title mb-20 font-weight-bold">
-                                                            <a href="{{ route('blog.detail',[$random_blog->category->slug,$random_blog->slug]) }}/">
+                                                            <a href="{{ route('blog.detail',[$random_blog->category->slug, $random_blog->id, $random_blog->slug]) }}/">
                                                                 {{ $random_blog->title }}
                                                             </a>
                                                         </h6>
@@ -292,12 +292,12 @@
                                 <div class="col-md-4">
                                     <article class="wow fadeIn animated">
                                         <figure class="mb-15">
-                                            <a href="{{ route('blog.detail',[$side->category->slug,$side->slug]) }}">
+                                            <a href="{{ route('blog.detail',[$side->category->slug, $side->slug, $side->slug]) }}">
                                                 <img src="{{ asset('storage/blog/'.$side->image) }}" alt="{{ $side->title }}">
                                             </a>
                                         </figure>
                                         <h6 class="post-title font-weight-bold mb-10">
-                                            <a href="{{ route('blog.detail',[$side->category->slug,$side->slug]) }}">{{ $side->title }}</a>
+                                            <a href="{{ route('blog.detail',[$side->category->slug, $side->slug, $side->slug]) }}">{{ $side->title }}</a>
                                         </h6>
                                         <p class="excerpt">{{ $side->short_description }}</p>
                                         <div class="horizontal-divider mt-15 mb-15"></div>
@@ -305,7 +305,7 @@
                                     @foreach ($editorPicked as $random_blog)
                                         <article class="wow fadeIn animated">
                                             <h6 class="post-title mb-10 font-weight-bold">
-                                                <a href="{{ route('blog.detail',[$random_blog->category->slug,$random_blog->slug]) }}">{{ $random_blog->title }}</a>
+                                                <a href="{{ route('blog.detail',[$random_blog->category->slug, $random_blog->id, $random_blog->slug]) }}">{{ $random_blog->title }}</a>
                                             </h6>
                                             @if ($random_blog->is_live == 'isLive')
                                                 <p class="excerpt">

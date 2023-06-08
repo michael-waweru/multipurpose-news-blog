@@ -162,7 +162,7 @@
                                         <div class="post-thumb position-relative thumb-overlay mb-md-0 mb-3">
                                             <div class="img-hover-slide border-radius-5 position-relative">
                                                 <img src="{{ asset('storage/blog/') }}/{{ $relatedPost->image }}"/>
-                                                <a class="img-link" href="{{ route('blog.detail',[$relatedPost->category->slug, $relatedPost->slug]) }}"></a>
+                                                <a class="img-link" href="{{ route('blog.detail',[$relatedPost->category->slug, $relatedPost->slug, $relatedPost->id]) }}"></a>
                                                 <span class="top-right-icon background8"><i class="mdi mdi-flash-on"></i></span>
                                             </div>
                                         </div>
@@ -173,7 +173,7 @@
                                                 <span class="post-cat background2 color-white">In {{ $relatedPost->category_name }}</span></a>
                                             </div>
                                             <h4 class="post-title mb-15">
-                                                <a href="{{ route('blog.detail',[$relatedPost->category->slug, $relatedPost->slug]) }}/">{{ $relatedPost->title }}</a>
+                                                <a href="{{ route('blog.detail',[$relatedPost->category->slug, $relatedPost->slug, $relatedPost->id]) }}/">{{ $relatedPost->title }}</a>
                                             </h4>
                                             <p class="font-medium excerpt">{{ $relatedPost->short_description }}</p>
                                         </div>
@@ -193,13 +193,13 @@
                                     <li class="mb-15">
                                         <div class="d-flex">
                                             <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale">
-                                                <a class="color-white" href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug]) }}/">
+                                                <a class="color-white" href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug, $interestedPost->id]) }}/">
                                                     <img src="{{ asset('storage/blog/'.$interestedPost->image) }}" alt="{{ $interestedPost->title }}">
                                                 </a>
                                             </div>
                                             <div class="post-content media-body">
                                                 <h6 class="post-title mb-10 text-limit-2-row">
-                                                    <a href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug]) }}/">{{ $interestedPost->title }}</a>
+                                                    <a href="{{ route('blog.detail',[$interestedPost->category->slug, $interestedPost->slug, $interestedPost->id]) }}/">{{ $interestedPost->title }}</a>
                                                 </h6>
                                                 <div class="entry-meta meta-1 font-x-small color-grey">
                                                     <span class="post-on">{{ $interestedPost->created_at->format('d M, Y') }}</span>                                               

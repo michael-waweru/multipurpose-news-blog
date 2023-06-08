@@ -14,7 +14,7 @@
                             <div class="d-flex">                                
                                 <div class="post-content media-body">
                                     <h6 class="post-title mb-10 text-limit-2-row">
-                                        <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">{{ $blog->title }}</a>
+                                        <a href="{{ route('blog.detail',[$blog->category->slug, $blog->id, $blog->slug]) }}">{{ $blog->title }}</a>
                                     </h6>
                                     <div class="entry-meta meta-1 font-x-small color-grey">
                                         <span class="post-on">{{ $blog->created_at->format('D, d M Y') }}</span>

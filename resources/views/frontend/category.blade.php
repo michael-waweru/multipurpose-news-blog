@@ -27,8 +27,8 @@
                             <div class="col-lg-7 col-md-12">
                                 <article class="first-post wow fadeIn animated mb-md-4 mb-lg-0">
                                     <figure class="mb-30">
-                                        <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">
-                                            <img src="{{ asset('storage/blog/') }}/{{ $recent_post->image }}" alt="{{ $recent_post->title }}">
+                                        <a href="{{ route('blog.detail',[$recent_post->category->slug, $recent_post->slug, $recent_post->id]) }}">
+                                            <img src="{{ asset('storage/blog/') }}/{{ $recent_post->image }}" alt="{{ $recent_post->title }}" title="{{ $recent_post->title }}">
                                         </a>
                                         <span class="post-format position-top-right text-uppercase font-small">
                                             <i class="ti-image"></i>
@@ -36,7 +36,7 @@
                                     </figure>
                                     <div class="post-content text-center plr-5-percent">
                                         <h2 class="post-title mb-30 position-relative">
-                                            <a href="{{ route('blog.detail',[$recent_post->category->slug,$recent_post->slug]) }}">{{ $recent_post->title }}</a>
+                                            <a href="{{ route('blog.detail',[$recent_post->category->slug, $recent_post->slug, $recent_post->id]) }}">{{ $recent_post->title }}</a>
                                         </h2>
                                         <p class="excerpt">
                                             {{ $recent_post->short_description }}
@@ -55,12 +55,12 @@
                                 @if($blog->status == 'published')
                                     <article class="col-md-6 wow fadeIn animated">
                                         <figure class="mb-15">
-                                            <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">
-                                                <img src="{{ asset('storage/blog/') }}/{{ $blog->image }}" alt="{{ $blog->title }}">
+                                            <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug, $blog->id]) }}">
+                                                <img src="{{ asset('storage/blog/') }}/{{ $blog->image }}" alt="{{ $blog->title }}" title="{{ $blog->title }}">
                                             </a>
                                         </figure>
                                         <h6 class="post-title font-weight-bold mb-10">
-                                            <a href="{{ route('blog.detail',[$blog->category->slug,$blog->slug]) }}">{{ $blog->title }}</a>
+                                            <a href="{{ route('blog.detail',[$blog->category->slug, $blog->slug, $blog->id]) }}">{{ $blog->title }}</a>
                                         </h6>
                                         @if($blog->is_live == 'isLive')
                                             <p class="excerpt">
@@ -88,13 +88,15 @@
                                     @if ($category->status == 'published')
                                         <article class="row wow fadeIn animated">
                                             <div class="col-md-4">
-                                                <figure class="mb-md-0 mb-sm-3"><a href="{{ route('blog.detail',[$category->category->slug,$category->slug]) }}">
-                                                    <img src="{{ asset('storage/blog/'.$category->image) }}" alt="{{ $category->title }}"></a>
+                                                <figure class="mb-md-0 mb-sm-3">
+                                                    <a href="{{ route('blog.detail',[$category->category->slug, $category->id ,$category->slug]) }}">
+                                                    <img src="{{ asset('storage/blog/'.$category->image) }}" alt="{{ $category->title }}" title="{{ $category->title }}">
+                                                    </a>
                                                 </figure>
                                             </div>
                                             <div class="col-md-8">
                                                 <h4 class="post-title mb-10 font-weight-bold">
-                                                    <a href="{{ route('blog.detail',[$category->category->slug,$category->slug]) }}">{{ $category->title }}</a>
+                                                    <a href="{{ route('blog.detail',[$category->category->slug ,$category->slug, $category->id]) }}">{{ $category->title }}</a>
                                                 </h4>
                                                 @if($category->is_live == 'isLive')
                                                     <p class="excerpt mb-20">
@@ -155,11 +157,12 @@
                                 <div class="author-content text-center">
                                     <a href="{{ route('author',$authorBoard->slug) }}">
                                         @if (!empty($authorBoard->avatar))
-                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('storage/avatar/'.$authorBoard->avatar) }}" alt="{{ $authorBoard->avatar }}">                                       
+                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('storage/avatar/'.$authorBoard->avatar) }}" alt="{{ $authorBoard->avatar }}">
                                         @else
-                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('assets/backend/avatar.png') }}" alt="{{ $authorBoard->avatar }}"></a>
+                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('assets/backend/avatar.png') }}" alt="{{ $authorBoard->avatar }}">
                                         @endif
                                     </a>
+
                                     <p class="post-title">{{ $authorBoard->name }}</p>                           
                                     <p>
                                         @if (!empty($authorBoard->about_author))

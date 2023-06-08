@@ -21,7 +21,7 @@ Route::get('/', [FrontendController::class,'home'])->name('homepage');
 Route::get('/page/about-us',[FrontendController::class,'aboutUs'])->name('about');
 Route::get('page/contact-us',[FrontendController::class,'contactUs'])->name('contact');
 Route::get('category/{slug}',[CategoriesController::class,'category'])->name('category');
-Route::get('{category}/article/{slug}', [PostsController::class,'blogDetail'])->name('blog.detail');
+Route::get('{category}/article/{slug}/a-{id}', [PostsController::class,'blogDetail'])->name('blog.detail');
 Route::get('author-archive/{slug}',[PostsController::class,'author'])->name('author');
 Route::post('newsletter-store', [FrontendController::class,'storeNewsletterSubscriber'])->name('subscriber.store');
 Route::post('/message-store', [FrontendController::class,'storeContactMessage'])->name('contact.store');

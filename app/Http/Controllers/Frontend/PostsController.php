@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
-    public function blogDetail($category, $slug)
+    public function blogDetail($category, $slug, $id)
     {
         $blogDetail = Blog::where('slug', $slug)->first();
 
