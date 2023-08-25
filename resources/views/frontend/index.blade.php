@@ -290,18 +290,23 @@
                                     @endif                                    
                                 </div>
                                 <div class="col-md-4">
-                                    <article class="wow fadeIn animated">
-                                        <figure class="mb-15">
-                                            <a href="{{ route('blog.detail',[$side->category->slug, $side->slug, $side->slug]) }}">
-                                                <img src="{{ asset('storage/blog/'.$side->image) }}" alt="{{ $side->title }}">
-                                            </a>
-                                        </figure>
-                                        <h6 class="post-title font-weight-bold mb-10">
-                                            <a href="{{ route('blog.detail',[$side->category->slug, $side->slug, $side->slug]) }}">{{ $side->title }}</a>
-                                        </h6>
-                                        <p class="excerpt">{{ $side->short_description }}</p>
-                                        <div class="horizontal-divider mt-15 mb-15"></div>
-                                    </article>
+                                    @if (!empty($side))
+                                        <article class="wow fadeIn animated">
+                                            <figure class="mb-15">
+                                                <a href="{{ route('blog.detail',[$side->category->slug, $side->slug, $side->slug]) }}">
+                                                    <img src="{{ asset('storage/blog/'.$side->image) }}" alt="{{ $side->title }}">
+                                                </a>
+                                            </figure>
+                                            <h6 class="post-title font-weight-bold mb-10">
+                                                <a href="{{ route('blog.detail',[$side->category->slug, $side->slug, $side->slug]) }}">{{ $side->title }}</a>
+                                            </h6>
+                                            <p class="excerpt">{{ $side->short_description }}</p>
+                                            <div class="horizontal-divider mt-15 mb-15"></div>
+                                        </article>
+                                    @else
+                                        <p class="container">No Articles Found</p>
+                                    @endif
+                                    
                                     @foreach ($editorPicked as $random_blog)
                                         <article class="wow fadeIn animated">
                                             <h6 class="post-title mb-10 font-weight-bold">
@@ -328,32 +333,37 @@
                                     <span>Author Board</span>
                                 </h6>
                                 <div class="author-content text-center">
-                                    <a href="{{ route('author',$authorBoard->slug) }}">
-                                        @if (!empty($authorBoard->avatar))
-                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('storage/avatar/'.$authorBoard->avatar) }}" alt="{{ $authorBoard->name }}">
-                                        @else
-                                            <img class="img-circle d-inline-block mb-10" src="{{ asset('assets/backendavatar.png') }}" alt="{{ $authorBoard->name }}">
-                                        @endif
-                                       
-                                    </a>
-                                    <p class="post-title">{{ $authorBoard->name }}</p>
-                                    <p>
-                                        {{ $authorBoard->about_author }}
-                                    </p>
-                                    <ul class="header-social-network d-inline-block list-inline font-span">
-                                        @if ($authorBoard->social_facebook != null)
-                                            <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_facebook }}"><i class="ti-facebook"></i></a></li> 
-                                        @endif
+                                    @if (!empty($authorBoard))
+                                        <a href="{{ route('author',$authorBoard->slug) }}">
+                                            @if (!empty($authorBoard->avatar))
+                                                <img class="img-circle d-inline-block mb-10" src="{{ asset('storage/avatar/'.$authorBoard->avatar) }}" alt="{{ $authorBoard->name }}">
+                                            @else
+                                                <img class="img-circle d-inline-block mb-10" src="{{ asset('assets/backendavatar.png') }}" alt="{{ $authorBoard->name }}">
+                                            @endif
+                                        
+                                        </a>
+                                        <p class="post-title">{{ $authorBoard->name }}</p>
+                                        <p>
+                                            {{ $authorBoard->about_author }}
+                                        </p>
+                                        <ul class="header-social-network d-inline-block list-inline font-span">
+                                            @if ($authorBoard->social_facebook != null)
+                                                <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_facebook }}"><i class="ti-facebook"></i></a></li> 
+                                            @endif
 
-                                        @if ($authorBoard->social_twitter != null)
-                                            <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_twitter }}"><i class="ti-twitter-alt"></i></a></li> 
-                                        @endif
+                                            @if ($authorBoard->social_twitter != null)
+                                                <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_twitter }}"><i class="ti-twitter-alt"></i></a></li> 
+                                            @endif
 
-                                        @if ($authorBoard->social_instagram != null)
-                                            <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_instagram }}"><i class="ti-instagram"></i></a></li> 
-                                        @endif
-                                    </ul>
-                                    <p class="font-span mt-15 text-muted">View Posts by <a href="{{ route('author',[$authorBoard->slug]) }}"><u>{{ $authorBoard->name }}</u></a></p>
+                                            @if ($authorBoard->social_instagram != null)
+                                                <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center" target="_blank" href="{{ $authorBoard->social_instagram }}"><i class="ti-instagram"></i></a></li> 
+                                            @endif
+                                        </ul>
+                                        <p class="font-span mt-15 text-muted">View Posts by <a href="{{ route('author',[$authorBoard->slug]) }}"><u>{{ $authorBoard->name }}</u></a></p>
+                                                                            
+                                    @else
+                                        <p class="container">No Authors Found</p>
+                                    @endif                                    
                                 </div>
                             </div>                           
                             <div class="sidebar-widget widget_newsletter wow fadeIn animated">

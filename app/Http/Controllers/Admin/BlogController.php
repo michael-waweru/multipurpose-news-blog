@@ -57,7 +57,7 @@ class BlogController extends Controller
             'description' => 'required',
             'status' => 'in:published,draft',
             'is_live' => 'in:isLive,notLive',
-            'image' => 'required|mimes:jpg,jpeg,svg,png|max:2048',
+            'image' => 'required|mimes:jpg,jpeg,svg,png,webp|max:2048',
         ]);
 
         //check validation
