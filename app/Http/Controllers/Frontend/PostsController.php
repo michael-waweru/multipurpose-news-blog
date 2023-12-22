@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Mail\SubscriberWelcomeMail;
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Comment;
+use Jorenvh\Share\Share;
 use Illuminate\Http\Request;
 use App\Models\BlogSubscribers;
+use App\Mail\SubscriberWelcomeMail;
 use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
@@ -35,12 +36,13 @@ class PostsController extends Controller
             $tag->name . ' with url slug of ' . $tag->slug;
         }
 
-        $socialShare = \Share::currentPage()
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->whatsapp()
-        ->telegram();        
+        $share = new Share();
+        $socialShare = $share->currentPage()        
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->whatsapp()
+            ->telegram();
 
         return view('frontend.blog-detail', compact([
             'blogDetail','relatedPosts','article','interestedPosts','comments','socialShare'

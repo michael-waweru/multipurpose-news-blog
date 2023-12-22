@@ -38,7 +38,7 @@ Route::get('auth/google/callback', [SocialController::class,'loginWithGoogle'])-
 //Backend Routes
 
 //Admin Routes
-Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
+Route::prefix('/#/admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('dashboard',[DashboardController::class,'dashboard'])->name('admin.dashboard');
 
     //Blog Routes
