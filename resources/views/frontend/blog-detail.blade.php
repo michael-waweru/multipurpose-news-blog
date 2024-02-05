@@ -58,10 +58,10 @@
                 <div class="excerpt mb-30">
                     <p>{{ $blogDetail->short_description }}</p>
                 </div>
-                <div class="entry-left-col">
-                    <div class="social-sticky">
+                <div class="entry-left-col">                  
+                    <div class="social-sticky" href="#" target="_blank">
                         {!! $socialShare !!}
-                    </div>
+                    </div>                   
                 </div>
                 <div class="entry-main-content">                    
                     @php echo html_entity_decode($blogDetail->description) @endphp
